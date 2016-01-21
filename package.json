@@ -1,0 +1,32 @@
+{
+  "name": "ramanujan",
+  "version": "0.0.1",
+  "description": "ramanujan",
+  "main": "ramanujan.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/senecajs/ramanujan.git"
+  },
+  "keywords": [
+    "seneca",
+    "demo",
+    "ramanujan"
+  ],
+  "author": "Richard Rodger richardrodger.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/senecajs/ramanujan/issues"
+  },
+  "homepage": "https://github.com/senecajs/ramanujan",
+  "dependencies": {
+    "chairo": "^1.3.0",
+    "hapi": "^12.1.0",
+    "seneca": "^1.0.0"
+  },
+  "files": [
+    "api/api.js"
+  ]
+}
