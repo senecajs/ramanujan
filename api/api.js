@@ -20,11 +20,11 @@ server.register({
 server.register({
   register: require('wo'),
   options:{
+    bases: BASES,
     route: { 
       path: '/api/ping', 
     },
     sneeze: {
-      bases: BASES,
       silent: false
     }
   }
@@ -34,16 +34,13 @@ server.route({
   method: 'GET', path: '/api/ping', 
   handler: function( req, reply ){
     server.seneca.act(
-      'role:api,cmd:ping',
+      'role:api,cmd:ping,default$:{}',
       function(err,out){
         reply(err||out)
       })
   }})
 
-server.seneca
-  .add('role:api,cmd:ping', function(msg,done){
-    done( null, {pong:true,time:Date.now()})
-  })
+server.seneca.use('mesh',{bases:BASES})
 
 server.start()
 

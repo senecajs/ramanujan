@@ -3,11 +3,11 @@
 
 var NAME = process.env.NAME || process.argv[2] || 'base'
 var PORT = process.env.PORT || process.argv[3] || 39999
-var REMOTES = (process.env.REMOTES || process.argv[4] || '').split(',')
+var BASES = (process.env.BASES || process.argv[4] || '').split(',')
 
 require('sneeze')({
-  base: true, 
+  isbase: true, 
   silent: false, 
   port: PORT, 
-  remotes: REMOTES
+  bases: BASES
 }).join({name: NAME})

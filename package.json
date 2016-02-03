@@ -23,8 +23,11 @@
   "homepage": "https://github.com/senecajs/ramanujan",
   "dependencies": {
     "chairo": "^1.3.0",
+    "fuge": "^0.5.3",
     "hapi": "^12.1.0",
     "seneca": "^1.0.0",
+    "seneca-balance-client": "^0.2.0",
+    "seneca-mesh": "^0.4.0",
     "sneeze": "^0.3.2",
     "wo": "^0.4.0"
   },

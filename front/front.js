@@ -12,12 +12,12 @@ server.connection({
 server.register({
   register: require('wo'),
   options: {
+    bases: BASES,
     sneeze: {
-      bases: BASES,
       silent: false
     }
   }
-},console.log)
+})
 
 server.route({ 
   method: 'GET', path: '/api/ping', 
@@ -26,4 +26,6 @@ server.route({
   }
 })
 
-server.start(console.log)
+server.start(function(){
+  console.log('started',server.info.uri)
+})

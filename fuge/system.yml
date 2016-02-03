@@ -1,0 +1,16 @@
+base0:
+  build: ../base
+base1:
+  build: ../base
+front:
+  build: ../front
+api0:
+  build: ../api
+api1:
+  build: ../api
+post:
+  build: ../post
+search:
+  build: ../search
+
+
