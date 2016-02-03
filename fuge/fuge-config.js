@@ -15,10 +15,10 @@ module.exports = {
       run: 'node front.js '+BASES
     },
     api0: { 
-      run: 'node api.js 9000 '+BASES
+      run: 'node api-service.js 9000 '+BASES
     },
     api1: { 
-      run: 'node api.js 9001 '+BASES
+      run: 'node api-service.js 9001 '+BASES
     },
     post: {
       run: 'node post-service.js '+BASES
