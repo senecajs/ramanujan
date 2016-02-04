@@ -1,6 +1,6 @@
 "use strict"
 
-var PORT = process.env.PORT || process.argv[2] || 8001
+var PORT = process.env.PORT || process.argv[2] || 0
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
 
 var hapi       = require('hapi')
@@ -14,31 +14,47 @@ server.connection({
 
 server.register({
   register:chairo, 
-  options:{log:'standard'}
+  options:{tag:'api',log:'standard',debug:{undead:true}}
 })
 
 server.register({
   register: require('wo'),
   options:{
     bases: BASES,
-    route: { 
-      path: '/api/ping', 
-    },
+    route: [
+        {path: '/api/ping'},
+        {path: '/api/post', method: 'post'},
+    ],
     sneeze: {
       silent: false
     }
   }
 })
 
+function passon(reply) {
+  return function(err,out) {
+    reply(err||out)
+  }
+}
+
 server.route({ 
   method: 'GET', path: '/api/ping', 
   handler: function( req, reply ){
     server.seneca.act(
       'role:api,cmd:ping,default$:{}',
-      function(err,out){
-        reply(err||out)
-      })
-  }})
+      passon(reply)
+  )}
+})
+
+server.route({ 
+  method: 'POST', path: '/api/post', 
+  handler: function( req, reply ){
+    server.seneca.act(
+      'post:submit',
+      {user:req.payload.user, text:req.payload.text},
+      passon(reply)
+    )}
+})
 
 server.seneca.use('mesh',{bases:BASES})
 

@@ -26,6 +26,13 @@ server.route({
   }
 })
 
+server.route({ 
+  method: 'POST', path: '/api/post', 
+  handler: {
+    wo: {}
+  }
+})
+
 server.start(function(){
   console.log('started',server.info.uri)
 })

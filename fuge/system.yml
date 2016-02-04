@@ -4,13 +4,16 @@ base1:
   build: ../base
 front:
   build: ../front
-api0:
-  build: ../api
-api1:
+api:
   build: ../api
 post:
   build: ../post
 search:
   build: ../search
+entry_store:
+  build: ../entry-store
+repl:
+  build: ../repl
+
 
 

@@ -4,10 +4,11 @@ module.exports = function post (options) {
   seneca.add('post:submit', function(msg, done) {
     var entry = this.util.clean(msg)
     delete entry.post
-    console.log('POST:SUBMIT',entry)
+
+    entry.when = Date.now()
 
     this.act('store:save,kind:entry',entry)
-    this.act('search:index',entry)
+    //this.act('search:index',entry)
     done()
   })
 }

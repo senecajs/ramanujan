@@ -14,17 +14,20 @@ module.exports = {
     front: { 
       run: 'node front.js '+BASES
     },
-    api0: { 
-      run: 'node api-service.js 9000 '+BASES
-    },
-    api1: { 
-      run: 'node api-service.js 9001 '+BASES
+    api: { 
+      run: 'node api-service.js 0 '+BASES
     },
     post: {
       run: 'node post-service.js '+BASES
     },
     search: {
       run: 'node search-service.js '+BASES
+    },
+    entry_store: {
+      run: 'node entry-store-service.js '+BASES
+    },
+    repl: {
+      run: 'node repl-service.js '+BASES
     }
   }
 };
