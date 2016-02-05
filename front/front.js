@@ -14,7 +14,7 @@ server.register({
   options: {
     bases: BASES,
     sneeze: {
-      silent: false
+      silent: true
     }
   }
 })
@@ -28,6 +28,13 @@ server.route({
 
 server.route({ 
   method: 'POST', path: '/api/post', 
+  handler: {
+    wo: {}
+  }
+})
+
+server.route({ 
+  method: 'GET', path: '/mine/{user}', 
   handler: {
     wo: {}
   }

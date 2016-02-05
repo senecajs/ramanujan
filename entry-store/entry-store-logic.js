@@ -14,7 +14,7 @@ module.exports = function post (options) {
   seneca.add('store:list,kind:entry', function(msg, done) {
     this
       .make('entry')
-      .list$( function(err,list) {
+      .list$( {user:msg.user}, function(err,list) {
         if(err) return done(err);
 
         list.reverse( function(a,b) {

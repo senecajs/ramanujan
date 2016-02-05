@@ -28,6 +28,9 @@ module.exports = {
     },
     repl: {
       run: 'node repl-service.js '+BASES
+    },
+    mine: {
+      run: 'node mine-service.js 0 '+BASES
     }
   }
 };

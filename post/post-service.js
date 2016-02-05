@@ -7,6 +7,4 @@ require('seneca')({tag:'post',debug:{undead:true}})
     done( null, {pong:true,api:true,time:Date.now()})
   })
 
-  .use('mesh',{pins:['post:*','role:api'],bases:BASES})
-
-
+  .use('mesh',{pins:['post:*','role:api'],bases:BASES,sneeze:{silent:true}})

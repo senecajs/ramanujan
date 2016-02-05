@@ -26,7 +26,7 @@ server.register({
         {path: '/api/post', method: 'post'},
     ],
     sneeze: {
-      silent: false
+      silent: true
     }
   }
 })
