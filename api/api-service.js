@@ -14,7 +14,11 @@ server.connection({
 
 server.register({
   register:chairo, 
-  options:{tag:'api',log:'standard',debug:{undead:true}}
+  options:{
+    tag: 'api',
+    //log: { map: [ {type: 'act', handler: 'print'} ] },
+    log: 'standard',
+    debug: {undead:true}}
 })
 
 server.register({
@@ -23,7 +27,8 @@ server.register({
     bases: BASES,
     route: [
         {path: '/api/ping'},
-        {path: '/api/post', method: 'post'},
+        {path: '/api/post/{user}', method: 'post'},
+        {path: '/api/follow/{user}', method: 'post'},
     ],
     sneeze: {
       silent: true
@@ -31,32 +36,54 @@ server.register({
   }
 })
 
-function passon(reply) {
-  return function(err,out) {
-    reply(err||out)
-  }
-}
 
 server.route({ 
   method: 'GET', path: '/api/ping', 
   handler: function( req, reply ){
     server.seneca.act(
-      'role:api,cmd:ping,default$:{}',
-      passon(reply)
+      'role:api,cmd:ping',
+      function(err,out) {
+        reply(err||out)
+      }
   )}
 })
 
 server.route({ 
-  method: 'POST', path: '/api/post', 
+  method: 'POST', path: '/api/post/{user}', 
   handler: function( req, reply ){
     server.seneca.act(
-      'post:submit',
-      {user:req.payload.user, text:req.payload.text},
-      passon(reply)
+      'post:text',
+      {user:req.params.user, text:req.payload.text},
+      function(err,out) {
+        if( err ) reply.redirect('/error')
+
+        reply.redirect(req.payload.from)
+      }
     )}
 })
 
-server.seneca.use('mesh',{bases:BASES})
+server.route({ 
+  method: 'POST', path: '/api/follow/{user}', 
+  handler: function( req, reply ){
+    server.seneca.act(
+      'follow:user',
+      {user:req.payload.user, follow:req.params.user},
+      function(err,out) {
+        if( err ) reply.redirect('/error')
 
-server.start()
+        reply.redirect(req.payload.from)
+      }
+    )}
+})
+
+server.seneca
+  .add('role:api,cmd:ping', function(msg,done){
+    done( null, {pong:true,api:true,time:Date.now()})
+  })
+
+  .use('mesh',{bases:BASES})
+
+server.start(function(){
+  console.log('api',server.info.host,server.info.port)
+})
 

@@ -27,7 +27,7 @@
     "hapi": "^12.1.0",
     "seneca": "^1.0.0",
     "seneca-balance-client": "^0.2.0",
-    "seneca-mesh": "^0.4.0",
+    "seneca-mesh": "^0.5.0",
     "sneeze": "^0.3.2",
     "wo": "^0.4.0"
   },

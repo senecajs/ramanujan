@@ -1,4 +1,11 @@
 <b>mine</b>
 
-{{entrylist}}
+<form action="/api/post/{{user}}" method="post">
+<input type="text" name="text">
+<input type="hidden" name="from" value="/mine/{{user}}">
+<input type="submit" value="post">
+</form>
 
+{{#each entrylist}}
+<p>{{this.when}} {{this.text}}</p>
+{{/each}}

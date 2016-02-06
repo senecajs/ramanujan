@@ -21,7 +21,7 @@ server.register( inert )
 
 server.register({
   register:chairo, 
-  options:{tag:'mine',log:'standard',debug:{undead:true}}
+  options:{tag:'home',log:'standard',debug:{undead:true}}
 })
 
 server.register({
@@ -29,7 +29,7 @@ server.register({
   options:{
     bases: BASES,
     route: [
-        {path: '/mine/{user}'},
+        {path: '/home/{user}'},
     ],
     sneeze: {
       silent: true
@@ -57,7 +57,7 @@ server.views({
 
 
 server.route({ 
-  method: 'GET', path: '/mine/{user}', 
+  method: 'GET', path: '/home/{user}', 
   handler: function( req, reply )
   {
     server.seneca.act(
@@ -66,10 +66,7 @@ server.route({
       function( err, list ) {
         if(err) return done(err)
 
-        reply.view('mine',{
-          user: req.params.user,
-          entrylist: list
-        })
+        reply.view('home',{entrylist:list})
       })
   }
 })

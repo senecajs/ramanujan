@@ -1,7 +1,7 @@
 module.exports = function post (options) {
   var seneca = this
 
-  seneca.add('post:submit', function(msg, done) {
+  seneca.add('post:text', function(msg, done) {
     var entry = this.util.clean(msg)
     delete entry.post
 

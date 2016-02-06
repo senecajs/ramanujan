@@ -26,12 +26,22 @@ server.route({
   }
 })
 
-server.route({ 
-  method: 'POST', path: '/api/post', 
+server.route({
+  method: 'POST', path: '/api/post/{user}', 
+  handler: {
+    wo: {
+      passThrough: true
+    }
+  }
+})
+
+server.route({
+  method: 'POST', path: '/api/follow/{user}', 
   handler: {
     wo: {}
   }
 })
+
 
 server.route({ 
   method: 'GET', path: '/mine/{user}', 
@@ -39,6 +49,22 @@ server.route({
     wo: {}
   }
 })
+
+server.route({ 
+  method: 'GET', path: '/home/{user}', 
+  handler: {
+    wo: {}
+  }
+})
+
+server.route({ 
+  method: 'GET', path: '/', 
+  handler: {
+    wo: {}
+  }
+})
+
+
 
 server.start(function(){
   console.log('started',server.info.uri)

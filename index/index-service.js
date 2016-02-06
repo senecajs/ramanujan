@@ -21,7 +21,7 @@ server.register( inert )
 
 server.register({
   register:chairo, 
-  options:{tag:'mine',log:'standard',debug:{undead:true}}
+  options:{tag:'index',log:'standard',debug:{undead:true}}
 })
 
 server.register({
@@ -29,7 +29,7 @@ server.register({
   options:{
     bases: BASES,
     route: [
-        {path: '/mine/{user}'},
+        {path: '/'},
     ],
     sneeze: {
       silent: true
@@ -57,19 +57,15 @@ server.views({
 
 
 server.route({ 
-  method: 'GET', path: '/mine/{user}', 
+  method: 'GET', path: '/', 
   handler: function( req, reply )
   {
     server.seneca.act(
-      'store:list,kind:entry',
-      {user:req.params.user},
-      function( err, list ) {
+      'timeline:list,all:true',
+      function( err, entrylist ) {
         if(err) return done(err)
 
-        reply.view('mine',{
-          user: req.params.user,
-          entrylist: list
-        })
+        reply.view('index',{entrylist:entrylist})
       })
   }
 })
