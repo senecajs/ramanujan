@@ -20,9 +20,6 @@ module.exports = {
     post: {
       run: 'node post-service.js '+BASES
     },
-    search: {
-      run: 'node search-service.js '+BASES
-    },
     entry_store: {
       run: 'node entry-store-service.js '+BASES
     },
@@ -31,6 +28,18 @@ module.exports = {
     },
     mine: {
       run: 'node mine-service.js 0 '+BASES
+    },
+    home: {
+      run: 'node home-service.js 0 '+BASES
+    },
+    search: {
+      run: 'node search-service.js 0 '+BASES
+    },
+    index: {
+      run: 'node index-service.js '+BASES
+    },
+    follow: {
+      run: 'node follow-service.js '+BASES
     }
   }
 };

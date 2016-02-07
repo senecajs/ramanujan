@@ -8,14 +8,20 @@ api:
   build: ../api
 post:
   build: ../post
-search:
-  build: ../search
 entry_store:
   build: ../entry-store
 repl:
   build: ../repl
 mine:
   build: ../mine
+home:
+  build: ../home
+index:
+  build: ../index
+search:
+  build: ../search
+follow:
+  build: ../follow
 
 
 

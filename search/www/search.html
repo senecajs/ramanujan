@@ -1,0 +1,18 @@
+<b>search</b>
+
+<form action="/search/{{user}}" method="post">
+<input type="text" name="query">
+<input type="submit" value="search">
+</form>
+
+
+{{#each entrylist}}
+<form action="/api/follow/{{user}}" method="post">
+{{this.when}} @{{this.user}} : {{this.text}}
+<input type="hidden" name="from" value="/search">
+<input type="hidden" name="follow" value="{{this.user}}">
+<input type="submit" value="follow">
+</form>
+{{/each}}
+
+

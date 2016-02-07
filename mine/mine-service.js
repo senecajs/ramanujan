@@ -8,6 +8,8 @@ var chairo     = require('chairo')
 var vision     = require('vision')
 var inert      = require('inert')
 var handlebars = require('handlebars')
+var _          = require('lodash')
+var moment     = require('moment')
 
 
 var server = new hapi.Server()
@@ -37,17 +39,6 @@ server.register({
   }
 })
 
-  
-server.route({
-  method: 'GET',
-  path: '/{path*}',
-  handler: {
-    directory: {
-      path: __dirname + '/www',
-    }
-  }
-})
-
 
 server.views({
   engines: { html: handlebars },
@@ -63,12 +54,15 @@ server.route({
     server.seneca.act(
       'store:list,kind:entry',
       {user:req.params.user},
-      function( err, list ) {
+      function( err, entrylist ) {
         if(err) return done(err)
 
         reply.view('mine',{
           user: req.params.user,
-          entrylist: list
+          entrylist: _.map(entrylist,function(entry){
+            entry.when = moment(entry.when).fromNow()
+            return entry
+          })
         })
       })
   }

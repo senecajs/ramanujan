@@ -1,4 +1,18 @@
-<b>mine</b>
+<b>home</b>
 
-{{entrylist}}
+<form action="/api/post/{{user}}" method="post">
+<input type="text" name="text">
+<input type="hidden" name="from" value="/home/{{user}}">
+<input type="submit" value="post">
+</form>
+
+
+{{#each entrylist}}
+<form action="/api/follow/{{user}}" method="post">
+{{this.when}} @{{this.user}} : {{this.text}}
+<input type="hidden" name="from" value="/home/{{user}}">
+<input type="hidden" name="follow" value="{{this.user}}">
+<input type="submit" value="follow">
+</form>
+{{/each}}
 
