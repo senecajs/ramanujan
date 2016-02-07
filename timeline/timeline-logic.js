@@ -2,7 +2,7 @@
 
 var _ = require('lodash')
 
-module.exports = function fanout (options) {
+module.exports = function timeline (options) {
   var seneca = this
 
 
@@ -12,16 +12,21 @@ module.exports = function fanout (options) {
 
     var entry = {
       user: msg.user,
-      test: msg.text,
+      text: msg.text,
       when: msg.when,
     }
 
     var users = _.clone(msg.users)
+    console.log('users',users)
+
+    do_user(0)
 
     function do_user(count) {
       count = count || 0
       var user = users.shift()
       if( !user) return;
+
+      console.log('user',user)
 
       seneca
         .make('timeline')
@@ -48,12 +53,11 @@ module.exports = function fanout (options) {
             }
             
             timeline.entrylist.unshift(entry)            
+            console.log('timeline',timeline)
             timeline.save$(do_user)
           }
         })
     }
-
-    do_user(0)
   })
 
 

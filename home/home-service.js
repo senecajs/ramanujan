@@ -31,7 +31,7 @@ server.register({
   options:{
     bases: BASES,
     route: [
-        {path: '/home/{user}'},
+        {path: '/{user}'},
     ],
     sneeze: {
       silent: true
@@ -55,7 +55,9 @@ server.route({
       'timeline:list',
       {user:req.params.user},
       function( err, entrylist ) {
-        if(err) return done(err)
+        if(err) {
+          entrylist = []
+        }
 
         reply.view('home',{
           user: req.params.user,

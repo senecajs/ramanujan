@@ -1,6 +1,6 @@
 var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
-require('seneca')({tag:'post',debug:{undead:true}})
+require('seneca')({tag:'fanout',debug:{undead:true}})
   .use('fanout-logic')
   .use('mesh',{pin:'fanout:*',bases:BASES,sneeze:{silent:true}})
 

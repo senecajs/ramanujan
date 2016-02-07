@@ -8,7 +8,9 @@ module.exports = function post (options) {
     entry.when = Date.now()
 
     this.act('store:save,kind:entry',entry,function(err,entry){
-      this.act('search:insert',entry,done)
+      done()
+      this.act('fanout:text',entry)
+      this.act('search:insert',entry)
     })
   })
 }

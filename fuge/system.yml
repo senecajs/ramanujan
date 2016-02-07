@@ -22,6 +22,11 @@ search:
   build: ../search
 follow:
   build: ../follow
+timeline:
+  build: ../timeline
+fanout:
+  build: ../fanout
+
 
 
 

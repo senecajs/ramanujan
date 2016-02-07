@@ -6,10 +6,13 @@
 <input type="submit" value="post">
 </form>
 
+<br>
+<br>
 
 {{#each entrylist}}
 <p>
-{{this.when}} @{{this.user}} : {{this.text}}
+<small>{{this.when}}</small>
+<br>{{this.text}}
 </p>
 {{/each}}
 

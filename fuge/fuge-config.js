@@ -40,6 +40,12 @@ module.exports = {
     },
     follow: {
       run: 'node follow-service.js '+BASES
+    },
+    fanout: {
+      run: 'node fanout-service.js '+BASES
+    },
+    timeline: {
+      run: 'node timeline-service.js 0 '+BASES
     }
   }
 };

@@ -2,17 +2,20 @@
 
 <form action="/api/post/{{user}}" method="post">
 <input type="text" name="text">
-<input type="hidden" name="from" value="/home/{{user}}">
+<input type="hidden" name="from" value="/{{user}}">
 <input type="submit" value="post">
 </form>
 
+<br>
+<br>
 
 {{#each entrylist}}
-<form action="/api/follow/{{user}}" method="post">
-{{this.when}} @{{this.user}} : {{this.text}}
-<input type="hidden" name="from" value="/home/{{user}}">
-<input type="hidden" name="follow" value="{{this.user}}">
+<form action="/api/follow/{{../user}}" method="post">
+<small>{{this.when}}</small> <b>@{{this.user}}</b>
+<input type="hidden" name="from" value="/{{../user}}">
+<input type="hidden" name="user" value="{{this.user}}">
 <input type="submit" value="follow">
+<br>{{this.text}}
 </form>
 {{/each}}
 

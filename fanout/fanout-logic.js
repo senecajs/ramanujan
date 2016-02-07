@@ -15,6 +15,8 @@ module.exports = function fanout (options) {
       seneca = this
       if(err) return done(err)
 
+      console.log('fanout',entry.user,userlist)
+
       var shards = [[],[]]
 
       _.each(userlist,function(user){

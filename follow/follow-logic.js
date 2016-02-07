@@ -1,6 +1,6 @@
 var _ = require('lodash')
 
-module.exports = function post (options) {
+module.exports = function follow (options) {
   var seneca = this
 
   seneca.add('follow:user', function(msg, done) {
@@ -18,12 +18,16 @@ module.exports = function post (options) {
     seneca
       .make('follow')
       .load$(msg.user, function(err,follow){
-        done(err, (follow && follow[msg.kind]) || [])
+        var list = (follow && follow[msg.kind]) || []
+        list.unshift(msg.user)
+        done(err, list)
       })
   })
 
 
   function relate(seneca,relation,from,to,count,done) {
+    console.log(relation,from,to,count)
+
     seneca
       .make('follow')
       .load$(from, function(err,follow){
@@ -31,7 +35,7 @@ module.exports = function post (options) {
         
         if( follow ) add_follower( null, follow )
         else {
-          var follow = this.make('follow',{id$:from})
+          var follow = seneca.make('follow',{id$:from})
           follow[relation] = []
           follow.save$( add_follower )
         }
@@ -47,9 +51,11 @@ module.exports = function post (options) {
             }
           }
 
+          follow[relation] = (follow[relation] || [])
           follow[relation].push(to)
           follow[relation] = _.uniq(follow[relation])
 
+          console.log(follow)
           follow.save$(function(err){
             done(err)
           })

@@ -1,4 +1,4 @@
-module.exports = function post (options) {
+module.exports = function entry_store (options) {
   var seneca = this
 
   seneca.add('store:save,kind:entry', function(msg, done) {

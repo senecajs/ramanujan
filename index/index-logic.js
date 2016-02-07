@@ -3,7 +3,7 @@ var _ = require('lodash')
 var Memdown = require('memdown')
 var Search  = require('search-index')
 
-module.exports = function search (options) {
+module.exports = function index (options) {
   var seneca = this
   var index
 
@@ -30,7 +30,7 @@ module.exports = function search (options) {
   })
 
 
-  seneca.add( 'init:search', function(msg, done) {
+  seneca.add( 'init:index', function(msg, done) {
     index = Search({
       db: Memdown
     })

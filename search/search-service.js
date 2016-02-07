@@ -69,6 +69,7 @@ server.route({
         }
 
         reply.view('search',{
+          query: encodeURIComponent(query),
           user: req.params.user,
           entrylist: _.map(entrylist,function(entry){
             entry.when = moment(entry.when).fromNow()
