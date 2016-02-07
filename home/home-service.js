@@ -52,7 +52,7 @@ server.route({
   handler: function( req, reply )
   {
     server.seneca.act(
-      'store:list,kind:entry',
+      'timeline:list',
       {user:req.params.user},
       function( err, entrylist ) {
         if(err) return done(err)

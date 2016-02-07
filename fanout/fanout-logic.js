@@ -11,7 +11,7 @@ module.exports = function fanout (options) {
     var entry = this.util.clean(msg)
     delete entry.fanout
 
-    this.act('follow:list',{user:entry.user},function(err,userlist){
+    this.act('follow:list,kind:followers',{user:entry.user},function(err,userlist){
       seneca = this
       if(err) return done(err)
 

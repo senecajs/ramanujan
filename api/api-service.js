@@ -67,7 +67,7 @@ server.route({
   handler: function( req, reply ){
     server.seneca.act(
       'follow:user',
-      {user:req.params.user, follow:req.payload.user},
+      {user:req.params.user, target:req.payload.user},
       function(err,out) {
         if( err ) reply.redirect('/error')
 

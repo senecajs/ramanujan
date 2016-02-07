@@ -15,5 +15,4 @@ setTimeout( function() {
   si.act('timeline:list,user:bbb',console.log)
   si.act('timeline:list,user:ccc',console.log)
 },333)
-
 */

@@ -18,7 +18,8 @@ module.exports = function fanout (options) {
 
     var users = _.clone(msg.users)
 
-    function do_user() {
+    function do_user(count) {
+      count = count || 0
       var user = users.shift()
       if( !user) return;
 
@@ -35,7 +36,16 @@ module.exports = function fanout (options) {
           else insert_entry( null, timeline )
 
           function insert_entry(err,timeline) {
-            if(err) return setImmediate(do_user)
+            if(err) {
+              if( 1 < count ) {
+                return do_user(0)
+              }
+              else {
+                // if create failed, try again, as now exists
+                users.unshift(user)
+                return do_user(count)
+              }
+            }
             
             timeline.entrylist.unshift(entry)            
             timeline.save$(do_user)
@@ -43,7 +53,7 @@ module.exports = function fanout (options) {
         })
     }
 
-    do_user()
+    do_user(0)
   })
 
 
