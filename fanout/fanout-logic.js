@@ -16,7 +16,9 @@ module.exports = function fanout (options) {
       if(err) return done(err)
 
       console.log('fanout',entry.user,userlist)
+      var users = userlist
 
+/*
       var shards = [[],[]]
 
       _.each(userlist,function(user){
@@ -24,13 +26,14 @@ module.exports = function fanout (options) {
       })
 
       _.each(shards,function(users,shard){
+*/
         seneca.act({
           timeline: 'insert',
           kind: 'entry',
-          shard: shard,
+          //shard: shard,
           users: users,
         }, entry)
-      })
+//      })
     })
   })
 

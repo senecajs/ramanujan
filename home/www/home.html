@@ -14,7 +14,9 @@
 <small>{{this.when}}</small> <b>@{{this.user}}</b>
 <input type="hidden" name="from" value="/{{../user}}">
 <input type="hidden" name="user" value="{{this.user}}">
+{{#if can_follow}}
 <input type="submit" value="follow">
+{{/if}}
 <br>{{this.text}}
 </form>
 {{/each}}

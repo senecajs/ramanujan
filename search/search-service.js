@@ -60,22 +60,32 @@ server.route({
     query = query.replace(/ +$/,'')
 
     server.seneca.act(
-      'search:query',
-      {query: query },
-      function( err, entrylist ) {
-        if(err) {
-          this.log.warn(err)
-          entrylist = []
+      'follow:list,kind:following',
+      {user:req.params.user},
+      function(err,following){
+        if( err ) {
+          following = []
         }
 
-        reply.view('search',{
-          query: encodeURIComponent(query),
-          user: req.params.user,
-          entrylist: _.map(entrylist,function(entry){
-            entry.when = moment(entry.when).fromNow()
-            return entry
+        this.act(
+          'search:query',
+          {query: query },
+          function( err, entrylist ) {
+            if(err) {
+              this.log.warn(err)
+              entrylist = []
+            }
+
+            reply.view('search',{
+              query: encodeURIComponent(query),
+              user: req.params.user,
+              entrylist: _.map(entrylist,function(entry){
+                entry.when = moment(entry.when).fromNow()
+                entry.can_follow = !_.includes(following,entry.user)
+                return entry
+              })
+            })
           })
-        })
       })
   }
 })

@@ -17,7 +17,6 @@ module.exports = function timeline (options) {
     }
 
     var users = _.clone(msg.users)
-    console.log('users',users)
 
     do_user(0)
 
@@ -25,8 +24,6 @@ module.exports = function timeline (options) {
       count = count || 0
       var user = users.shift()
       if( !user) return;
-
-      console.log('user',user)
 
       seneca
         .make('timeline')
@@ -53,7 +50,6 @@ module.exports = function timeline (options) {
             }
             
             timeline.entrylist.unshift(entry)            
-            console.log('timeline',timeline)
             timeline.save$(do_user)
           }
         })
@@ -62,10 +58,21 @@ module.exports = function timeline (options) {
 
 
   seneca.add('timeline:list', function(msg, done) {
-    this
-      .make('timeline')
-      .load$(msg.user,function(err,timeline){
-        done( err, timeline ? timeline.entrylist : [] )
-      })
+    this.act('follow:list,kind:following',{user:msg.user},function(err,following){
+      if( err ) return done(err)
+
+      this
+        .make('timeline')
+        .load$(msg.user,function(err,timeline){
+          var entrylist = (timeline ? timeline.entrylist : [])
+          _.each(entrylist,function(entry){
+            entry.can_follow = !_.includes(following,entry.user)
+          })
+
+          console.log(entrylist)
+
+          done(err,entrylist)
+        })
+    })
   })
 }
