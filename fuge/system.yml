@@ -22,10 +22,14 @@ search:
   build: ../search
 follow:
   build: ../follow
-timeline:
-  build: ../timeline
 fanout:
   build: ../fanout
+timeline0:
+  build: ../timeline
+timeline1:
+  build: ../timeline
+timeline_shard:
+  build: ../timeline
 
 
 

@@ -6,10 +6,24 @@ module.exports = function follow (options) {
   seneca.add('follow:user', function(msg, done) {
     var seneca = this
     done()
+
     relate( seneca, 'followers', msg.target, msg.user, 0, function(err) {
       if( err ) return;
 
-      relate( seneca, 'following', msg.user, msg.target, 0, _.noop )
+      relate( seneca, 'following', msg.user, msg.target, 0, function(err) {
+        if( err ) return;
+
+        seneca.act('store:list,kind:entry',{user:msg.target}, function(err,list){
+          if( err ) return;
+
+          _.each(list,function(entry){
+            seneca.act({
+              timeline: 'insert',
+              users: [msg.user],
+            }, entry)
+          })
+        })
+      })
     })
   })
 

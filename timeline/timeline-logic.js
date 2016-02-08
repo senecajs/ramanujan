@@ -69,8 +69,6 @@ module.exports = function timeline (options) {
             entry.can_follow = !_.includes(following,entry.user)
           })
 
-          console.log(entrylist)
-
           done(err,entrylist)
         })
     })

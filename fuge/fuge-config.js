@@ -44,8 +44,14 @@ module.exports = {
     fanout: {
       run: 'node fanout-service.js '+BASES
     },
-    timeline: {
+    timeline0: {
       run: 'node timeline-service.js 0 '+BASES
+    },
+    timeline1: {
+      run: 'node timeline-service.js 1 '+BASES
+    },
+    timeline_shard: {
+      run: 'node timeline-shard-service.js '+BASES
     }
   }
 };
