@@ -15,6 +15,7 @@ module.exports = function index (options) {
       hits = _.map(hits,function(hit){
         return hit.document
       })
+
       done(null,hits)
     })
   })

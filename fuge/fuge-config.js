@@ -23,6 +23,9 @@ module.exports = {
     entry_store: {
       run: 'node entry-store-service.js '+BASES
     },
+    entry_cache: {
+      run: 'node entry-cache-service.js '+BASES
+    },
     repl: {
       run: 'node repl-service.js '+BASES
     },

@@ -12,6 +12,7 @@ module.exports = function entry_store (options) {
   })
 
   seneca.add('store:list,kind:entry', function(msg, done) {
+    console.log('STORE',msg.user)
     this
       .make('entry')
       .list$( {user:msg.user}, function(err,list) {

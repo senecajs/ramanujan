@@ -5,7 +5,7 @@ var _ = require('lodash')
 module.exports = function fanout (options) {
   var seneca = this
 
-  seneca.add('fanout:text', function(msg, done) {
+  seneca.add('info:entry', function(msg, done) {
     done()
 
     var entry = this.util.clean(msg)

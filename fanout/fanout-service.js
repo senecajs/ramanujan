@@ -2,7 +2,7 @@ var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
 require('seneca')({tag:'fanout',debug:{undead:true}})
   .use('fanout-logic')
-  .use('mesh',{pin:'fanout:*',bases:BASES,sneeze:{silent:true}})
+  .use('mesh',{pin:'info:entry',model:'publish',bases:BASES,sneeze:{silent:true}})
 
 /*
   .add('follow:list', function(msg,done){
@@ -14,6 +14,6 @@ require('seneca')({tag:'fanout',debug:{undead:true}})
     done()
   })
 
-  .act('fanout:text,user:foo,text:f0,when:1234')
+  .act('info:entry,user:foo,text:f0,when:1234')
 */
 
