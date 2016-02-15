@@ -23,7 +23,10 @@ server.register( inert )
 
 server.register({
   register:chairo, 
-  options:{tag:'home',log:'standard',debug:{undead:true}}
+  options:{
+    tag:'home',
+    log:'standard'
+  }
 })
 
 server.register({

@@ -23,7 +23,10 @@ server.register( inert )
 
 server.register({
   register:chairo, 
-  options:{tag:'mine',log:'standard',debug:{undead:true}}
+  options:{
+    tag:'mine',
+    log:'standard',
+  }
 })
 
 server.register({
@@ -52,10 +55,12 @@ server.route({
   handler: function( req, reply )
   {
     server.seneca.act(
-      'store:list,kind:entry,cache:true',
+      'store:list,kind:entry',
       {user:req.params.user},
       function( err, entrylist ) {
-        if(err) return done(err)
+        if(err) {
+          entrylist = []
+        }
 
         reply.view('mine',{
           user: req.params.user,

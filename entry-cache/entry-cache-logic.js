@@ -9,9 +9,9 @@ module.exports = function entry_cache (options) {
 
   seneca.add('store:list,kind:entry,cache:true', function(msg, done) {
     if( cache[msg.user] ) {
-      console.log('HIT',msg.user)
       return done( null, cache[msg.user] )
     }
+
     delete msg.cache
     this.act(msg, function(err,list){
       if(err) return done(err)
@@ -21,7 +21,7 @@ module.exports = function entry_cache (options) {
   })
 
   
-  seneca.add('info:entry', function(msg, done) {
+  seneca.add('store:list,kind:entry,cache:false', function(msg, done) {
     delete cache[msg.user]
     done()
   })

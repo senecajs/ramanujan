@@ -6,7 +6,10 @@ function resolve_shard(user) {
   return user.charCodeAt(0) % 2
 }
 
-require('seneca')({tag:'timeline-shard',debug:{undead:true}})
+require('seneca')({
+  tag: 'timeline-shard'
+  //log:'all'
+})
 
   .add('timeline:list',function(msg,done){
     var shard = resolve_shard(msg.user)
@@ -31,9 +34,13 @@ require('seneca')({tag:'timeline-shard',debug:{undead:true}})
     })
   })
 
-  .use('mesh',{pin:'timeline:*',bases:BASES,sneeze:{silent:true}})
+  .use('mesh',{
+    pin: 'timeline:*',
+    bases: BASES
+  })
 
-/*
+
+/* In Situ Test
   .repl(10002)
 
   .ready( function(){

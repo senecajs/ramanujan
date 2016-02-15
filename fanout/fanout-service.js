@@ -1,10 +1,18 @@
 var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
-require('seneca')({tag:'fanout',debug:{undead:true}})
+require('seneca')({
+  tag:'fanout',
+  //log:'all
+})
   .use('fanout-logic')
-  .use('mesh',{pin:'info:entry',model:'publish',bases:BASES,sneeze:{silent:true}})
+  .use('mesh',{
+    pin: 'fanout:entry',
+    bases: BASES
+  })
 
-/*
+
+/* In Situ Testing
+
   .add('follow:list', function(msg,done){
     done(null,['bar','car','dar','ear'])
   })

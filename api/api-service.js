@@ -16,9 +16,8 @@ server.register({
   register:chairo, 
   options:{
     tag: 'api',
-    //log: { map: [ {type: 'act', handler: 'print'} ] },
-    log: 'standard',
-    debug: {undead:true}}
+    //log:'all'
+  }
 })
 
 server.register({

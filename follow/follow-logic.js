@@ -40,8 +40,6 @@ module.exports = function follow (options) {
 
 
   function relate(seneca,relation,from,to,count,done) {
-    console.log(relation,from,to,count)
-
     seneca
       .make('follow')
       .load$(from, function(err,follow){
@@ -69,7 +67,6 @@ module.exports = function follow (options) {
           follow[relation].push(to)
           follow[relation] = _.uniq(follow[relation])
 
-          console.log(follow)
           follow.save$(function(err){
             done(err)
           })

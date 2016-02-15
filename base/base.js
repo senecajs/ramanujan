@@ -5,11 +5,13 @@ var TAG = process.env.TAG || process.argv[2] || 'base'
 var PORT = process.env.PORT || process.argv[3] || 39999
 var BASES = (process.env.BASES || process.argv[4] || '').split(',')
 
-require('seneca')({tag: TAG})
+require('seneca')({
+  tag: TAG
+  //log: 'all'
+})
   .use('mesh',{
     isbase: true, 
     port: PORT, 
     bases: BASES,
-    pin:'role:mesh',
-    sneeze: { silent: true }
+    pin:'role:mesh'
   })

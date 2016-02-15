@@ -23,7 +23,10 @@ server.register( inert )
 
 server.register({
   register:chairo, 
-  options:{tag:'search',log:'standard',debug:{undead:true}}
+  options:{
+    tag:'search',
+    log:'standard'
+  }
 })
 
 server.register({

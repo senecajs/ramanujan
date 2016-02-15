@@ -1,8 +1,12 @@
-var BASES = (process.env.BASES || process.argv[2] || '').split(',')
+var REPL_PORT = parseInt(process.env.REPL_PORT || process.argv[2] || 10001)
+var BASES = (process.env.BASES || process.argv[3] || '').split(',')
 
-require('seneca')()
+require('seneca')({
+  tag:'repl',
+  //log:'all'
+})
   .use('mesh',{
-    tag:null,
+    tag:null, // ensures membership of all tagged meshes
     bases:BASES,
     make_entry: function( entry ) {
       if( 'wo' === entry.tag$ ) {
@@ -13,7 +17,6 @@ require('seneca')()
           identifier: entry.identifier$
         }
       }
-    },
-    sneeze:{silent:true}
+    }
   })
-  .repl(10001)
+  .repl(REPL_PORT)

@@ -1,12 +1,18 @@
 var SHARD = process.env.SHARD || process.argv[2] || 0
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
 
-require('seneca')({tag:'timeline'+SHARD,debug:{undead:true}})
+require('seneca')({
+  tag:'timeline'+SHARD,
+  //log:'all'
+})
   .use('timeline-logic')
-  .use('mesh',{pin:'timeline:*,shard:'+SHARD,bases:BASES,sneeze:{silent:true}})
+  .use('mesh',{
+    pin: 'timeline:*,shard:'+SHARD,
+    bases: BASES
+  })
 
 
-/*
+/* In Situ Test
   .repl(10002)
 
   .act("timeline:insert,user:foo,text:f0,when:1234,users:['aaa','bbb']")
