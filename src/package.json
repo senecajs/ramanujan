@@ -1,0 +1,15 @@
+{
+  "name": "metalsmith-markdown-site-template",
+  "private": true,
+  "dependencies": {
+    "handlebars": "^2.0.0-alpha.2",
+    "metalsmith": "^1.0.0",
+    "metalsmith-clean-css": "^2.0.0",
+    "metalsmith-html-minifier": "^1.1.0",
+    "metalsmith-markdownit": "^0.1.3",
+    "metalsmith-watch": "^1.0.1",
+    "node-static": "^0.7.7",
+    "sane-layouts": "cofl/sane-layouts",
+    "metalsmith-cofl-util": "cofl/metalsmith-cofl-util"
+  }
+}

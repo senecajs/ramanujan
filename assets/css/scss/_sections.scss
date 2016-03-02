@@ -1,0 +1,233 @@
+/*------------------------------------
+- Sections
+------------------------------------*/
+
+section {
+  position: relative;
+  padding: 96px 32px;
+  z-index: 0;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  border-bottom: 1px solid $color-gray-lighter;
+
+  &.bg-repeat {
+    background-repeat: repeat;
+    background-size: auto;
+  }
+
+  .row [class*="col-"].content-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+
+    &.bg-video-fixed {
+      //position: fixed;
+    }
+  }
+
+}
+
+//
+// Section header
+//
+.section-header {
+
+  text-align: center;
+  margin-bottom: 72px;
+
+  span {
+    color: $color-subtitle;
+    font-family: $font-family-subtitle;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    position: relative;
+    font-size: 38px;
+    margin-bottom: 48px;
+    position: relative;
+    text-transform: capitalize;
+
+    &::after {
+      position: absolute;
+      left: 50%;
+      margin-left: -24px;
+      bottom: -30px;
+      width: 48px;
+      height: 2px;
+      background-color: #9e7dd3;
+      content: "";
+    }
+  }
+
+  span ~ h2 {
+    margin-top: 24px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  &.text-left {
+    text-align: left;
+
+    h2::after {
+      left: 0;
+      margin-left: 0;
+    }
+  }
+
+  &.text-right {
+    text-align: right;
+
+    h2::after {
+      left: 100%;
+      margin-left: -48px;      
+    }
+  }
+
+}
+
+//
+// Background varieties
+//
+
+// Change text color based on the background color
+.bg-dark,
+.bg-dark-light,
+.bg-dark-lighter,
+.bg-dark-lightest,
+.bg-blue,
+.bg-red,
+.bg-orange,
+.bg-green,
+.bg-purple {
+  color: $color-text-alt;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $color-text-alt;
+  }
+}
+
+.bg-dark hr          {border-top-color: lighten($bg-dark, 10%);}
+.bg-dark-light hr    {border-top-color: lighten($bg-dark-light, 10%);}
+.bg-dark-lighter hr  {border-top-color: lighten($bg-dark-lighter, 10%);}
+.bg-dark-lightest hr {border-top-color: lighten($bg-dark-lightest, 10%);}
+.bg-gray hr          {border-top-color: lighten($bg-gray, 10%);}
+.bg-gray-light hr    {border-top-color: lighten($bg-gray-light, 10%);}
+.bg-gray-lighter hr  {border-top-color: lighten($bg-gray-lighter, 10%);}
+.bg-blue hr          {border-top-color: lighten($bg-blue, 10%);}
+.bg-red hr           {border-top-color: lighten($bg-red, 10%);}
+.bg-orange hr        {border-top-color: lighten($bg-orange, 10%);}
+.bg-green hr         {border-top-color: lighten($bg-green, 10%);}
+.bg-purple hr        {border-top-color: lighten($bg-purple, 10%);}
+
+
+// Background image related utilities
+
+// Overlay
+.overlay-black,
+.overlay-white {
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+}
+
+.overlay-black::before                 { background-color: rgba(0, 0, 0, .60); }
+.overlay-black.overlay-intense::before { background-color: rgba(0, 0, 0, .85); }
+.overlay-black.overlay-pale::before    { background-color: rgba(0, 0, 0, .40); }
+.overlay-white::before                 { background-color: rgba(255, 255, 255, .60); }
+.overlay-white.overlay-intense::before { background-color: rgba(255, 255, 255, .85); }
+.overlay-white.overlay-pale::before    { background-color: rgba(255, 255, 255, .40); }
+
+.overlay-black {
+  &, p, h1, h2, h3, h4, h5, h6 {
+    color: $color-text-alt;
+  }
+
+  hr {
+    border-top-color: $color-hr-alt;
+  }
+}
+
+
+//
+// Some utility class related to sections
+//
+section {
+
+  &.no-border-bottom {
+    border-bottom: none;
+  }
+
+  &.section-sm {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  &.section-lg {
+    padding-top: 164px;
+    padding-bottom: 164px;
+  }
+
+}
+
+
+
+
+
+@include media-down(tablet) {
+
+  section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+}
+
+@include media-down(phone) {
+
+  section {
+    padding: 72px 15px;
+
+    & > .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .section-sm {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .section-lg {
+    padding-top: 128px;
+    padding-bottom: 128px;
+  }
+
+}

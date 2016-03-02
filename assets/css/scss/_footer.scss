@@ -1,0 +1,132 @@
+/*------------------------------------
+- Footer
+------------------------------------*/
+
+.site-footer {
+  background-color: $bg-dark;
+  padding: 45px 0;
+
+  .back-to-top {
+    text-align: right;
+    margin: 0;
+
+    a {
+      color: $color-text;
+      text-transform: uppercase;
+      font-family: $font-family-subtitle;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all $duration-promptly linear;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.footer-links {
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    color: $color-gray-lighter;
+    margin-right: 16px;
+    line-height: 34px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+.footer-socials {
+  padding-left: 0;
+  list-style: none;
+  text-align: right;
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    color: $color-text;
+    font-size: 16px;
+    display: inline-block;
+    line-height: 34px;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    margin-left: 2px;
+    border-radius: 2px;
+    transition: all $duration-promptly linear;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: #fff;
+    }
+  }
+
+  a.facebook:hover    {background-color: #3b5998;}
+  a.rss:hover         {background-color: #f26522;}
+  a.google-plus:hover {background-color: #dd4b39;}
+  a.twitter:hover     {background-color: #00aced;}
+  a.linkedin:hover    {background-color: #007bb6;}
+  a.pinterest:hover   {background-color: #cb2027;}
+  a.git:hover         {background-color: #666666;}
+  a.tumblr:hover      {background-color: #32506d;}
+  a.vimeo:hover       {background-color: #aad450;}
+  a.youtube:hover     {background-color: #bb0000;}
+  a.flickr:hover      {background-color: #ff0084;}
+  a.pinterest:hover   {background-color: #cc2127;}
+  a.reddit:hover      {background-color: #ff4500;}
+  a.dribbble:hover    {background-color: #ea4c89;}
+  a.skype:hover       {background-color: #00aff0;}
+  a.instagram:hover   {background-color: #517fa4;}
+  a.lastfm:hover      {background-color: #c3000d;}
+  a.behance:hover     {background-color: #1769ff;}
+
+}
+
+
+.copyright-text {
+  margin: 0;
+
+  a {
+    color: $color-text;
+    transition: all $duration-promptly linear;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+@include media-down(phone) {
+  .footer-links,
+  .footer-socials,
+  .copyright-text,
+  .back-to-top {
+    text-align: center !important;
+  }
+
+  .footer-socials,
+  .copyright-text,
+  .back-to-top {
+    margin-top: 16px !important;
+  }
+}

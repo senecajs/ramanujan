@@ -1,0 +1,92 @@
+/*------------------------------------
+- Files
+------------------------------------*/
+
+.file-tree {
+
+  background-color: $bg-gray-lighter;
+  margin: 24px 0;
+  padding: 20px 10px 10px;
+
+  ul {
+    list-style: none;
+    padding-left: 25px;
+    display: none;
+  }
+
+  > ul {
+    display: block;
+  }
+
+  li {
+    padding: 4px 0;
+    line-height: 24px;
+  }
+
+  i {
+    margin-left: 24px;
+    display: block;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 20px;
+    color: #b4b7b8;
+    cursor: default;
+    transition: color $duration-slowly ease;
+  }
+
+  li:hover > i {
+    color: #697376;
+  }
+
+  .is-folder {
+
+    > span {
+      font-family: $font-family-subtitle;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      display: inline-block;
+      min-width: 120px;
+
+      &::before {
+        content: "\f07b";
+        font-family: FontAwesome;
+        margin-right: 8px;
+        color: #8b949e;
+        cursor: pointer;
+        display: inline-block;
+        width: 18px;
+      }
+    }
+
+    &.open > span::before {
+      content: "\f07c";
+    }
+
+    &.open > ul {
+      display: block;
+    }
+
+  }
+
+  .is-file {
+
+    > span {
+      display: inline-block;
+      min-width: 120px;
+
+      &::before {
+        content: "\f016";
+        font-family: FontAwesome;
+        margin-right: 8px;
+        color: #bec7d2;
+        cursor: pointer;
+        display: inline-block;
+        width: 18px;
+      }
+    }
+
+  }
+
+}
+

@@ -1,0 +1,19 @@
+{
+  "source": "./src",
+  "destination": "../",
+  "metadata": {},
+  "clean": false,
+  "plugins": {
+    "sane-layouts": {
+      "engine": "handlebars",
+      "default": "md.html",
+      "pattern": "\\.md$"
+    },
+    "metalsmith-markdownit": {
+      "html": true
+    },
+    "metalsmith-cofl-util": {},
+    "metalsmith-html-minifier": {},
+    "metalsmith-clean-css": {}
+  }
+}

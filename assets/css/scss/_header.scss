@@ -1,0 +1,83 @@
+/*------------------------------------
+- Header
+------------------------------------*/
+
+.header-image {
+  position: relative;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  padding: 180px 0;
+  color: #fff;
+  z-index: 0;
+
+  &.bg-repeat {
+    background-size: none;
+    background-repeat: repeat;
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, .22);
+  }
+
+  &.no-overlay::before {
+    display: none;
+  }
+
+  h1,h2,h3,h4,h5,h6,p {
+    color: #fff;
+  }
+
+  h1 {
+    font-weight: 200;
+    font-size: 48px;
+    line-height: 64px;
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+  }
+
+  h4,
+  h3 {
+    letter-spacing: 1px;
+    line-height: 36px;
+  }
+
+  img {
+    max-width: 80%;
+  }
+
+}
+
+
+@include media-down(phone) {
+
+  .header-image {
+    padding: 120px 0 80px;
+
+    h1 {
+      font-size: 28px;
+      line-height: 40px;
+      margin-bottom: 36px;
+    }
+
+    h4,
+    h3 {
+      line-height: 28px;
+      font-size: 17px;
+    }
+
+    h5 {
+      line-height: 26px;
+      font-size: 16px;
+    }
+  }
+
+}

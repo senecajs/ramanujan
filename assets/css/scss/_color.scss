@@ -1,0 +1,38 @@
+/*------------------------------------
+- Color palette
+------------------------------------*/
+
+.color-palette-circular {
+
+  list-style: none;
+  padding-left: 0;
+  margin: 24px 0;
+
+  li {
+    display: inline-block;
+    width: 128px;
+    height: 128px;
+    line-height: 128px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 100%;
+    margin-right: 24px;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+}
+
+.color-palette-stacked {
+
+  list-style: none;
+  padding-left: 0;
+  margin: 24px 0;
+
+  li {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    font-weight: 600;
+  }
+
+}

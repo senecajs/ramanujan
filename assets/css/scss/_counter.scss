@@ -1,0 +1,54 @@
+/*------------------------------------
+- Counter
+------------------------------------*/
+
+.counter {
+
+  text-align: center;
+  padding-top: 24px;
+  padding-bottom: 24px;
+
+  i {
+    display: block;
+    font-size: 48px;
+    color: $color-gray-light;
+  }
+
+  p {
+    font-size: 32px;
+    margin: 32px 0;
+    color: $color-gray-dark;
+    font-family: $font-family-subtitle;
+  }
+
+  h6 {
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+}
+
+.counter.color-alt {
+  i,
+  p,
+  h6 {
+    color: #fff;
+  }
+}
+
+@include media-down(phone) {
+
+  .counter {
+    i {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 24px;
+    }
+
+    h6 {
+      font-size: 14px;
+    }
+  }
+
+}

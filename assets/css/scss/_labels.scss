@@ -1,0 +1,23 @@
+/*------------------------------------
+- Labels
+------------------------------------*/
+
+
+.label {
+  font-family: $font-family-title;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: .3em .6em;
+
+  .fa,
+  .glyphicon {
+    padding: 0 4px;
+  }
+}
+
+.label-primary { background-color: $color-primary; }
+.label-success { background-color: $color-success; }
+.label-info    { background-color: $color-info; }
+.label-warning { background-color: $color-warning; }
+.label-danger  { background-color: $color-danger; }
+.label-dark    { background-color: $color-dark; }

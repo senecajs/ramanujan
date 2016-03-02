@@ -1,0 +1,71 @@
+/*------------------------------------
+- Tables
+------------------------------------*/
+
+.table {
+
+  th,
+  td {
+    border-top: none !important;
+  }
+
+  td {
+    line-height: 32px !important;
+  }
+
+  thead > tr > th {
+    border-bottom: 1px solid #dfe3e9;
+    color: #9ba5ad;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: $font-family-title;
+    letter-spacing: 1px;
+  }
+
+  tbody > tr:nth-of-type(odd) {
+    background-color: $bg-gray-lighter;
+  }
+
+  tbody th {
+    color: #9ba5ad;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: $font-family-title;
+    letter-spacing: 1px;
+    line-height: 32px !important;
+  }
+  
+}
+
+
+.table-options {
+  thead > tr > th {
+    border-bottom-width: 2px;
+    color: #9ba5ad;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: $font-family-title;
+    letter-spacing: 1px;
+    color: $color-gray-light;
+  }
+}
+
+
+.table-info {
+  
+  tr > td:first-child {
+    padding-right: 10px;
+    max-width: 25%;
+    color: #9ba5ad;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 13px;
+    font-family: $font-family-subtitle;
+    letter-spacing: 1px;
+    color: $color-gray-light;
+  }
+}
+

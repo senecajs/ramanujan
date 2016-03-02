@@ -1,0 +1,137 @@
+/*------------------------------------
+- Features
+------------------------------------*/
+
+.features {
+
+  list-style: none;
+  margin: 24px 0;
+  padding: 0;
+  text-align: center;
+
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  li {
+    display: inline-block;
+    float: left;
+    width: 30%;
+    margin-right: 4%;
+    margin-bottom: 3%;
+
+    &:nth-child(3n+3) {
+      margin-right: 0;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    width: 92px;
+    height: 92px;
+    line-height: 92px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 72px;
+    border-radius: 100%;
+    color: lighten($color-primary, 5%);
+    transition: all $duration-promptly ease;
+  }
+
+  h5 {
+    //font-family: $font-family-subtitle;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .btn {
+    margin-top: 24px;
+  }
+
+
+  // Modifiers
+  &.text-center li {
+    text-align: center;
+  }
+
+
+  &.icon-round {
+    .icon {
+      background-color: lighten($color-primary, 5%);
+      color: #fff;
+      font-size: 48px;
+    }
+
+    li:hover .icon {
+      background-color: lighten($color-primary, 2%);
+    }
+  }
+
+
+  &.icon-sided {
+
+    text-align: left;
+    
+    .icon {
+      float: left;
+      width: 40px;
+      height: 30px;
+      line-height: 30px;
+      margin-top: 8px;
+      font-size: 25px;
+    }
+
+    h5,
+    p {
+      margin-left: 50px;
+    }
+
+    &.icon-round .icon {
+      font-size: 18px;
+    }
+
+  }
+
+  &.icon-image .icon {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    margin-bottom: 32px;
+    line-height: 36px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+
+  &.cols-2 li {
+    width: 42.5%;
+    margin-right: 0;
+
+    &:nth-child(odd) {
+      margin-right: 4%;
+    }
+  }
+
+  &.cols-1 li {
+    width: 100%;
+    margin-right: 0;
+  }
+
+
+}
+
+
+// Media queries
+@include media-down(phone) {
+  .features li {
+    width: 100%;
+    margin-right: 0;
+  }
+}

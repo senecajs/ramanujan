@@ -1,0 +1,45 @@
+/*------------------------------------
+- Alerts
+------------------------------------*/
+
+
+// Callouts
+// -------------------------
+.callout {
+  padding: 12px 20px;
+  margin: 20px 0;
+  border: 1px solid $color-gray-lightest;
+  border-top-width: 2px;
+  border-radius: 2px;
+  box-shadow: 0px 1px 5px 0px rgba(50, 50, 50, 0.05);
+
+  h4,
+  h5 {
+    margin: 16px 0;
+  }
+}
+
+.callout-success {
+  @include callout-variation($color-success);
+}
+
+.callout-info {
+  @include callout-variation($color-info);
+}
+
+.callout-warning {
+  @include callout-variation($color-warning);
+}
+
+.callout-danger {
+  @include callout-variation($color-danger);
+}
+
+// Media queries
+@include media-down(phone) {
+
+  .callout {
+    padding: 10px;
+  }
+
+}

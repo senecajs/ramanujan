@@ -1,0 +1,435 @@
+/*------------------------------------
+- Page navigation
+------------------------------------*/
+
+
+@include media-up(tablet) {
+
+// Full topbar
+.page-navigation.full-topbar {
+
+  padding: 0 15px;
+  background-color: $color-primary;
+  height: 40px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+
+  a {
+    color: rgba(255,255,255, .7);
+    padding: 0 12px;
+    font-size: 13px;
+    line-height: 40px;
+    transition: all $duration-promptly ease-in;
+
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+      background-color: rgba(255,255,255,.1);
+    }
+
+    &:focus,
+    &:active {
+      color: rgba(255,255,255, .7);
+      background-color: transparent;
+    }
+
+  }
+
+  ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    text-align: center;
+  }
+
+  li {
+    display: inline-block;
+
+    &.active a {
+      color: #fff;
+      background-color: rgba(255,255,255,.18);
+    }
+  }
+
+  .heading,
+  .nav > li > ul {
+    display: none;
+  }
+
+}
+
+.sticky-nav .page-navigation.full-topbar {
+  top: 60px;
+}
+
+
+// Dotted topbar
+.page-navigation.dotted-topbar {
+
+  padding: 0 15px;
+  background-color: $color-primary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+
+  a {
+    position: relative;
+    color: rgba(255,255,255, .7);
+    background-color: transparent;
+    padding: 0 17px;
+    font-size: 13px;
+    line-height: 40px;
+    width: 0;
+    text-indent: -9999px;
+    transition: background-color $duration-promptly ease-in, width $duration-promptly ease-in;
+
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+      background-color: transparent;
+
+      &::before {
+        background-color: transparent;
+        border: 1px solid #fff;
+      }
+    }
+
+    &:focus,
+    &:active {
+      color: rgba(255,255,255, .7);
+      background-color: transparent;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 17px;
+      width: 6px;
+      height: 6px;
+      background-color: #fff;
+      border-radius: 100%;
+      transition: background-color $duration-promptly ease-in
+    }
+
+  }
+
+  ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    text-align: center;
+  }
+
+  li {
+    display: inline-block;
+
+    &.active .tooltip-dotted-topbar {
+      display: none !important;
+    }
+
+    &.active a {
+      color: #fff;
+      background-color: rgba(255,255,255,.1);
+      width: auto;
+      text-indent: 0;
+      padding-left: 12px;
+      padding-right: 12px;
+
+      &::before {
+        background-color: transparent;
+        border: 1px solid #fff;
+        width: 10px;
+        height: 10px;
+        margin-top: -5px;
+        left: -2px;
+        opacity: 0;
+      }
+    }
+  }
+
+  .heading,
+  .nav > li > ul {
+    display: none;
+  }
+
+}
+
+.tooltip-dotted-topbar {
+
+  .tooltip-arrow {
+    //display: none;
+    border-bottom-color: #eee !important;
+  }
+
+  .tooltip-inner {
+    font-family: $font-family-body;
+    font-weight: 600;
+    max-width: 200px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    background-color: #fff;
+    color: $color-primary;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+}
+
+.sticky-nav .page-navigation.dotted-topbar {
+  top: 60px;
+}
+
+
+
+// Full sidebar - left & right
+.page-navigation.sidebar-left,
+.page-navigation.sidebar-right {
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  padding-top: 120px;
+  background-color: #fff;
+
+  a {
+    color: #636e77;
+    padding: 2px 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border-left: 2px solid transparent;
+    transition: all $duration-promptly linear;
+
+    &:hover {
+      background-color: transparent;
+      text-decoration: none;
+      color: $color-primary;
+    }
+
+    &:focus,
+    &:active {
+      background-color: transparent;
+      text-decoration: none;
+      color: $color-primary;
+    }
+  }
+
+  .nav > li > ul {
+    display: none;
+    padding-left: 15px;
+    list-style: none;
+    margin-bottom: 15px;
+
+    a {
+      font-size: 13px;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 2px 0;
+    }
+  }
+
+  .nav > li.active > ul {
+    display: block;
+  }
+
+  li.active > a {
+    color: $color-primary;
+    border-left-color: $color-primary;
+  }
+
+  .nav > li.active > a {
+    font-weight: 600;
+  }
+
+  .nav {
+    margin: 12px;
+  }
+
+  .heading {
+    font-family: $font-family-title;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 12px 6px;
+  }
+
+}
+
+.page-navigation.sidebar-left {
+  left: 0;
+  box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  padding-left: 15px;
+
+  & ~ main {
+    margin-left: 260px;
+  }
+
+  & ~ .site-header {
+    margin-left: 260px;
+  }
+
+}
+
+.page-navigation.sidebar-right {
+  right: 0;
+  box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  padding-left: 15px;
+
+  & ~ main {
+    margin-right: 260px;
+  }
+
+  & ~ .site-header {
+    margin-right: 260px;
+  }
+}
+
+
+// Dotted sidebar - left & right
+.page-navigation.dotted-sidebar-left,
+.page-navigation.dotted-sidebar-right {
+
+
+}
+
+}
+// END media query
+
+// Media queries
+@include media-down(tablet) {
+
+  .page-navigation {
+
+    padding: 0 15px;
+    background-color: $color-primary;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+
+    a {
+      position: relative;
+      color: rgba(255,255,255, .7);
+      background-color: transparent;
+      padding: 0 17px !important;
+      font-size: 13px;
+      line-height: 40px;
+      width: 0;
+      text-indent: -9999px;
+      transition: background-color $duration-promptly ease-in, width $duration-promptly ease-in;
+
+      &:hover {
+        text-decoration: none;
+        color: #fff;
+        background-color: transparent;
+
+        &::before {
+          background-color: transparent;
+          border: 1px solid #fff;
+        }
+      }
+
+      &:focus,
+      &:active {
+        color: rgba(255,255,255, .7);
+        background-color: transparent;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 14px;
+        top: 17px;
+        width: 6px;
+        height: 6px;
+        background-color: #fff;
+        border-radius: 100%;
+        transition: background-color $duration-promptly ease-in
+      }
+
+    }
+
+    > .nav {
+      height: 40px;
+      overflow: hidden;
+    }
+
+    ul {
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+      text-align: center;
+    }
+
+    li {
+      display: inline-block;
+
+      &.active .tooltip-dotted-topbar {
+        display: none !important;
+      }
+
+      &.active a {
+        color: #fff;
+        background-color: rgba(255,255,255,.1);
+        width: auto;
+        text-indent: 0;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+
+        &::before {
+          background-color: transparent;
+          border: 1px solid #fff;
+          width: 10px;
+          height: 10px;
+          margin-top: -5px;
+          left: -2px;
+          opacity: 0;
+        }
+      }
+    }
+
+    .heading,
+    .nav > li > ul {
+      display: none;
+    }
+
+  }
+
+  .tooltip-dotted-topbar {
+
+    .tooltip-arrow {
+      border-bottom-color: #eee !important;
+    }
+
+    .tooltip-inner {
+      font-family: $font-family-body;
+      font-weight: 600;
+      max-width: 200px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      background-color: #fff;
+      color: $color-primary;
+      line-height: 34px;
+      white-space: nowrap;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+  }
+
+  .sticky-nav .page-navigation {
+    top: 60px;
+  }
+
+}

@@ -1,0 +1,148 @@
+/*------------------------------------
+- Form controls
+------------------------------------*/
+
+.form-control {
+  color: $color-text;
+  background-color: #fff;
+  border: 1px solid $color-border-input;
+  border-radius: 3px;
+  height: 44px;
+  line-height: 44px;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-shadow: none;
+  transition: box-shadow .25s linear, border .25s linear, color .25s linear, background-color .25s linear;
+
+  &.focus,
+  &:focus {
+    box-shadow: none;
+    outline: none;
+    border-color: lighten($color-primary, 10%);
+  }
+
+  &.input-sm {
+    height: 38px;
+    line-height: 38px;
+  }
+
+  &.input-lg {
+    height: 58px;
+    line-height: 58px;
+  }
+
+}
+
+.form-group {
+
+  label {
+    font-weight: 500;
+  }
+
+  &.form-round .form-control {
+    border-radius: 22px;
+
+    &.input-sm {
+      border-radius: 19px;
+    }
+
+    &.input-lg {
+      border-radius: 29px;
+    }
+  }
+
+  &.form-material .form-control {
+    position: relative;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid $color-border-input;
+    padding-right: 0;
+    padding-left: 0;
+    height: 34px;
+    line-height: 34px;
+    background-color: transparent;
+
+    &:focus {
+      border-bottom-color: $color-primary;
+    }
+  }
+
+  &.form-material-floating {
+
+    position: relative;
+    padding-top: 8px;
+    margin-top: 10px;
+
+    label {
+      width: 100%;
+      position: absolute;
+      pointer-events: none;
+      left: 0;
+      top: 14px;
+      bottom: 0;
+      transition: 0.2s ease all;
+    }
+
+    .form-control {
+      border-radius: 0;
+      border: 0;
+      border-bottom: 1px solid $color-border-input;
+      padding-right: 0;
+      padding-left: 0;
+      height: 34px;
+      line-height: 34px;
+      background-color: transparent;
+
+      &:focus {
+        border-bottom-color: $color-primary;
+      }
+
+    }
+
+    &.input-touched label {
+      top: -6px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $color-primary;
+    }
+
+
+  }
+
+}
+
+
+.form-group.search-control {
+  max-width: 600px;
+  margin: 0 auto;
+
+  &.search-no-border .form-control {
+    border: 0;
+  }
+}
+
+
+#faq-search {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+
+  .form-control {
+    height: 64px;
+    line-height: 64px;
+    border-radius: 32px;
+    border: none;
+    font-family: $font-family-title;
+    font-size: 18px;
+    padding-left: 64px;
+    letter-spacing: 1px;
+  }
+
+  .fa {
+    position: absolute;
+    left: 20px;
+    font-size: 36px;
+    line-height: 64px;
+    color: #ccc;
+  }
+}

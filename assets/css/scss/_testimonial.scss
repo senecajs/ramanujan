@@ -1,0 +1,83 @@
+/*------------------------------------
+- Testimonials
+------------------------------------*/
+
+.testimonials li {
+
+  padding: 0 100px;
+
+  img {
+    border-radius: 100%;
+    max-width: 128px;
+    height: auto;
+    float: left;
+    margin-right: 24px;
+  }
+
+  p {
+    margin-left: 152px;
+    margin-top: 0;
+    font-family: $font-family-title;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 300;
+  }
+
+  h6 {
+    margin-left: 152px;
+    font-size: 13px;
+    font-weight: 600;
+
+    &::before {
+      content: '\2014 \00A0';
+    }
+  }
+}
+
+.lSSlideOuter .lSPager.lSpg > li {
+
+  a {
+    background-color: transparent;
+    border: 1px solid $color-primary;
+    transition: background-color .3 ease-in;
+  }
+
+  &.active a {
+    background-color: $color-primary;
+  }
+
+}
+
+
+@include media-down(tablet) {
+
+  .testimonials li {
+    padding: 0;
+  }
+
+}
+
+@include media-down(phone) {
+
+  .testimonials li {
+    img {
+      max-width: 96px;
+      float: none;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 24px;
+    }
+
+    p,
+    h6 {
+      margin-left: 0;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 24px;
+      text-align: justify;
+    }
+  }
+
+}

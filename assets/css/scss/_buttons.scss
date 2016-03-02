@@ -1,0 +1,168 @@
+/*------------------------------------
+- Buttons
+------------------------------------*/
+
+
+.btn {
+  line-height: 42px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  border-color: $color-primary;
+  padding: 0 30px;
+  color: #fff;
+  background-color: $color-primary;
+  transition: all $duration-slowly ease;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+    background-color: lighten($color-primary, 2%);
+    border-color: transparent;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .fa {
+    margin-right: 6px;
+    font-size: 16px;
+  }
+
+}
+
+//
+// Variations
+//
+.btn-success { @include btn-variation($color-success); }
+.btn-info    { @include btn-variation($color-info); }
+.btn-warning { @include btn-variation($color-warning); }
+.btn-danger  { @include btn-variation($color-danger); }
+.btn-dark    { @include btn-variation($color-dark); }
+
+.btn-white {
+  background-color: #fff;
+  color: $color-gray-light;
+  border-color: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.15);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-gray;
+    background-color: #fff;
+    box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.15);
+  }
+}
+
+//
+// Sizes
+//
+.btn-xs {
+  line-height: 24px;
+  padding: 0 12px;
+  font-size: 11px;
+
+  .fa {
+    font-size: 12px;
+  }
+}
+
+.btn-sm {
+  line-height: 36px;
+  padding: 0 20px;
+
+  .fa {
+    font-size: 14px;
+  }
+}
+
+.btn-lg {
+  line-height: 56px;
+  padding: 0 40px;
+}
+
+.btn-xl {
+  line-height: 72px;
+  padding: 0 50px;
+  font-size: 14px;
+
+  .fa {
+    font-size: 18px;
+  }
+}
+
+
+//
+// Rounded
+//
+.btn-round {
+  &.btn { border-radius: 21px; }
+  &.btn-xs { border-radius: 12px; }
+  &.btn-sm { border-radius: 18px; }
+  &.btn-lg { border-radius: 28px; }
+  &.btn-xl { border-radius: 36px; }
+}
+
+//
+// Outline
+//
+.btn-outline {
+
+  background-color: transparent;
+
+  &.btn         { color: $color-primary; }
+  &.btn-success { color: $color-success; }
+  &.btn-info    { color: $color-info; }
+  &.btn-warning { color: $color-warning; }
+  &.btn-danger  { color: $color-danger; }
+  &.btn-dark    { color: $color-dark; }
+  &.btn-white   {
+    color: $color-gray-light;
+    border-color: $color-gray-lighter;
+    box-shadow: none;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+
+  &.btn-white:hover {
+    color: $color-gray;
+  }
+}
+
+
+//
+// Float
+//
+.btn-float {
+  padding: 0;
+  display: inline-block;
+  width: 42px;
+  text-align: center;
+  border-radius: 100%;
+
+  .fa {
+    margin: 0;
+  }
+
+  &.btn-xs {width: 24px;}
+  &.btn-sm {width: 36px;}
+  &.btn-lg {
+    width: 56px;
+
+    .fa {
+      font-size: 22px;
+    }
+  }
+  &.btn-xl {
+    width: 72px;
+
+    .fa {
+      font-size: 26px;
+    }
+  }
+}

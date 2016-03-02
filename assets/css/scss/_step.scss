@@ -1,0 +1,208 @@
+/*------------------------------------
+- Step
+------------------------------------*/
+
+.step-text {
+  list-style: none;
+  padding-left: 0;
+  margin: 24px 0;
+  counter-reset: toc1;
+  
+  li {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 24px;
+
+    &::before {
+      content: counter(toc1, decimal-leading-zero) '.';
+      counter-increment: toc1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: $color-text;
+      font-family: $font-family-subtitle;
+      font-size: 22px;
+      width: 42px;
+      height: 34px;
+      line-height: 34px;
+      font-weight: 600;
+    }
+
+    > span {
+      color: $color-subtitle;
+      font-family: $font-family-subtitle;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    > p {
+      margin-top: 0;
+    }
+  }
+
+  h4,
+  h5 {
+    font-family: $font-family-subtitle;
+    font-weight: 500;
+    line-height: 35px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+
+  &.step-cols-2,
+  &.step-cols-3 {
+
+    li {
+      padding-left: 0;
+      display: inline-block;
+      vertical-align: top;
+
+      &::before {
+        position: static;
+      }
+    }
+  }
+
+  &.step-cols-2 li {
+    width: 47%;
+
+    &:nth-child(odd) {
+      margin-right: 4%;
+    }
+
+  }
+
+  &.step-cols-3 li {
+    width: 30%;
+    margin-right: 4%;
+
+    &:nth-child(3n+3) {
+      margin-right: 0;
+    }
+
+  }
+
+}
+
+
+//
+// Image type step
+//
+
+.step-image {
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid $color-border;
+
+  .item > img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .carousel-caption {
+    position: static;
+    text-align: left;
+    color: $color-gray-light;
+    text-shadow: none;
+  }
+
+  .carousel-indicators {
+    top: -40px;
+    left: 0;
+    margin-left: 0;
+    text-align: left;
+    width: 80%;
+    counter-reset: toc1;
+
+    &::before {
+      content: "STEPS:";
+      color: $color-gray-light;
+      font-family: $font-family-subtitle;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 34px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-right: 10px;
+    }
+
+    li {
+      border: 0;
+      text-indent: 0;
+      width: 34px;
+      height: 34px;
+      text-align: center;
+
+      &:before {
+        content: counter(toc1);
+        counter-increment: toc1;
+        font-family: $font-family-subtitle;
+        font-weight: 500;
+        font-size: 14px;
+        color: $color-gray-light;
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        border-radius: 100%;
+        transition: all $duration-promptly ease;
+      }
+    }
+
+    .active,
+    li:hover {
+      &::before {
+        color: #fff;
+        background-color: $color-primary;
+      }
+    }
+  }
+
+  .carousel-control {
+    text-shadow: none;
+    color: $color-gray-light;
+    width: 34px;
+    height: 34px;
+    font-size: 26px;
+
+    &.right,
+    &.left {
+      background-image: none;
+      top: -40px;
+      bottom: auto;
+      left: auto;
+      right: 0;
+    }
+
+    &.left {
+      right: 36px;
+    }
+  }
+}
+
+@include media-down(tablet) {
+
+  .step-text.step-cols-3 li {
+    width: 47%;
+    margin-right: 0;
+
+    &:nth-child(odd) {
+      margin-right: 4%;
+    }
+  }
+
+}
+
+@include media-down(phone) {
+
+  .step-text li {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .step-text li::before {
+    position: static;
+  }
+
+}

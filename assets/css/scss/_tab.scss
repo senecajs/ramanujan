@@ -1,0 +1,113 @@
+/*------------------------------------
+- Tabs
+------------------------------------*/
+
+// Reset default bootstrap style
+.tabs {
+
+  margin: 20px 0;
+
+  .nav-tabs {
+    border-bottom-color: $color-subtitle-light;
+  }
+
+  .nav-tabs > li {
+    margin-bottom: 0;
+    float: none;
+    display: inline-block;
+
+    a {
+      border: 0 !important;
+      border-radius: 0;
+      color: $color-subtitle-light;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      transition: 0.3s ease;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: $color-subtitle;
+      }
+    }
+    
+  }
+
+  .tab-content {
+    padding: 15px;
+  }
+}
+
+// Text tab
+.tabs-text .nav-tabs > li {
+
+  &.active {
+    margin-bottom: -1px;
+    border-bottom: 1px solid $color-primary;
+
+    a {
+      color: $color-primary;
+    }
+  }
+
+}
+
+// Icon tab
+.tabs-icon .nav-tabs > li {
+
+  a {
+
+    padding: 10px 25px;
+
+    .fa,
+    .glyphicon {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+  }
+
+  &.active {
+    margin-bottom: -1px;
+    border-bottom: 1px solid $color-primary;
+
+    a {
+      color: $color-primary;
+    }
+  }
+
+}
+
+// Button tab
+.tabs-btn .nav-tabs {
+
+  border-bottom: 0;
+
+  li {
+    float: left;
+    a {
+      background-color: #eee;
+      margin-right: 0;
+    }
+
+    &.active {
+
+      a {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+
+// Media queries
+@include media-down(phone) {
+
+  .tabs .nav-tabs > li a {
+    font-size: 12px;
+  }
+
+}

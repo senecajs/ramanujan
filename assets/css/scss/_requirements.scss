@@ -1,0 +1,60 @@
+/*------------------------------------
+- Requirements
+------------------------------------*/
+.requirements {
+  background-color: $bg-gray-lighter;
+  border-radius: 3px;
+  padding: 16px;
+  
+  .css,
+  .js {
+    position: relative;
+    padding-top: 34px;
+    font-family: $font-family-code;
+    color: $color-gray-dark;
+    
+    &:before {
+      position: absolute;
+      top: 0;
+      padding-bottom: 4px;
+      color: $color-subtitle-light;
+      border-bottom: 2px solid lighten($color-subtitle-light, 12%);
+      font-family: $font-family-subtitle;
+      font-weight: 500;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+  
+  .css:before {
+    content: "Required Stylesheet";
+  }
+  
+  .js:before {
+    content: "Required Script";
+  }
+  
+  > div+div {
+    margin-top: 20px;
+  }
+  
+}
+
+// Media queries
+@include media-down(phone) {
+
+  .requirements {
+    
+    .css,
+    .js {
+      word-break: break-all;
+    }
+    
+  }
+
+}

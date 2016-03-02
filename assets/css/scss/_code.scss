@@ -1,0 +1,361 @@
+/*------------------------------------
+- Code
+------------------------------------*/
+
+// Base styles
+// -------------------------
+code {
+  color: $code-inline-color;
+  background-color: $code-inline-bg-color;
+  text-shadow: 0 1px $color-white;
+}
+
+pre {
+  background-color: $bg-gray-lighter;
+  border-color: $color-gray-lighter;
+}
+
+.code-preview {
+  padding: 16px;
+}
+
+.clipboard-copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: opacity 0.2s ease-in-out;
+  opacity: .6;
+  z-index: 9;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 4px 8px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  &:hover {
+    text-decoration: none;
+    opacity: 1;
+  }
+}
+
+pre:hover .clipboard-copy {
+  //opacity: 1;
+}
+
+.code-window,
+.code-tabs {
+  .clipboard-copy {
+    top: 13px;
+  }
+}
+
+pre .language-name {
+  background-color: transparent;
+  color: $color-hr;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: default;
+  position: absolute;
+  top: 15px;
+  // Change to 56px after using clipboard
+  right: 100px;
+}
+
+pre.no-copy .language-name {
+  right: 10px;
+}
+
+pre.no-name .language-name {
+  display: none;
+}
+
+// Prism
+//
+// Styles to overwrite Prismjs css.
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: $bg-gray-lighter;
+  border-radius: 3px;
+  border-color: $color-gray-lighter;
+  padding-bottom: 8px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  word-wrap: normal;
+}
+
+pre[class*="language-"] {
+  //padding-top: 30px;
+}
+
+.line-numbers .line-numbers-rows {
+  border-right-color: $color-gray-lighter;
+}
+
+.line-numbers-rows > span:before {
+  color: $code-gray-color;
+}
+
+pre[class*='language-'][data-language]::before {
+  /*
+  background-color: transparent;
+  color: $pale-text-color;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  top: 8px;
+  // Change to 56px after using clipboard
+  right: 8px;
+  */
+  // it's depricated, because we can't move it with scroll
+  display: none;
+}
+
+// Simple view
+pre.simple-view {
+  background-color: transparent;
+  border: none;
+  padding: 0 24px;
+}
+
+// Code window
+//
+// Styles to make an iOS type window.
+
+.code-window {
+
+  border: 1px solid $color-gray-lighter;
+  border-radius: 3px;
+  margin: 30px 0 30px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.07);
+
+  .window-bar {
+    height: 38px;
+    border-top: 1px solid $code-window-border-top-color;
+    border-bottom: 1px solid $code-window-border-bottom-color;
+    background: $code-window-bg-color;
+
+    .circles {
+      margin: 6px 10px 0;
+      float: left;
+
+      .circle {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $color-white;
+        border: 1px solid $color-white;
+      }
+
+      .circle-red {
+        background-color: $code-window-circle-red-bg;
+        border-color: $code-window-circle-red-border;
+      }
+
+      .circle-yellow {
+        background-color: $code-window-circle-yellow-bg;
+        border-color: $code-window-circle-yellow-border;
+      }
+
+      .circle-green {
+        background-color: $code-window-circle-green-bg;
+        border-color: $code-window-circle-green-border;
+      }
+
+      .window-title {
+        margin-left: 16px;
+        font-size: 13px;
+        color: $color-gray-light;
+      }
+    }
+
+    .languages {
+      margin: 6px 10px 0;
+      float: right;
+
+      .btn-group {
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.07);
+      }
+
+      .btn {
+        padding: 2px 10px;
+        background-color: $color-white;
+        color: $code-gray-color;
+        text-transform: uppercase;
+        font-family: $font-family-subtitle;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: 0;
+        margin-top: 0;
+        border: none;
+        transition: all $duration-slowly ease;
+
+        &.active,
+        &:active {
+          color: $code-window-active-color;
+          box-shadow: none;
+        }
+      }
+
+    }
+  }
+
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background-color: $color-white;
+    border: none;
+    margin: 0;
+    //padding-top: 20px;
+    padding-bottom: 8px;
+    max-height: 585px;
+  }
+
+  pre[class*='language-'][data-language]::before {
+    display: none;
+  }
+
+  .line-numbers .line-numbers-rows {
+    background-color: $code-line-bg-color;
+    border-right: none;
+    padding-bottom: 8px;
+  }
+
+  .line-numbers-rows > span:before {
+    color: $code-gray-color;
+  }
+
+  .line-numbers:after {
+    content: '';
+    background-color: $code-line-bg-color;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 39px;
+    height: 15px;
+  }
+
+}
+
+// Code snippet
+//
+// Styles to make a stacked code view
+.code-snippet {
+  border: 1px solid $color-gray-lighter;
+  border-radius: 3px;
+  margin: 30px 0 20px;
+
+  > * {
+    border-bottom: 1px solid $color-gray-lighter!important;
+  }
+
+  > *:last-child {
+    border-bottom: none!important;
+  }
+
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .code-preview {
+    position: relative;
+    padding-top: 35px;
+
+    &::before {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      color: $code-gray-color;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 11px;
+      font-weight: 600;
+      content: "Example";
+    }
+  }
+
+}
+
+//
+// Code splitted
+//
+// Left and right side code view
+.code-splitted {
+
+  margin: 15px -15px 25px;
+
+  > div:first-child {
+    border-right: 1px solid $color-border;
+  }
+
+  .code-preview {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  pre {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .languages .btn {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    font-family: $font-family-title;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 13px;
+    color: $color-gray-light;
+    background-color: transparent;
+    transition: all $duration-instantly linear;
+
+    &.active {
+      background-color: $bg-gray-lighter;
+      color: $color-gray;
+    }
+  }
+
+}
+
+// Media queries
+@include media-down(tablet) {
+
+  .clipboard-copy {
+    opacity: 1;
+  }
+
+  pre[class*='language-'][data-language]::before {
+    right: 56px;
+  }
+
+  pre .language-name {
+    right: 56px;
+  }
+
+  .code-splitted > div:first-child {
+    border-right: 0;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: 24px;
+  }
+
+}
+
+@include media-down(phone) {
+
+  .code-window .window-bar .languages .btn {
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+
+}

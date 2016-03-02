@@ -1,0 +1,29 @@
+{
+  "source": "./src",
+  "destination": "../",
+  "metadata": {
+    "is-local": true
+  },
+  "clean": false,
+  "plugins": {
+    "sane-layouts": {
+      "engine": "handlebars",
+      "default": "md.html",
+      "pattern": "\\.md$"
+    },
+    "metalsmith-markdownit": {
+      "html": true
+    },
+    "metalsmith-cofl-util": {},
+    "metalsmith-html-minifier": {},
+    "metalsmith-clean-css": {},
+    "metalsmith-watch": {
+      "paths": {
+        "${source}/**/*":true,
+        "${source}/../static/**/*":true,
+        "${source}/../layouts/**/*":true
+      },
+      "livereload": true
+    }
+  }
+}

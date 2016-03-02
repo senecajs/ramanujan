@@ -1,0 +1,152 @@
+/*------------------------------------
+- Changelog
+------------------------------------*/
+
+.changelog {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    position: relative;
+    padding: 16px 0;
+    padding-left: 36px;
+    font-size: 15px;
+    line-height: 26px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      display: block;
+      width: 33%;
+      border-bottom: 1px solid $color-border;
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+
+  .change-add,
+  .change-fix,
+  .change-update,
+  .change-remove {
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      font-family: $font-family-title;
+      font-weight: 800;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      border-radius: 100%;
+      color: #fff;
+      opacity: .8;
+    }
+  }
+
+
+
+  .change-add::before {
+    content: 'A';
+    background-color: $color-success;
+  }
+
+  .change-fix::before {
+    content: 'F';
+    background-color: $color-warning;
+  }
+
+  .change-update::before {
+    content: 'U';
+    background-color: $color-info;
+  }
+
+  .change-remove::before {
+    content: 'R';
+    background-color: $color-danger;
+  }
+}
+
+
+.changelog-guide {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    position: relative;
+    display: inline-block;
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding-top: 96px;
+    font-family: $font-family-subtitle;
+    font-weight: 300;
+    font-size: 24px;
+    color: $color-subtitle;
+    //text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+
+  .change-add,
+  .change-fix,
+  .change-update,
+  .change-remove {
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      margin-left: -36px;
+      display: inline-block;
+      font-family: $font-family-title;
+      font-weight: 600;
+      font-size: 36px;
+      width: 72px;
+      height: 72px;
+      line-height: 72px;
+      text-align: center;
+      border-radius: 100%;
+      color: #fff;
+    }
+  }
+
+
+
+  .change-add::before {
+    content: 'A';
+    background-color: $color-success;
+  }
+
+  .change-fix::before {
+    content: 'F';
+    background-color: $color-warning;
+  }
+
+  .change-update::before {
+    content: 'U';
+    background-color: $color-info;
+  }
+
+  .change-remove::before {
+    content: 'R';
+    background-color: $color-danger;
+  }
+
+}
+
+@include media-down(phone) {
+
+  .changelog-guide li {
+    width: 50%;
+    margin: 16px 0;
+    font-size: 18px;
+  }
+
+}
