@@ -26,8 +26,9 @@ implement systems based on this architecture.
 
 ### Documentation for Chapter 1 Example System
 
-<h5>
-Coming soon - in the meantime, please visit the github repository: [ramanujan](https://github.com/senecajs/ramanujan)
-</h5>
+
+##### Coming soon - in the meantime, please visit the github repository: [ramanujan](https://github.com/senecajs/ramanujan)
+
+
 
 </div>
