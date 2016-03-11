@@ -1,11 +1,25 @@
 var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
 require('seneca')({
-  tag:'index',
-  //log:'all'
+  tag: 'index',
+  log: 'test',
+  debug: {short_logs:true}
 })
   .use('index-logic')
+
+  .add('info:entry', function(msg,done){
+    delete msg.info
+    this.act('search:insert',msg,done)
+  })
+
   .use('mesh',{
-    pin: 'search:*', 
+    listen:[
+      {pin: 'search:*'},
+      {pin: 'info:entry', model:'publish'}
+    ],
     bases: BASES
+  })
+
+  .ready(function(){
+    console.log(this.id)
   })

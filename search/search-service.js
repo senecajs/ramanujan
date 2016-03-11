@@ -10,7 +10,7 @@ var inert      = require('inert')
 var handlebars = require('handlebars')
 var _          = require('lodash')
 var moment     = require('moment')
-
+var Seneca     = require('seneca')
 
 var server = new hapi.Server()
 
@@ -24,8 +24,10 @@ server.register( inert )
 server.register({
   register:chairo, 
   options:{
-    tag:'search',
-    log:'standard'
+    seneca: Seneca({
+      tag: 'api',
+      log: 'test'
+    })
   }
 })
 

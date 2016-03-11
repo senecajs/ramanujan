@@ -68,7 +68,18 @@ server.route({
   }
 })
 
-
+server.route({
+  path: '/favicon.ico',
+  method: 'get',
+  config: {
+    cache: {
+      expiresIn: 1000*60*60*24*21
+    }
+  },
+  handler: function(request, reply) {
+    reply().code(200).type('image/x-icon')
+  }
+})
 
 server.start(function(){
   console.log('front',server.info.uri)

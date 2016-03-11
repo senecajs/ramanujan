@@ -1,14 +1,20 @@
 var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
 require('seneca')({
-  tag:'follow',
-  //log:'all'
+  tag: 'follow',
+  log: 'test',
+  debug: {short_logs:true}
 })
   .use('follow-logic')
   .use('mesh',{
     pin: 'follow:*',
     bases: BASES
   })
+
+  .ready(function(){
+    console.log(this.id)
+  })
+
 
 /* In Situ Testing
   .ready(function(){

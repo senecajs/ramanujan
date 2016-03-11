@@ -6,8 +6,8 @@ var PORT = process.env.PORT || process.argv[3] || 39999
 var BASES = (process.env.BASES || process.argv[4] || '').split(',')
 
 require('seneca')({
-  tag: TAG
-  //log: 'all'
+  tag: TAG,
+  log: 'test'
 })
   .use('mesh',{
     isbase: true, 

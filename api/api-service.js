@@ -3,20 +3,24 @@
 var PORT = process.env.PORT || process.argv[2] || 0
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
 
-var hapi       = require('hapi')
-var chairo     = require('chairo')
+var Hapi       = require('hapi')
+var Chairo     = require('chairo')
+var Seneca     = require('seneca')
 
-var server = new hapi.Server()
+var server = new Hapi.Server()
 
 server.connection({ 
   port: PORT
 })
 
 server.register({
-  register:chairo, 
+  register: Chairo, 
   options:{
-    tag: 'api',
-    //log:'all'
+    seneca: Seneca({
+      tag: 'api',
+      log: 'test',
+      debug: {short_logs:true}
+    })
   }
 })
 
@@ -51,7 +55,7 @@ server.route({
   method: 'POST', path: '/api/post/{user}', 
   handler: function( req, reply ){
     server.seneca.act(
-      'post:text',
+      'post:entry',
       {user:req.params.user, text:req.payload.text},
       function(err,out) {
         if( err ) reply.redirect('/error')

@@ -10,6 +10,8 @@ post:
   build: ../post
 entry_store:
   build: ../entry-store
+entry_cache:
+  build: ../entry-cache
 repl:
   build: ../repl
 mine:

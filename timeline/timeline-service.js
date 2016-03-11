@@ -2,13 +2,19 @@ var SHARD = process.env.SHARD || process.argv[2] || 0
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
 
 require('seneca')({
-  tag:'timeline'+SHARD,
-  //log:'all'
+  tag: 'timeline'+SHARD,
+  log: 'test',
+  debug: {short_logs:true}
 })
   .use('timeline-logic')
   .use('mesh',{
+    //pin: 'timeline:*',
     pin: 'timeline:*,shard:'+SHARD,
     bases: BASES
+  })
+
+  .ready(function(){
+    console.log(this.id)
   })
 
 

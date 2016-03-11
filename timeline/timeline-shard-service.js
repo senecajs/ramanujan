@@ -7,8 +7,9 @@ function resolve_shard(user) {
 }
 
 require('seneca')({
-  tag: 'timeline-shard'
-  //log:'all'
+  tag: 'timeline-shard',
+  log: 'test',
+  debug: {short_logs:true}
 })
 
   .add('timeline:list',function(msg,done){
@@ -37,6 +38,10 @@ require('seneca')({
   .use('mesh',{
     pin: 'timeline:*',
     bases: BASES
+  })
+
+  .ready(function(){
+    console.log(this.id)
   })
 
 
