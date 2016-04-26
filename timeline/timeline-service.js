@@ -6,6 +6,7 @@ require('seneca')({
   log: 'test',
   debug: {short_logs:true}
 })
+  .use('entity')
   .use('timeline-logic')
   .use('mesh',{
     //pin: 'timeline:*',

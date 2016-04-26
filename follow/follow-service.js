@@ -5,6 +5,7 @@ require('seneca')({
   log: 'test',
   debug: {short_logs:true}
 })
+  .use('entity')
   .use('follow-logic')
   .use('mesh',{
     pin: 'follow:*',

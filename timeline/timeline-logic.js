@@ -66,7 +66,9 @@ module.exports = function timeline (options) {
         .load$(msg.user,function(err,timeline){
           var entrylist = (timeline ? timeline.entrylist : [])
           _.each(entrylist,function(entry){
-            entry.can_follow = !_.includes(following,entry.user)
+            entry.can_follow = 
+              entry.user !== msg.user && 
+              !_.includes(following,entry.user)
           })
 
           done(err,entrylist)

@@ -12,8 +12,6 @@ module.exports = function post (options) {
 
       if( !err ) {
         this.act('info:entry',entry.data$())
-        //this.act('fanout:entry',entry)
-        //this.act('search:insert',entry)
       }
     })
   })

@@ -17,7 +17,10 @@ require('seneca')({
       {pin: 'fanout:*'},
       {pin: 'info:entry', model:'publish'}
     ],
-    bases: BASES
+    bases: BASES,
+    balance_client: {
+      debug: {client_updates:false}
+    }
   })
 
   .ready(function(){

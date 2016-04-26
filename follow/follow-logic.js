@@ -33,7 +33,7 @@ module.exports = function follow (options) {
       .make('follow')
       .load$(msg.user, function(err,follow){
         var list = (follow && follow[msg.kind]) || []
-        list = _.uniq(list.concat([msg.user]))
+        //list = _.uniq(list.concat([msg.user]))
         done(err, list)
       })
   })

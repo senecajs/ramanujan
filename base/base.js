@@ -7,11 +7,15 @@ var BASES = (process.env.BASES || process.argv[4] || '').split(',')
 
 require('seneca')({
   tag: TAG,
-  log: 'test'
+  log: 'test',
+  debug: {short_logs:true}
 })
   .use('mesh',{
     isbase: true, 
     port: PORT, 
     bases: BASES,
     pin:'role:mesh'
+  })
+  .ready(function(){
+    console.log(this.id)
   })

@@ -33,6 +33,7 @@
     "search-index": "^0.6.16",
     "seneca": "senecajs/seneca",
     "seneca-balance-client": "^0.4.0",
+    "seneca-entity": "0.0.1",
     "seneca-mesh": "^0.7.0",
     "sneeze": "^0.5.0",
     "vision": "^4.0.1",

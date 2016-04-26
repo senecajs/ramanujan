@@ -8,7 +8,19 @@ module.exports = function entry_store (options) {
         user: msg.user,
         text: msg.text
       })
-    .save$(done)
+    .save$(function(err, entry) {
+      if(err) return done(err)
+
+      this.act(
+        {
+          timeline: 'insert',
+          users: [msg.user],
+        }, 
+        entry, 
+        function(err) {
+          return done(err, entry)
+        })
+    })
   })
 
   seneca.add('store:list,kind:entry', function(msg, done) {

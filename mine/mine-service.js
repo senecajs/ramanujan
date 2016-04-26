@@ -27,7 +27,7 @@ server.register({
     seneca: Seneca({
       tag: 'mine',
       log: 'test',
-    })
+    }).use('entity')
   }
 })
 
