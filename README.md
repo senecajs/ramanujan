@@ -149,7 +149,7 @@ Open your web browser to interact with the system. The steps below
 define a "happy path" to validate the basic functionality of the
 system.
 
-#### Step 0: Load microblog timeline of user _foo_
+#### Step 1: Post microblogs entries for user _foo_
 
 Open `http://localhost:8000/foo`.
 
@@ -166,10 +166,26 @@ At first there are no entries, so go ahead and post an entry, say:
 
 Click the _post_ button or hit return. You should see the new entry.
 
-!(blob/master/img/rm02.png)
+![](blob/master/img/rm02.png)
 
-#### Step 1: Post microblogs for user _foo_
+Post another entry, say:
+
+> _the color blue_
+
+You should see both entries listed, with the most recent one at the
+top. This is the timeline for user _foo_.
+
+
 #### Step 2: Review microblogs for user _foo_
+
+Open `http://localhost:8000/mine/foo`.
+
+This shows only the entries for user _foo_, omitting entries for followers.
+
+![](blob/master/img/rm03.png)
+
+You can use this page to verify the entry list for a given user.
+
 #### Step 3: Load search page of user _bar_
 #### Step 4: Set user _bar_ to follow user _foo_
 #### Step 5: Post microblogs for user _foo_
