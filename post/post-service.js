@@ -10,10 +10,7 @@ require('seneca')({
 
   .use('mesh',{
     pin: 'post:*',
-    bases: BASES,
-    balance_client: {
-      debug: {client_updates:false}
-    }
+    bases: BASES
   })
   .ready(function(){
     console.log(this.id)

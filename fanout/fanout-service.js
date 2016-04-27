@@ -15,12 +15,9 @@ require('seneca')({
   .use('mesh',{
     listen:[
       {pin: 'fanout:*'},
-      {pin: 'info:entry', model:'publish'}
+      {pin: 'info:entry', model:'observe'}
     ],
-    bases: BASES,
-    balance_client: {
-      debug: {client_updates:false}
-    }
+    bases: BASES
   })
 
   .ready(function(){

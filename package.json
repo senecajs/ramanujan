@@ -32,12 +32,12 @@
     "moment": "^2.11.2",
     "search-index": "^0.6.16",
     "seneca": "senecajs/seneca",
-    "seneca-balance-client": "^0.4.0",
-    "seneca-entity": "0.0.1",
-    "seneca-mesh": "^0.7.0",
+    "seneca-balance-client": "rjrodger/seneca-balance-client",
+    "seneca-entity": "senecajs/seneca-entity",
+    "seneca-mesh": "rjrodger/seneca-mesh",
     "sneeze": "^0.5.0",
     "vision": "^4.0.1",
-    "wo": "^0.7.0"
+    "wo": "rjrodger/wo"
   },
   "files": [
     "api/api.js"

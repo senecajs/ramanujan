@@ -15,7 +15,7 @@ require('seneca')({
   .use('mesh',{
     listen:[
       {pin: 'search:*'},
-      {pin: 'info:entry', model:'publish'}
+      {pin: 'info:entry', model:'observe'}
     ],
     bases: BASES
   })
