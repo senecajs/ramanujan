@@ -9,6 +9,8 @@ server.connection({
   port: 8000 // test with http://localhost:8000/api/ping
 })
 
+server.register(require('inert'))
+
 server.register({
   register: require('wo'),
   options: {
@@ -80,6 +82,17 @@ server.route({
     reply().code(200).type('image/x-icon')
   }
 })
+
+server.route({
+  method: 'GET',
+  path: '/res/{path*}',
+  handler: {
+    directory: {
+      path: __dirname + '/www/res',
+    }
+  }
+})
+
 
 server.start(function(){
   console.log('front',server.info.uri)

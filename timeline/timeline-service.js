@@ -3,6 +3,7 @@ var BASES = (process.env.BASES || process.argv[3] || '').split(',')
 
 require('seneca')({
   tag: 'timeline'+SHARD,
+  //log: {type:'act'},
   log: 'test',
   debug: {short_logs:true}
 })
