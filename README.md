@@ -19,7 +19,7 @@ the following steps:
 The system uses the
 [Seneca microservice framework](http://senecajs.org) to provide
 inter-service communication, and the
-[fuge microservice development tool](apparatus/fuge) to manage
+[fuge microservice development tool](github.com/apparatus/fuge) to manage
 services on a local development machine.
 
 The system is also a demonstration of the
@@ -162,11 +162,11 @@ At first there are no entries, so go ahead and post an entry, say:
 
     _the color red_
 
-[[https://github.com/senecajs/ramanujan/blob/master/img/rm01.png]]
+[![https://github.com/senecajs/ramanujan/blob/master/img/rm01.png]]
 
 Click the _post_ button or hit return. You should see the new entry.
 
-[[https://github.com/senecajs/ramanujan/blob/master/img/rm02.png]]
+[![https://github.com/senecajs/ramanujan/blob/master/img/rm02.png]]
 
 #### Step 1: Post microblogs for user _foo_
 #### Step 2: Review microblogs for user _foo_
