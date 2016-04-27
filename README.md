@@ -162,7 +162,7 @@ At first there are no entries, so go ahead and post an entry, say:
 
 > _three colors: blue_
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm01.png)
+<img src="https://github.com/senecajs/ramanujan/blob/master/img/rm01.png" width="440">
 
 Click the _post_ button or hit return. You should see the new entry.
 
@@ -193,7 +193,7 @@ Open `http://localhost:8000/search/bar`.
 
 You are now acting as user _bar_. Use the text _red_ as a search query:
 
-Click on the follow button. Now user _bar_ is following user _foo_.
+Click on the _follow_ button. Now user _bar_ is following user _foo_.
 
 ![](https://github.com/senecajs/ramanujan/blob/master/img/rm04.png)
 
