@@ -390,3 +390,6 @@ make debugging easier.
 [github issue]: https://github.com/senecajs/ramanujan/issues
 [gitter-url]: https://gitter.im/senecajs/ramanujan
 
+
+## License
+Copyright (c) Richard Rodger and other contributors 2015-2016, Licensed under [MIT][].
