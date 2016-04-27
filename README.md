@@ -166,7 +166,7 @@ At first there are no entries, so go ahead and post an entry, say:
 
 Click the _post_ button or hit return. You should see the new entry.
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm02.png)
+<img src="https://github.com/senecajs/ramanujan/blob/master/img/rm02" width="440">
 
 Post another entry, say:
 
@@ -184,7 +184,7 @@ This shows only the entries for user _foo_, omitting entries for followers.
 
 You can use this page to verify the entry list for a given user.
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm03.png)
+<img src="https://github.com/senecajs/ramanujan/blob/master/img/rm03" width="440">
 
 
 #### Step 3: Load search page of user _bar_, and follow user _foo_
@@ -195,7 +195,7 @@ You are now acting as user _bar_. Use the text _red_ as a search query:
 
 Click on the _follow_ button. Now user _bar_ is following user _foo_.
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm04.png)
+<img src="https://github.com/senecajs/ramanujan/blob/master/img/rm04" width="440">
 
 
 #### Step 4: Review timeline for user _bar_
@@ -204,7 +204,7 @@ Open `http://localhost:8000/bar` (Or click on the _Home_ navigation tab).
 
 You should see the entries from user _foo_, as user _bar_ is now a follower.
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm05.png)
+<img src="https://github.com/senecajs/ramanujan/blob/master/img/rm05" width="440">
 
 
 #### Step 5: Post microblogs entries for user _bar_
@@ -216,7 +216,7 @@ Enter and post the text:
 The timeline for user _bar_ now includes entries from both users _foo_
 and _bar_.
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm06.png)
+<img src="https://github.com/senecajs/ramanujan/blob/master/img/rm06" width="440">
 
 
 #### Step 5: Post microblogs for user _foo_
@@ -229,7 +229,7 @@ Post a new entry:
 
 You should see entries only for user _foo_, as _foo_ does **not** follow _bar_.
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm07.png)
+<img src="https://github.com/senecajs/ramanujan/blob/master/img/rm07" width="440">
 
 
 #### Step 6: Load microblog timeline of user _bar_
@@ -238,7 +238,7 @@ Go back to user _bar_. Open `http://localhost:8000/bar`.
 
 You should see an updated list of entries, included all the entries for user _foo_.
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm08.png)
+<img src="https://github.com/senecajs/ramanujan/blob/master/img/rm08" width="440">
 
 
 ### Starting and stopping services
