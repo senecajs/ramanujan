@@ -207,7 +207,7 @@ You should see the entries from user _foo_, as user _bar_ is now a follower.
 <img src="https://github.com/senecajs/ramanujan/blob/master/img/rm05.png" width="440">
 
 
-#### Step 5: Post microblogs entries for user _bar_
+#### Step 5: Post microblog entries for user _bar_
 
 Enter and post the text:
 
@@ -219,7 +219,7 @@ and _bar_.
 <img src="https://github.com/senecajs/ramanujan/blob/master/img/rm06.png" width="440">
 
 
-#### Step 5: Post microblogs for user _foo_
+#### Step 5: Post microblog entries for user _foo_
 
 Return to user _foo_. Open `http://localhost:8000/foo`.
 
@@ -236,20 +236,157 @@ You should see entries only for user _foo_, as _foo_ does **not** follow _bar_.
 
 Go back to user _bar_. Open `http://localhost:8000/bar`.
 
-You should see an updated list of entries, included all the entries for user _foo_.
+You should see an updated list of entries, included all the entries
+for user _foo_, as _bar_ **does** follow _foo_.
 
 <img src="https://github.com/senecajs/ramanujan/blob/master/img/rm08.png" width="440">
 
 
 ### Starting and stopping services
 
+One of the main benefits of a microservice system is that you can
+deploy services independently. In a local development setting this
+means you should be able to start and stop services independently,
+without stopping and starting the entire system. This has a huge
+productivity benefit as you don't have to wait for the entire system
+to ready itself.
+
+To work on a particular service, update the code for that service, and
+then stop and restart the service to see the new functionality. The
+rest of the system keeps working. To really get the maximum benefit
+from this technique, you need to avoid the use of schema validation
+for your messages, and you must avoid creating hard couplings
+(services should not know about each other). That is why the Seneca
+framework provides pattern matching and transport independence as key
+features - they enable rapid development.
+
+The payoff for more deployment complexity is that you can change parts
+of the system dynamically - don't lose that ability!
+
+_fuge_ allows you to start and stop services using the 'start' and
+'stop' commands.
+
+To stop a service (say, _search_), use the command:
+
+```sh
+? fuge> stop search
+```
+
+If you now try to use the search feature, it will fail, but other
+pages will still work. Another important benefit of microservices is that they can isolate errors in this way.
+
+To restart the _search_ service, use:
+
+```sh
+? fuge> start search
+```
+
+And the search functionality works again. Notice that you did not have
+to do any manual configuration to let the other services know about
+the new instance of the _search_ service. Notice also that the other
+services knew almost instantaneously about the the new instance of the
+_search_ service. That's becuase the SWIM algorithm propogated that
+information quickly and efficiently throughout the network. No need
+for 30 second timeouts to detect errors - SWIM works much more quickly
+as it has many observers (the other services) so can detect failure,
+and new services, very quickly with a high degree of confidence.
+
+You can also run multiple instances of the same service. This lets you
+scale to handle load. The underlying seneca-mesh network will
+automatically round-robin messages between all available services for
+a given message. Just start the service again:
+
+```sh
+? fuge> start search
+```
+
+And is you now run the `ps` command in fuge, you'll see the count is 2
+instances.
+
+
 ### Accessing the network REPL
+
+The system comes with a REPL service that lets you submit messages to the network manually. This is very useful for debugging. Access the REPL by telnetting into it:
+
+```sh
+$ telnet localhost 10001
+```
+
+Use the following message to see the user _foo's_ timeline:
+
+```sh
+seneca 2.0.1 7k/repl> timeline:list,user:foo
+IN  000000: { timeline: 'list', user: 'foo' } # t7/39 timeline:* (6ln6zlc2qaer) transport_client 
+OUT 000000: { '0': 
+   { user: 'foo',
+     text: 'three colors: red',
+     when: 1461759716373,
+     can_follow: false },
+  '1': 
+   { user: 'foo',
+     text: 'three colors: white',
+     when: 1461759467135,
+     can_follow: false },
+  '2': 
+   { user: 'foo',
+     text: 'three colors: blue',
+     when: 1461759353996,
+     can_follow: false } }
+```
+
+You can enter messages directly into the terminal, in JSON format (the
+format is lenient, see
+[jsonic](https://github.com/rjrodger/jsonic)). The output will show
+the message data `IN` and `OUT` of the network.
+
+The REPL is a JavaScript console environment. There is a `seneca`
+object that you can use directly, calling any methods of the seneca
+API.
+
+```sh
+seneca 2.0.1 7k/repl> seneca.id
+'7k/repl'
+```
+
+To get a list of all services on the network, and which messages they
+listen for, try:
+
+```sh
+seneca 2.0.1 7k/repl> role:mesh,get:members
+IN  000001: { role: 'mesh', get: 'members' } # aa/ie get:members,role:mesh (9mxp6qx6zyox) get_members 
+OUT 000001: {
+  ...
+  '4': 
+   { pin: 'timeline:*',
+     port: 54932,
+     host: '0.0.0.0',
+     type: 'web',
+     model: 'consume',
+     instance: 'gt/timeline-shard' },
+  ...
+  }
+```
+
+This message is so useful, that the repl service defines an alias for it: `m`.
+
+The default configuration of the system uses shortened identifers to
+make debugging easier.
 
 
 ## Informal Requirements
 
+> TODO
+
 ## Message Specification
+
+> TODO
 
 ## Service Specification
 
+> TODO
+
+## Help and Questions
+
+[github issue]: https://github.com/senecajs/ramanujan/issues
+[gitter-url]: https://gitter.im/senecajs/ramanujan
 
