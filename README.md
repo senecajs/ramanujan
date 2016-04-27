@@ -2,27 +2,31 @@
 
 This project is an implementation of a microblogging system (similar
 to the basic functionality of [Twitter](http://twitter.com)) using the
-microservice architecture and Node.js. It is the example system
-discussed in Chapter 1 of
-[The Tao of Microservices](http://bit.ly/rmtaomicro) book.
+[microservice architecture](http://www.richardrodger.com/seneca-microservices-nodejs#.VyCjoWQrL-k)
+and [Node.js](https://nodejs.org). It is the example system discussed
+in Chapter 1 of [The Tao of Microservices](http://bit.ly/rmtaomicro)
+book.
 
 
 This purpose of this code base to help you learn how to design and
 build microservice systems. You can follow the construction through
 the following steps:
 
-  * Informal Requirements
-  * Message specification
-  * Service specification
+  * [Informal Requirements](informal-requirements)
+  * [Message specification](message-specification)
+  * [Service specification](service-specification)
 
-The system uses the Seneca microservice framework to provide
-inter-service communication, and the Fuge development tool to manage
+The system uses the
+[Seneca microservice framework](http://senecajs.org) to provide
+inter-service communication, and the
+[fuge microservice development tool](apparatus/fuge) to manage
 services on a local development machine.
 
-The system is also a demonstration of the SWIM protocol for
-peer-to-peer service discovery. A service registry is not needed as
-the network automatically reconfigures as microservices are added and
-removed.
+The system is also a demonstration of the
+[SWIM protocol](https://www.cs.cornell.edu/~asdas/research/dsn02-swim.pdf)
+for peer-to-peer service discovery. A service registry is not needed
+as the network automatically reconfigures as microservices are added
+and removed.
 
 ## Scope of the system
 
@@ -95,7 +99,8 @@ $ npm install
 
 Wait until the downloads complete. Some modules will require local
 compilation. If you run into problems due to your operating system,
-using a Linux virtual machine is probably your fastest solution.
+using a [Linux virtual machine](https://www.virtualbox.org/) is
+probably your fastest solution.
 
 #### Step 3: Run fuge
 
@@ -157,11 +162,11 @@ At first there are no entries, so go ahead and post an entry, say:
 
     _the color red_
 
-[https://github.com/senecajs/ramanujan/blob/master/img/rm01.png]
+[[https://github.com/senecajs/ramanujan/blob/master/img/rm01.png]]
 
 Click the _post_ button or hit return. You should see the new entry.
 
-
+[[https://github.com/senecajs/ramanujan/blob/master/img/rm02.png]]
 
 #### Step 1: Post microblogs for user _foo_
 #### Step 2: Review microblogs for user _foo_
