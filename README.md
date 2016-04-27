@@ -162,11 +162,11 @@ At first there are no entries, so go ahead and post an entry, say:
 
 > _the color red_
 
-![](https://github.com/senecajs/ramanujan/blob/master/img/rm01.png)
+![](senecajs/ramanujan/blob/master/img/rm01.png)
 
 Click the _post_ button or hit return. You should see the new entry.
 
-![](blob/master/img/rm02.png)
+![](senecajs/ramanujan/blob/master/img/rm02.png)
 
 Post another entry, say:
 
@@ -178,16 +178,41 @@ top. This is the timeline for user _foo_.
 
 #### Step 2: Review microblogs for user _foo_
 
-Open `http://localhost:8000/mine/foo`.
+Open `http://localhost:8000/mine/foo` (Or click on the _Mine_ navigation tab).
 
 This shows only the entries for user _foo_, omitting entries for followers.
 
-![](blob/master/img/rm03.png)
+![](senecajs/ramanujan/blob/master/img/rm03.png)
 
 You can use this page to verify the entry list for a given user.
 
-#### Step 3: Load search page of user _bar_
-#### Step 4: Set user _bar_ to follow user _foo_
+#### Step 3: Load search page of user _bar_, and follow user _foo_
+
+Open `http://localhost:8000/search/bar`.
+
+You are now acting as user _bar_. Use the text _red_ as a search query:
+
+![](senecajs/ramanujan/blob/master/img/rm04.png)
+
+Click on the follow button. Now user _bar_ is following user _foo_.
+
+#### Step 4: Review timeline for user _bar_
+
+Open `http://localhost:8000/bar` (Or click on the _Home_ navigation tab).
+
+You should see the entries from both users _foo_ and _bar_.
+
+![](senecajs/ramanujan/blob/master/img/rm05.png)
+
+#### Step 5: Post microblogs entries for user _bar_
+
+Enter and post the text:
+
+> _the sound of music_
+
+The timeline for user _bar_ now includes entries from both users _foo_
+and _bar_.
+
 #### Step 5: Post microblogs for user _foo_
 #### Step 6: Load microblog timeline of user _bar_
 
