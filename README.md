@@ -160,17 +160,17 @@ user _foo_ follows, and also entries from _foo_ themselves.
 
 At first there are no entries, so go ahead and post an entry, say:
 
-> _the color red_
+> _three colors: blue_
 
-![](github.com/senecajs/ramanujan/blob/master/img/rm01.png)
+![](https://github.com/senecajs/ramanujan/blob/master/img/rm01.png)
 
 Click the _post_ button or hit return. You should see the new entry.
 
-![](github.com/senecajs/ramanujan/blob/master/img/rm02.png)
+![](https://github.com/senecajs/ramanujan/blob/master/img/rm02.png)
 
 Post another entry, say:
 
-> _the color blue_
+> _three colors: white_
 
 You should see both entries listed, with the most recent one at the
 top. This is the timeline for user _foo_.
@@ -182,9 +182,10 @@ Open `http://localhost:8000/mine/foo` (Or click on the _Mine_ navigation tab).
 
 This shows only the entries for user _foo_, omitting entries for followers.
 
-![](github.com/senecajs/ramanujan/blob/master/img/rm03.png)
-
 You can use this page to verify the entry list for a given user.
+
+![](https://github.com/senecajs/ramanujan/blob/master/img/rm03.png)
+
 
 #### Step 3: Load search page of user _bar_, and follow user _foo_
 
@@ -192,9 +193,10 @@ Open `http://localhost:8000/search/bar`.
 
 You are now acting as user _bar_. Use the text _red_ as a search query:
 
-![](github.com/senecajs/ramanujan/blob/master/img/rm04.png)
-
 Click on the follow button. Now user _bar_ is following user _foo_.
+
+![](https://github.com/senecajs/ramanujan/blob/master/img/rm04.png)
+
 
 #### Step 4: Review timeline for user _bar_
 
@@ -202,7 +204,8 @@ Open `http://localhost:8000/bar` (Or click on the _Home_ navigation tab).
 
 You should see the entries from user _foo_, as user _bar_ is now a follower.
 
-![](github.com/senecajs/ramanujan/blob/master/img/rm05.png)
+![](https://github.com/senecajs/ramanujan/blob/master/img/rm05.png)
+
 
 #### Step 5: Post microblogs entries for user _bar_
 
@@ -210,13 +213,33 @@ Enter and post the text:
 
 > _the sound of music_
 
-![](github.com/senecajs/ramanujan/blob/master/img/rm06.png)
-
 The timeline for user _bar_ now includes entries from both users _foo_
 and _bar_.
 
+![](https://github.com/senecajs/ramanujan/blob/master/img/rm06.png)
+
+
 #### Step 5: Post microblogs for user _foo_
+
+Return to user _foo_. Open `http://localhost:8000/foo`.
+
+Post a new entry:
+
+> _three colors: red_
+
+You should see entries only for user _foo_, as _foo_ does **not** follow _bar_.
+
+![](https://github.com/senecajs/ramanujan/blob/master/img/rm07.png)
+
+
 #### Step 6: Load microblog timeline of user _bar_
+
+Go back to user _bar_. Open `http://localhost:8000/bar`.
+
+You should see an updated list of entries, included all the entries for user _foo_.
+
+![](https://github.com/senecajs/ramanujan/blob/master/img/rm08.png)
+
 
 ### Starting and stopping services
 
