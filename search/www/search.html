@@ -1,23 +1,25 @@
-<b>search</b>
-
 <form action="/search/{{user}}" method="post">
 <input type="text" name="query">
 <input type="submit" value="search">
 </form>
 
 <br>
-<br>
 
 {{#each entrylist}}
+<div class="entry">
 <form action="/api/follow/{{../user}}" method="post">
-<small>{{this.when}}</small> <b>@{{this.user}}</b>
+<b><a href="/{{this.user}}">@{{this.user}}</a></b> <small>{{this.when}}</small>
 <input type="hidden" name="from" value="/search/{{../user}}?query={{{../query}}}">
 <input type="hidden" name="user" value="{{this.user}}">
 {{#if can_follow}}
 <input type="submit" value="follow">
 {{/if}}
-<br>{{this.text}}
+<br>
+<div class="text">
+{{this.text}}
+</div>
 </form>
+</div>
 {{/each}}
 
 

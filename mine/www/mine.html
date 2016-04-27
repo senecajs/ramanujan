@@ -1,5 +1,3 @@
-<b>mine</b>
-
 <form action="/api/post/{{user}}" method="post">
 <input type="text" name="text">
 <input type="hidden" name="from" value="/mine/{{user}}">
@@ -7,13 +5,16 @@
 </form>
 
 <br>
-<br>
 
 {{#each entrylist}}
-<p>
+<div class="entry">
 <small>{{this.when}}</small>
-<br>{{this.text}}
-</p>
+<br>
+<div class="text">
+{{this.text}}
+</div>
+</form>
+</div>
 {{/each}}
 
 

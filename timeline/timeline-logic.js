@@ -62,7 +62,10 @@ module.exports = function timeline (options) {
               if( entry.when === timeline.entrylist[i].when ) return next()
             }
 
-            timeline.entrylist.unshift(entry)
+            timeline.entrylist.push(entry)
+            timeline.entrylist.sort(function(a,b){
+              return b.when - a.when
+            })
 
             timeline.save$(function(err,timeline) {
               // underlying data store may be able to indicate conflicts
@@ -72,57 +75,6 @@ module.exports = function timeline (options) {
               if( err ) return next(err)
               next()
             })
-          }
-        })
-    }
-  }
-
-
-  function xinsert (msg, done) {
-    var seneca = this
-    done()
-
-    var entry = {
-      user: msg.user,
-      text: msg.text,
-      when: msg.when,
-    }
-
-    var users = _.clone(msg.users)
-
-    do_user(0)
-
-    function do_user(count) {
-      count = count || 0
-      var user = users.shift()
-      if( !user) return;
-
-      seneca
-        .make('timeline')
-        .load$(user,function(err,timeline){
-          if(err) return setImmediate(do_user)
-
-          if( !timeline ) {
-            seneca
-              .make('timeline',{id$:user,entrylist:[]})
-              .save$( insert_entry )
-          }
-          else insert_entry( null, timeline )
-
-          function insert_entry(err,timeline) {
-            if(err) {
-              if( 1 < count ) {
-                return do_user(0)
-              }
-              else {
-                // if create failed, try again, as now exists
-                users.unshift(user)
-                return do_user(count)
-              }
-            }
-            
-            timeline.entrylist.unshift(entry)            
-            timeline.save$(do_user)
           }
         })
     }

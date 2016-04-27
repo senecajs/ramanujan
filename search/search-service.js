@@ -86,7 +86,9 @@ server.route({
               user: req.params.user,
               entrylist: _.map(entrylist,function(entry){
                 entry.when = moment(entry.when).fromNow()
-                entry.can_follow = !_.includes(following,entry.user)
+                entry.can_follow = 
+                  req.params.user != entry.user && 
+                  !_.includes(following,entry.user)
                 return entry
               })
             })
