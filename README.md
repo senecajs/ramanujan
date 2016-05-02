@@ -80,12 +80,12 @@ architecture. You can move faster because you have very low coupling,
 and thus lower technical debt, but you will need more automation to
 manage the higher number of moving parts.
 
-#### Step 1: Checkout the repository
+#### Step 1: Clone the repository
 
-Use git to checkout the repository to a local development folder of your choice
+Use git to clone the repository to a local development folder of your choice
 
 ```sh
-$ git checkout https://github.com/senecajs/ramanujan.git
+$ git clone https://github.com/senecajs/ramanujan.git
 ```
 
 #### Step 2: Download dependencies
