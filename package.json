@@ -23,7 +23,6 @@
   "homepage": "https://github.com/senecajs/ramanujan",
   "dependencies": {
     "chairo": "^2.1.0",
-    "fuge": "^0.5.4",
     "handlebars": "^4.0.5",
     "hapi": "^13.1.0",
     "inert": "^3.2.0",
