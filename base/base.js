@@ -7,7 +7,8 @@ var BASES = (process.env.BASES || process.argv[4] || '').split(',')
 
 require('seneca')({
   tag: TAG,
-  log: 'test',
+  log: { level: 'none' },
+  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
   .use('mesh',{

@@ -25,8 +25,10 @@ server.register({
   register:chairo, 
   options:{
     seneca: Seneca({
-      tag: 'api',
-      log: 'test'
+      tag: 'search',
+      log: { level: 'none' },
+      internal: { logger: require('seneca-demo-logger') },
+      debug: {short_logs:true}
     })
   }
 })

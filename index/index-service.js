@@ -2,9 +2,11 @@ var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
 require('seneca')({
   tag: 'index',
-  log: 'test',
+  log: { level: 'none' },
+  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
+
   .use('index-logic')
 
   .add('info:entry', function(msg,done){

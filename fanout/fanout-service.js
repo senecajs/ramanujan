@@ -2,7 +2,8 @@ var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
 require('seneca')({
   tag: 'fanout',
-  log: 'test',
+  log: { level: 'none' },
+  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
   .use('fanout-logic')

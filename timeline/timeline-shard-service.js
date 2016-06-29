@@ -8,7 +8,8 @@ function resolve_shard(user) {
 
 require('seneca')({
   tag: 'timeline-shard',
-  log: 'test',
+  log: { level: 'none' },
+  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
 
@@ -28,10 +29,12 @@ require('seneca')({
     })
 
     _.each(shards,function(users,shard){
-      seneca.act({
-        shard: shard,
-        users: users,
-      }, msg)
+      if( 0 < users.length ) {
+        seneca.act({
+          shard: shard,
+          users: users,
+        }, msg)
+      }
     })
   })
 
