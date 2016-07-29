@@ -1,5 +1,5 @@
-BASES=127.0.0.1:39000,127.0.0.1:39001
-OPTS="--seneca.options.debug.undead=true --seneca.options.plugin.mesh.sneeze.silent=1"
+BASES="127.0.0.1:39000,127.0.0.1:39001"
+OPTS=""
 
 node base/base.js base0 39000 $BASES $OPTS &
 sleep 1
