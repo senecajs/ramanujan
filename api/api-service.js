@@ -18,7 +18,8 @@ server.register({
   options:{
     seneca: Seneca({
       tag: 'api',
-      log: { level: 'none' },
+      log: 'silent',
+      legacy: { logging: false },
       internal: { logger: require('seneca-demo-logger') },
       debug: {short_logs:true}
     })
