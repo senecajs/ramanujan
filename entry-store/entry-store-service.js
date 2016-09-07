@@ -7,10 +7,11 @@ require('seneca')({
   internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
+  .use('basic')
   .use('entity')
   .use('entry-store-logic')
   .use('mesh',{
-    pin: 'store:*,kind:entry', 
+    pin: 'store:*,kind:entry',
     bases: BASES
   })
   .ready(function(){
