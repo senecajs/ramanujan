@@ -4,11 +4,11 @@ require('seneca')({
   tag:'entry-cache',
   log: 'silent',
   legacy: { logging: false },
-  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
+  .use('demo-logger')
   .use('entry-cache-logic')
-  .use('mesh',{ 
+  .use('mesh',{
     pin: 'store:list,kind:entry,cache:*',
     bases: BASES
   })

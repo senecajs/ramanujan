@@ -9,12 +9,12 @@ require('seneca')({
   tag: TAG,
   log: 'silent',
   legacy: { logging: false },
-  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
+  .use('demo-logger')
   .use('mesh',{
-    isbase: true, 
-    port: PORT, 
+    isbase: true,
+    port: PORT,
     bases: BASES,
     pin:'role:mesh'
   })

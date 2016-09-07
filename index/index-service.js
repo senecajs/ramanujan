@@ -4,9 +4,9 @@ require('seneca')({
   tag: 'index',
   log: 'silent',
   legacy: { logging: false },
-  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
+  .use('demo-logger')
 
   .use('index-logic')
 

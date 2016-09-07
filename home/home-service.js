@@ -14,7 +14,7 @@ var Seneca     = require('seneca')
 
 var server = new hapi.Server()
 
-server.connection({ 
+server.connection({
   port: PORT
 })
 
@@ -22,15 +22,15 @@ server.register( vision )
 server.register( inert )
 
 server.register({
-  register:chairo, 
+  register:chairo,
   options:{
     seneca: Seneca({
       tag: 'home',
       log: 'silent',
       legacy: { logging: false },
-      internal: { logger: require('seneca-demo-logger') },
       debug: {short_logs:true}
     })
+    .use('demo-logger')
   }
 })
 
@@ -47,7 +47,7 @@ server.register({
   }
 })
 
-  
+
 server.views({
   engines: { html: handlebars },
   path: __dirname + '/www',
@@ -55,8 +55,8 @@ server.views({
 })
 
 
-server.route({ 
-  method: 'GET', path: '/{user}', 
+server.route({
+  method: 'GET', path: '/{user}',
   handler: function( req, reply )
   {
     server.seneca.act(

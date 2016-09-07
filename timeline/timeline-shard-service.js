@@ -10,9 +10,10 @@ require('seneca')({
   tag: 'timeline-shard',
   log: 'silent',
   legacy: { logging: false },
-  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
+
+  .use('demo-logger')
 
   .add('timeline:list',function(msg,done){
     var shard = resolve_shard(msg.user)

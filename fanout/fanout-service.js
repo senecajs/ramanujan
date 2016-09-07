@@ -4,9 +4,9 @@ require('seneca')({
   tag: 'fanout',
   log: 'silent',
   legacy: { logging: false },
-  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
+  .use('demo-logger')
   .use('fanout-logic')
 
   .add('info:entry', function(msg,done){

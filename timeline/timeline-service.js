@@ -5,9 +5,9 @@ require('seneca')({
   tag: 'timeline'+SHARD,
   log: 'silent',
   legacy: { logging: false },
-  internal: { logger: require('seneca-demo-logger') },
   debug: {short_logs:true}
 })
+  .use('demo-logger')
   .use('entity')
   .use('timeline-logic')
   .use('mesh',{
