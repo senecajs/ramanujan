@@ -22,8 +22,8 @@
   "dependencies": {
     "chairo": "2.2.1",
     "handlebars": "4.0.5",
-    "hapi": "14.2.0",
-    "inert": "4.0.1",
+    "hapi": "15.0.3",
+    "inert": "4.0.2",
     "lodash": "4.15.0",
     "memdown": "1.2.0",
     "moment": "2.14.1",
