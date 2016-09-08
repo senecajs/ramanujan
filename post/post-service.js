@@ -2,10 +2,9 @@ var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
 require('seneca')({
   tag: 'post',
-  log: 'silent',
+  internal: {logger: require('seneca-demo-logger')},
   debug: { short_logs: true }
 })
-  .use('demo-logger')
   .use('entity')
   .use('post-logic')
 

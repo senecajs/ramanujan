@@ -26,11 +26,10 @@ server.register({
   options:{
     seneca: Seneca({
       tag: 'mine',
-      log: 'silent',
+      internal: {logger: require('seneca-demo-logger')},
       debug: {short_logs:true}
     })
     .use('entity')
-    .use('demo-logger')
   }
 })
 

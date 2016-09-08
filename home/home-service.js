@@ -26,10 +26,9 @@ server.register({
   options:{
     seneca: Seneca({
       tag: 'home',
-      log: 'silent',
+      internal: {logger: require('seneca-demo-logger')},
       debug: {short_logs:true}
     })
-    .use('demo-logger')
   }
 })
 
