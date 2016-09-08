@@ -6,7 +6,6 @@ var repl = require('seneca-repl');
 var seneca = require('seneca')({
   tag: 'repl',
   log: 'silent',
-  legacy: { logging: false },
   debug: {short_logs:true}
 })
 .use('demo-logger')

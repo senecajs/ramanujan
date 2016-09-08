@@ -8,7 +8,6 @@ var BASES = (process.env.BASES || process.argv[4] || '').split(',')
 require('seneca')({
   tag: TAG,
   log: 'silent',
-  legacy: { logging: false },
   debug: {short_logs:true}
 })
   .use('demo-logger')

@@ -27,7 +27,6 @@ server.register({
     seneca: Seneca({
       tag: 'search',
       log: 'silent',
-      legacy: { logging: false },
       debug: {short_logs:true}
     })
     .use('demo-logger')
