@@ -2,9 +2,7 @@ var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
 require('seneca')({
   tag: 'follow',
-  log: 'silent',
-  legacy: { logging: false },
-  internal: { logger: require('seneca-demo-logger') },
+  internal: {logger: require('seneca-demo-logger')},
   debug: {short_logs:true}
 })
   .use('entity')
@@ -25,7 +23,7 @@ require('seneca')({
 
     seneca.act('follow:user,user:f0,target:u0')
     seneca.act('follow:user,user:f1,target:u0')
-    
+
     setTimeout( function() {
       seneca.act('follow:list,kind:followers,user:u0', function(e,list){
         console.log('u0',list)

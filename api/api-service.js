@@ -9,18 +9,16 @@ var Seneca = require('seneca')
 
 var server = new Hapi.Server()
 
-server.connection({ 
+server.connection({
   port: PORT
 })
 
 server.register({
-  register: Chairo, 
+  register: Chairo,
   options:{
     seneca: Seneca({
       tag: 'api',
-      log: 'silent',
-      legacy: { logging: false },
-      internal: { logger: require('seneca-demo-logger') },
+      internal: {logger: require('seneca-demo-logger')},
       debug: {short_logs:true}
     })
   }
@@ -42,8 +40,8 @@ server.register({
 })
 
 
-server.route({ 
-  method: 'GET', path: '/api/ping', 
+server.route({
+  method: 'GET', path: '/api/ping',
   handler: function( req, reply ){
     server.seneca.act(
       'role:api,cmd:ping',
@@ -53,8 +51,8 @@ server.route({
   )}
 })
 
-server.route({ 
-  method: 'POST', path: '/api/post/{user}', 
+server.route({
+  method: 'POST', path: '/api/post/{user}',
   handler: function( req, reply ){
     server.seneca.act(
       'post:entry',
@@ -67,8 +65,8 @@ server.route({
     )}
 })
 
-server.route({ 
-  method: 'POST', path: '/api/follow/{user}', 
+server.route({
+  method: 'POST', path: '/api/follow/{user}',
   handler: function( req, reply ){
     server.seneca.act(
       'follow:user',
