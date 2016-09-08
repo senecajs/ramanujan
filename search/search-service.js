@@ -14,7 +14,7 @@ var Seneca     = require('seneca')
 
 var server = new hapi.Server()
 
-server.connection({ 
+server.connection({
   port: PORT
 })
 
@@ -22,13 +22,11 @@ server.register( vision )
 server.register( inert )
 
 server.register({
-  register:chairo, 
+  register:chairo,
   options:{
     seneca: Seneca({
       tag: 'search',
-      log: 'silent',
-      legacy: { logging: false },
-      internal: { logger: require('seneca-demo-logger') },
+      internal: {logger: require('seneca-demo-logger')},
       debug: {short_logs:true}
     })
   }
@@ -55,12 +53,12 @@ server.views({
 })
 
 
-server.route({ 
-  method: ['GET','POST'], 
-  path: '/search/{user}', 
+server.route({
+  method: ['GET','POST'],
+  path: '/search/{user}',
   handler: function( req, reply )
   {
-    var query 
+    var query
       = (req.query ? (null == req.query.query ? '' : ' '+req.query.query) : '')
       + (req.payload ? (null == req.payload.query ? '' : ' '+req.payload.query) : '')
 
@@ -89,8 +87,8 @@ server.route({
               user: req.params.user,
               entrylist: _.map(entrylist,function(entry){
                 entry.when = moment(entry.when).fromNow()
-                entry.can_follow = 
-                  req.params.user != entry.user && 
+                entry.can_follow =
+                  req.params.user != entry.user &&
                   !_.includes(following,entry.user)
                 return entry
               })

@@ -1,5 +1,6 @@
 
 var _ = require('lodash')
+var Levelup = require('levelup')
 var Memdown = require('memdown')
 var Search  = require('search-index')
 
@@ -9,8 +10,13 @@ module.exports = function index (options) {
 
   seneca.add('search:query', function(msg, done) {
     var terms = msg.query.split(/ +/)
+    var query = {
+      query: {
+        AND: {text:terms}
+      }
+    }
 
-    index.search( {query:{text:terms}}, function(err,out) {
+    index.search(query, function(err,out) {
       var hits = (out && out.hits) || []
       hits = _.map(hits,function(hit){
         return hit.document
@@ -31,10 +37,13 @@ module.exports = function index (options) {
   })
 
 
-  seneca.add( 'init:index', function(msg, done) {
-    index = Search({
-      db: Memdown
+  seneca.add('init:index', function(msg, done) {
+    Search({
+      indexes: Levelup('si', {db:Memdown, valueEncoding: 'json'})
+    }, function(err,si){
+      if (err) return done(err)
+      index = si
+      done()
     })
-    done()
   })
 }

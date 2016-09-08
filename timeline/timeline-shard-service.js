@@ -8,9 +8,7 @@ function resolve_shard(user) {
 
 require('seneca')({
   tag: 'timeline-shard',
-  log: 'silent',
-  legacy: { logging: false },
-  internal: { logger: require('seneca-demo-logger') },
+  internal: {logger: require('seneca-demo-logger')},
   debug: {short_logs:true}
 })
 
