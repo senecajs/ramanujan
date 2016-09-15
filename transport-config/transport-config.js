@@ -98,8 +98,6 @@ function listen (seneca, config) {
 function override_pins (seneca, override_map) {
   Object.keys(override_map).forEach(function (pin) {
     seneca.add(pin, {strict$: {add: true}}, function (msg, done) {
-      console.log('dentro override')
-
       for (var i = 0; i < override_map[pin].length; i++) {
         routed_msg = Object.create(msg)
         routed_msg.for = override_map[pin][i];
