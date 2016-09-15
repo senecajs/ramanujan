@@ -38,7 +38,7 @@
     "sneeze": "0.7.1",
     "vision": "4.1.0",
     "wo": "0.8.0",
-    "seneca-zipkin-tracer": "git@github.com:paolochiodi/seneca-zipkin-tracer.git"
+    "seneca-zipkin-tracer": "https://github.com/paolochiodi/seneca-zipkin-tracer.git"
   },
   "files": [
     "api/api.js"
