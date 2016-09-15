@@ -1,4 +1,5 @@
 var BASES = (process.env.BASES || process.argv[2] || '').split(',')
+var MESH = process.env.MESH ? process.env.MESH === 'true' : true
 
 require('seneca')({
   tag: 'fanout',
@@ -7,12 +8,8 @@ require('seneca')({
 })
   .use('fanout-logic')
 
-  .add('info:entry', function(msg,done){
-    delete msg.info
-    this.act('fanout:entry',msg,done)
-  })
-
-  .use('mesh',{
+  .use('../transport-config/transport-config',{
+    mesh: MESH,
     listen:[
       {pin: 'fanout:*'},
       {pin: 'info:entry', model:'observe'}
@@ -21,6 +18,12 @@ require('seneca')({
   })
 
   .ready(function(){
+    this.add('info:entry', function(msg,done){
+      console.log('info:entry ricevuto da fanout')
+      delete msg.info
+      this.act('fanout:entry',msg,done)
+    })
+
     console.log(this.id)
   })
 

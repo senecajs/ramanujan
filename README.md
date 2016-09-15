@@ -28,6 +28,11 @@ for peer-to-peer service discovery. A service registry is not needed
 as the network automatically reconfigures as microservices are added
 and removed.
 
+A version with the standard http transport is provided
+through the use of `MESH=false` environment variable.
+
+This will also enable the seneca-zipkin-tracer that at the moment isn't compatible with seneca-mesh
+
 ## Scope of the system
 
 The system shows implementations of some of the essential features of

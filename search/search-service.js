@@ -2,6 +2,7 @@
 
 var PORT = process.env.PORT || process.argv[2] || 0
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
+var MESH = process.env.MESH ? process.env.MESH === 'true' : true
 
 var hapi       = require('hapi')
 var chairo     = require('chairo')
@@ -99,7 +100,10 @@ server.route({
 })
 
 
-server.seneca.use('mesh',{bases:BASES})
+server.seneca.use('../transport-config/transport-config',{
+  mesh: MESH,
+  bases:BASES
+})
 
 server.start(function(){
   console.log('search',server.info.uri)

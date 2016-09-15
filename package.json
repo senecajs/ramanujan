@@ -37,7 +37,8 @@
     "seneca-repl": "0.3.0",
     "sneeze": "0.7.1",
     "vision": "4.1.0",
-    "wo": "0.8.0"
+    "wo": "0.8.0",
+    "seneca-zipkin-tracer": "https://github.com/paolochiodi/seneca-zipkin-tracer.git"
   },
   "files": [
     "api/api.js"
