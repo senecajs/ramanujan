@@ -7,8 +7,7 @@ require('seneca')({
 })
   .use('entity')
   .use('post-logic')
-
-  .use('mesh',{
+  .use('../transport-config/transport-config',{
     pin: 'post:*',
     bases: BASES
   })

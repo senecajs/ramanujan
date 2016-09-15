@@ -7,7 +7,7 @@ require('seneca')({
 })
   .use('entity')
   .use('follow-logic')
-  .use('mesh',{
+  .use('../transport-config/transport-config',{
     pin: 'follow:*',
     bases: BASES
   })

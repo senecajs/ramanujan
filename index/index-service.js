@@ -8,12 +8,7 @@ require('seneca')({
 
   .use('index-logic')
 
-  .add('info:entry', function(msg,done){
-    delete msg.info
-    this.act('search:insert',msg,done)
-  })
-
-  .use('mesh',{
+  .use('../transport-config/transport-config',{
     listen:[
       {pin: 'search:*'},
       {pin: 'info:entry', model:'observe'}
@@ -22,5 +17,10 @@ require('seneca')({
   })
 
   .ready(function(){
+    this.add('info:entry', function(msg,done){
+      delete msg.info
+      this.act('search:insert',msg,done)
+    })
+
     console.log(this.id)
   })

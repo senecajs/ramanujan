@@ -8,7 +8,7 @@ require('seneca')({
 })
   .use('entity')
   .use('timeline-logic')
-  .use('mesh',{
+  .use('../transport-config/transport-config', {
     //pin: 'timeline:*',
     pin: 'timeline:*,shard:'+SHARD,
     bases: BASES

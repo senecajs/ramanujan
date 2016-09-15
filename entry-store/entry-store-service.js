@@ -8,7 +8,7 @@ require('seneca')({
   .use('basic')
   .use('entity')
   .use('entry-store-logic')
-  .use('mesh',{
+  .use('../transport-config/transport-config',{
     pin: 'store:*,kind:entry',
     bases: BASES
   })

@@ -30,6 +30,7 @@ server.register({
       debug: {short_logs:true}
     })
     .use('entity')
+    .use('../transport-config/transport-config')
   }
 })
 
@@ -78,7 +79,7 @@ server.route({
 })
 
 
-server.seneca.use('mesh',{bases:BASES})
+server.seneca.use('../transport-config/transport-config',{bases:BASES})
 
 server.start(function(){
   console.log('mine',server.info.host,server.info.port)

@@ -83,7 +83,7 @@ server.seneca
   .add('role:api,cmd:ping', function(msg,done){
     done( null, {pong:true,api:true,time:Date.now()})
   })
-  .use('mesh',{bases:BASES})
+  .use('../transport-config/transport-config',{bases:BASES})
 
 server.start(function(){
   console.log('api',server.info.host,server.info.port)

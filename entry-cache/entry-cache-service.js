@@ -6,7 +6,7 @@ require('seneca')({
   debug: {short_logs:true}
 })
   .use('entry-cache-logic')
-  .use('mesh',{
+  .use('../transport-config/transport-config',{
     pin: 'store:list,kind:entry,cache:*',
     bases: BASES
   })

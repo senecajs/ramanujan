@@ -76,8 +76,7 @@ server.route({
   }
 })
 
-
-server.seneca.use('mesh',{bases:BASES})
+server.seneca.use('../transport-config/transport-config',{bases:BASES})
 
 server.start(function(){
   console.log('home',server.info.host,server.info.port)

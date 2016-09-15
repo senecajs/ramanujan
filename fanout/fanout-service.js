@@ -7,12 +7,7 @@ require('seneca')({
 })
   .use('fanout-logic')
 
-  .add('info:entry', function(msg,done){
-    delete msg.info
-    this.act('fanout:entry',msg,done)
-  })
-
-  .use('mesh',{
+  .use('../transport-config/transport-config',{
     listen:[
       {pin: 'fanout:*'},
       {pin: 'info:entry', model:'observe'}
@@ -21,6 +16,12 @@ require('seneca')({
   })
 
   .ready(function(){
+    this.add('info:entry', function(msg,done){
+      console.log('info:entry ricevuto da fanout')
+      delete msg.info
+      this.act('fanout:entry',msg,done)
+    })
+
     console.log(this.id)
   })
 

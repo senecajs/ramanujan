@@ -11,7 +11,6 @@ require('seneca')({
   internal: {logger: require('seneca-demo-logger')},
   debug: {short_logs:true}
 })
-
   .add('timeline:list',function(msg,done){
     var shard = resolve_shard(msg.user)
     this.act({shard:shard},msg,done)
@@ -37,7 +36,7 @@ require('seneca')({
     })
   })
 
-  .use('mesh',{
+  .use('../transport-config/transport-config',{
     pin: 'timeline:*',
     bases: BASES
   })
