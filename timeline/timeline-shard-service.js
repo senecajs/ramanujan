@@ -1,4 +1,5 @@
 var BASES = (process.env.BASES || process.argv[2] || '').split(',')
+var MESH = process.env.MESH ? process.env.MESH === 'true' : true
 
 var _ = require('lodash')
 
@@ -37,6 +38,7 @@ require('seneca')({
   })
 
   .use('../transport-config/transport-config',{
+    mesh: MESH,
     pin: 'timeline:*',
     bases: BASES
   })

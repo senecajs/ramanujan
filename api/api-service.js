@@ -2,6 +2,7 @@
 
 var PORT = process.env.PORT || process.argv[2] || 0
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
+var MESH = process.env.MESH ? process.env.MESH === 'true' : true
 
 var Hapi   = require('hapi')
 var Chairo = require('chairo')
@@ -83,7 +84,10 @@ server.seneca
   .add('role:api,cmd:ping', function(msg,done){
     done( null, {pong:true,api:true,time:Date.now()})
   })
-  .use('../transport-config/transport-config',{bases:BASES})
+  .use('../transport-config/transport-config',{
+    mesh: MESH,
+    bases: BASES
+  })
 
 server.start(function(){
   console.log('api',server.info.host,server.info.port)

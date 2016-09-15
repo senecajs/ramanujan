@@ -1,5 +1,4 @@
 
-var USE_MESH = false
 var NETWORK_CONFIGURATION = {
   'entry-cache': {
     port: 3101,
@@ -115,11 +114,14 @@ function transport_config_plugin (opts) {
   var seneca = this.root;
   var current_service = seneca.private$.optioner.get().tag
 
-  if (USE_MESH) {
+  if (opts.mesh) {
+    seneca.log.debug('transport_config using mesh')
+    delete opts.mesh
     seneca.use('mesh', opts)
     return
   }
 
+  seneca.log.debug('transport_config using http transport')
   seneca.use('zipkin-tracer')
 
   var service

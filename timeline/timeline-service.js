@@ -1,5 +1,6 @@
 var SHARD = process.env.SHARD || process.argv[2] || 0
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
+var MESH = process.env.MESH ? process.env.MESH === 'true' : true
 
 require('seneca')({
   tag: 'timeline'+SHARD,
@@ -9,6 +10,7 @@ require('seneca')({
   .use('entity')
   .use('timeline-logic')
   .use('../transport-config/transport-config', {
+    mesh: MESH,
     //pin: 'timeline:*',
     pin: 'timeline:*,shard:'+SHARD,
     bases: BASES

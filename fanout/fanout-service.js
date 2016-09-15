@@ -1,4 +1,5 @@
 var BASES = (process.env.BASES || process.argv[2] || '').split(',')
+var MESH = process.env.MESH ? process.env.MESH === 'true' : true
 
 require('seneca')({
   tag: 'fanout',
@@ -8,6 +9,7 @@ require('seneca')({
   .use('fanout-logic')
 
   .use('../transport-config/transport-config',{
+    mesh: MESH,
     listen:[
       {pin: 'fanout:*'},
       {pin: 'info:entry', model:'observe'}
