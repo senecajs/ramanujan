@@ -15,8 +15,8 @@ module.exports = function entry_store (options) {
         {
           timeline: 'insert',
           users: [msg.user],
-        }, 
-        entry, 
+        },
+        entry,
         function(err) {
           return done(err, entry)
         })
