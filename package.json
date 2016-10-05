@@ -29,7 +29,7 @@
     "memdown": "1.2.0",
     "moment": "2.14.1",
     "search-index": "0.8.15",
-    "seneca": "3.0.0",
+    "seneca": "https://github.com/senecajs/seneca.git",
     "seneca-balance-client": "0.6.0",
     "seneca-basic": "0.5.0",
     "seneca-demo-logger": "0.1.0",
