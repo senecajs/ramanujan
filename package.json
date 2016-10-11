@@ -36,7 +36,7 @@
     "seneca-entity": "1.3.0",
     "seneca-mesh": "0.9.0",
     "seneca-repl": "0.3.0",
-    "seneca-zipkin-tracer": "https://github.com/senecajs-labs/seneca-zipkin-tracer.git",
+    "seneca-zipkin-tracer": "https://github.com/paolochiodi/seneca-zipkin-tracer.git#feature/update-zipkin-simple",
     "sneeze": "0.7.1",
     "vision": "4.1.0",
     "wo": "0.8.0"
