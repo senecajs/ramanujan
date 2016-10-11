@@ -380,11 +380,11 @@ make debugging easier.
 
 ## Tracing
 
-The system comes with a tracing system based on [zipkin](http://zipkin.io) and [seneca-zipkin-tracer](https://github.com/senecajs-labs/seneca-zipkin-tracer).
+Ramanuja comes with a tracing system based on [zipkin](http://zipkin.io) and [seneca-zipkin-tracer](https://github.com/senecajs-labs/seneca-zipkin-tracer).
 
-This is useful for inspecting the behaviour of the running services, helps understanding the architecture, check latency across network calls.
+This is useful for inspecting the behaviour of the running services, helps understanding the architecture and checking latency across network calls.
 
-For an introduction to zipkin take look look at [zipkin.io](http://zipkin.io) and the ["dapper paper" from google](http://research.google.com/pubs/pub36356.html) upon which zipkin is modeled.
+For an introduction to zipkin take a look at [zipkin.io](http://zipkin.io) and the ["dapper paper" from google](http://research.google.com/pubs/pub36356.html) upon which zipkin is modeled.
 
 The basic idea here is that seneca-zipkin-tracer is creating a zipkin span for each action executed, and relationships between actions and between services is maintained.
 
@@ -430,7 +430,9 @@ If you have installed zipkin by other means or it isn't installed on the local m
 ### Accessing dashboard
 
 After some use of the system (see [Using the System](#using-the-system)) you should be able to load the zipkin dashboard on [http://localhost:9411/](http://localhost:9411/) (assuming default zipkin installation).
+
 From the dashboard home page you sohuld be able to search for traces and spans based on the service.
+
 Selecting in example "api" you should se something like this:
 
 <img src="https://github.com/paolochiodi/ramanujan/blob/seneca-zipkin/img/zipkin02.png" width="440">
