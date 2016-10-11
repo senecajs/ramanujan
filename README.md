@@ -378,6 +378,65 @@ The default configuration of the system uses shortened identifers to
 make debugging easier.
 
 
+## Tracing
+
+Ramanuja comes with a tracing system based on [zipkin](http://zipkin.io) and [seneca-zipkin-tracer](https://github.com/senecajs-labs/seneca-zipkin-tracer).
+
+This is useful for inspecting the behaviour of the running services, helps understanding the architecture and checking latency across network calls.
+
+For an introduction to zipkin take a look at [zipkin.io](http://zipkin.io) and the ["dapper paper" from google](http://research.google.com/pubs/pub36356.html) upon which zipkin is modeled.
+
+The basic idea here is that seneca-zipkin-tracer is creating a zipkin span for each action executed, and relationships between actions and between services is maintained.
+
+Consider this example from [post/post-logic.js](https://github.com/senecajs/ramanujan/blob/master/post/post-logic.js#L4):
+
+```js
+
+  seneca.add('post:entry', function(msg, done) {
+    var entry = this.util.clean(msg)
+    delete entry.post
+
+    entry.when = Date.now()
+
+    this.act('store:save,kind:entry', entry, function(err,entry) {
+      done(err)
+
+      if( !err ) {
+        this.act('info:entry',entry.data$())
+      }
+    })
+  })
+
+```
+
+When `post:entry` is called it will result in at least 3 spans being created: one for `post:entry`, one for `store:save,kind:entry` and one for `info:entry`.
+
+`post:entry` will result being the root, `store:save,kind:entry` a child of it and `info:entry` a child of `store:save,kind:entry`.
+
+Each span will belong to the service that implements them, thus `post:entry` and `store:save,kind:entry` will be considered part of the _post_ service and `info:entry` of _fanout_ and _index_ (because it is implemented by both)
+
+Here's how it will appear in the zipkin dashboard:
+
+<img src="https://github.com/paolochiodi/ramanujan/blob/seneca-zipkin/img/zipkin01.png" width="440">
+
+### Installing zipkin
+
+In order for this to work a running instance of zipkin is needed. The fastest way to accomplish this is through [docker-zipkin](https://github.com/openzipkin/docker-zipkin).
+
+Ramanujan is configured assuming docker-zipking has been used.
+
+If you have installed zipkin by other means or it isn't installed on the local machine, you may need to change the configuration in `transport-config/transport-config.js`
+
+### Accessing dashboard
+
+After some use of the system (see [Using the System](#using-the-system)) you should be able to load the zipkin dashboard on [http://localhost:9411/](http://localhost:9411/) (assuming default zipkin installation).
+
+From the dashboard home page you sohuld be able to search for traces and spans based on the service.
+
+Selecting in example "api" you should se something like this:
+
+<img src="https://github.com/paolochiodi/ramanujan/blob/seneca-zipkin/img/zipkin02.png" width="440">
+
 ## Informal Requirements
 
 > TODO

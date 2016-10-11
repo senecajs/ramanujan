@@ -116,11 +116,18 @@ function transport_config_plugin (opts) {
     seneca.log.debug('transport_config using mesh')
     delete opts.mesh
     seneca.use('mesh', opts)
+    seneca.use('zipkin-tracer', {
+      sampling: 1,
+      transport: "http"
+    })
     return
   }
 
   seneca.log.debug('transport_config using http transport')
-  seneca.use('zipkin-tracer')
+  seneca.use('zipkin-tracer', {
+    sampling: 1,
+    transport: "http"
+  })
 
   var service
   var config
