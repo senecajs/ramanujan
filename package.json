@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "ramanujan",
   "main": "ramanujan.js",
-  "scripts": {},
+  "scripts": {
+    "test": "lab -v */test"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/senecajs/ramanujan.git"
@@ -28,7 +30,7 @@
     "memdown": "1.2.0",
     "moment": "2.14.1",
     "search-index": "0.8.15",
-    "seneca": "3.0.0",
+    "seneca": "3.2.2",
     "seneca-balance-client": "0.6.0",
     "seneca-basic": "0.5.0",
     "seneca-demo-logger": "0.1.0",
@@ -39,7 +41,8 @@
     "vision": "4.1.0",
     "wo": "0.8.0"
   },
-  "files": [
-    "api/api.js"
-  ]
+  "devDependencies": {
+    "code": "3.0.2",
+    "lab": "11.0.1"
+  }
 }

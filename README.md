@@ -58,12 +58,31 @@ This example codebase does not provide a production deployment
 configuration. To see such a configuration for a similar system, using
 Docker, take a look at the NodeZoo code base.
 
+
+## Unit test examples
+
+The system also includes example code for unit testing microservices.
+The unit test code for each service is in the `test` subfolder of each
+microservice folder.
+
+To run all the tests, use:
+
+``js
+npm test
+``
+
+The microservices can be unit tested independently and offline. Mock
+messages are used to isolate each microservice from its network
+dependencies.
+
+
 ## Running the system
 
 The system is implemented in Node.js. You will need to have Node.js
 version 4.0 or greater installed.
 
 To run the system, follow these steps:
+
 
 #### Step 0: Install fuge
 
