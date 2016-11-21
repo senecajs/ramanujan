@@ -42,17 +42,21 @@ describe('follow', function () {
         target: 'u0'
       })
 
-      .act({
-        follow: 'list',
-        user: 'u0'
-      }, function (ignore, list) {
-        //expect(list.length).to.equal(2)
-        //expect(list[0].text).to.equal('t1')
-        console.log(list)
-      })
+    // follower lists are eventually consistent
+    setTimeout(function () {
+      seneca
+        .act({
+          follow: 'list',
+          user: 'u0',
+          kind: 'followers'
+        }, function (ignore, list) {
+          expect(list.length).to.equal(2)
+          expect(list).to.equal(['f0', 'f1'])
+        })
 
-    // Once all the tests are complete, invoke the test callback
-      .ready(fin)
+        // Once all the tests are complete, invoke the test callback
+        .ready(fin)
+    }, 222)
   })
 })
 
@@ -77,8 +81,13 @@ function test_seneca (fin) {
   // IMPORTANT! Provide mocks for any message patterns that the microservice
   // depends on. In production these are provided by other microservices.
   // To define a mock message, just add an action for the message pattern.
+
     .add('timeline:insert', function (msg, reply) {
       reply()
+    })
+
+    .add('store:list,kind:entry', function (msg, reply) {
+      reply(null, [])
     })
 
     .add('reserve:create', function (msg, reply) {
