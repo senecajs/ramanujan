@@ -54,6 +54,9 @@ module.exports = {
     timeline_shard: {
       run: 'node timeline-shard-service.js '+BASES+' '+OPTS,
     },
+    reserve: { 
+      run: 'node reserve-service.js '+BASES+' '+OPTS,
+    },
     front: { 
       run: 'node front.js '+BASES+' '+OPTS,
     }

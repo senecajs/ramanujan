@@ -1,17 +1,16 @@
 var BASES = (process.env.BASES || process.argv[2] || '').split(',')
 
 require('seneca')({
-  tag: 'entry-store',
+  tag: 'reserve',
   internal: {logger: require('seneca-demo-logger')},
   debug: {short_logs: true}
 })
-  .use('basic')
-  .use('entity')
-  .use('entry-store-logic')
+  .use('reserve-logic')
   .use('mesh',{
-    pin: 'store:*,kind:entry',
+    pin: 'reserve:*',
     bases: BASES
   })
+
   .ready(function(){
     console.log(this.id)
   })

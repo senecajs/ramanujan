@@ -1,4 +1,4 @@
-// Unit test for the entry-store microservice.
+// Unit test for the follow microservice.
 // Uses https://github.com/hapijs/lab but easy to refactor for other unit testers.
 
 // The utility function test_seneca constructs an instance of Seneca
@@ -14,10 +14,10 @@ var it = lab.it
 var expect = Code.expect
 
 // A suite of unit tests for this microservice.
-describe('entry-store', function () {
+describe('follow', function () {
 
   // A unit test (the test callback is named 'fin' to distinguish it from others).
-  it('add-entry', function (fin) {
+  it('add-followers', function (fin) {
 
     // Create a Seneca instance for testing.
     var seneca = test_seneca(fin)
@@ -28,40 +28,27 @@ describe('entry-store', function () {
     seneca
       .gate()
 
-    // Send an action, and validate the response.
+    // Send an action; there's no response expected for this message
       .act({
-        store: 'save',
-        kind: 'entry',
-        when: Date.now(),
-        user: 'u0',
-        text: 't0'
+        follow: 'user',
+        user: 'f0',
+        target: 'u0'
+      })
 
-        // Because test mode is active, it is not necessary to handle
-        // callback errors. These are passed directly to the 'fin' callback.
-      }, function (ignore, entry) {
-        expect(entry.user).to.equal('u0')
-        expect(entry.text).to.equal('t0')
+    // Send an action; there's no response expected for this message
+      .act({
+        follow: 'user',
+        user: 'f1',
+        target: 'u0'
       })
 
       .act({
-        store: 'save',
-        kind: 'entry',
-        when: Date.now(),
-        user: 'u0',
-        text: 't1'
-      }, function (ignore, entry) {
-        expect(entry.user).to.equal('u0')
-        expect(entry.text).to.equal('t1')
-      })
-
-      .act({
-        store: 'list',
-        kind: 'entry',
+        follow: 'list',
         user: 'u0'
       }, function (ignore, list) {
-        expect(list.length).to.equal(2)
-        expect(list[0].text).to.equal('t1')
-        expect(list[1].text).to.equal('t0')
+        //expect(list.length).to.equal(2)
+        //expect(list[0].text).to.equal('t1')
+        console.log(list)
       })
 
     // Once all the tests are complete, invoke the test callback
@@ -72,6 +59,9 @@ describe('entry-store', function () {
 
 // Construct a Seneca instance suitable for unit testing
 function test_seneca (fin) {
+  // In production, reservations will expire
+  var reservations = {}
+
   return Seneca({log: 'test'})
 
   // activate unit test mode. Errors provide additional stack tracing context.
@@ -79,16 +69,29 @@ function test_seneca (fin) {
     .test(fin)
 
   // Load the plugin dependencies of the microservice
-    .use('basic')
     .use('entity')
 
   // Load the microservice business logic
-    .use(require('../entry-store-logic'))
+    .use(require('../follow-logic'))
   
   // IMPORTANT! Provide mocks for any message patterns that the microservice
   // depends on. In production these are provided by other microservices.
   // To define a mock message, just add an action for the message pattern.
     .add('timeline:insert', function (msg, reply) {
       reply()
+    })
+
+    .add('reserve:create', function (msg, reply) {
+      if (reservations[msg.key]) {
+        return reply(null, {ok: false})
+      }
+      else {
+        reservations[msg.key] = true
+        return reply(null, {ok: true})
+      }
+    })
+
+    .add('reserve:remove', function (msg, reply) {
+      reservations[msg.key] = false
     })
 }

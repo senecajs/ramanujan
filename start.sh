@@ -34,6 +34,9 @@ sleep 1
 node timeline/timeline-service.js 1 $BASES $OPTS &
 sleep 1
 node timeline/timeline-shard-service.js $BASES $OPTS &
+sleep 1
+node reserve/reserve-service.js $BASES $OPTS &
+
 
 
 
