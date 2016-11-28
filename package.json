@@ -4,7 +4,7 @@
   "description": "ramanujan",
   "main": "ramanujan.js",
   "scripts": {
-    "test": "lab -v */test"
+    "test": "lab -v */test -I nil"
   },
   "repository": {
     "type": "git",
