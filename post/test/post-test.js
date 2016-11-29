@@ -1,4 +1,4 @@
-// Unit test for the fanout microservice.
+// Unit test for the post microservice.
 // Uses https://github.com/hapijs/lab but easy to refactor for other unit testers.
 
 // The utility function test_seneca constructs an instance of Seneca
@@ -14,7 +14,7 @@ var it = lab.it
 var expect = Code.expect
 
 // A suite of unit tests for this microservice.
-describe('fanout', function () {
+describe('post', function () {
 
   // A unit test (the test callback is named 'fin' to distinguish it from others).
   it('entry', function (fin) {
@@ -24,13 +24,18 @@ describe('fanout', function () {
 
     // Add dynamic mock messages, just for this test.
     seneca
-      .add('follow:list,kind:followers', function (msg, reply) {
-        reply(null, ['red', 'green', 'blue'])
+      .add('store:save,kind:entry', function (msg, reply) {
+        reply(null, this.make('entry', {
+          when: msg.when,
+          user: msg.user,
+          text: msg.text
+        }))
       })
 
     // The final verification step of this test.
-      .add('timeline:insert', function (msg, reply) {
-        expect(msg.users).to.equal(['red', 'green', 'blue'])
+      .add('info:entry', function (msg, reply) {
+        expect(msg.user).to.equal('u0')
+        expect(msg.text).to.equal('t0')
         reply()
         fin()
       })
@@ -39,8 +44,8 @@ describe('fanout', function () {
     seneca
 
       .act({
-        fanout: 'entry',
-        user: 'foo',
+        post: 'entry',
+        user: 'u0',
         text: 't0',
         when: Date.now()
       })
@@ -56,6 +61,9 @@ function test_seneca (fin) {
   // The fin callback is called when an error occurs anywhere.
     .test(fin)
 
+  // The test needs to construct entities
+    .use('entity')
+
   // Load the microservice business logic
-    .use(require('../fanout-logic'))
+    .use(require('../post-logic'))
 }

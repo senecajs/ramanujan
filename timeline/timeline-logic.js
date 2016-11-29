@@ -44,37 +44,41 @@ module.exports = function timeline (options) {
         .load$(user,function(err,timeline){
           if(err) return next(err)
 
-          if( !timeline && create ) {
-            seneca
-              .make('timeline',{id$:user,entrylist:[]})
-              .save$( function(err,timeline) {
-                if( err && create ) return insert_entry( user, false, next )
+          if (timeline) {
+            do_insert(timeline, next)
+          }
+          else if (create) {
+            this.act(
+              'reserve:create', 
+              {key: 'timeline/'+user}, 
+              function (err, status) {
                 if( err ) return next(err)
-                do_insert(timeline)
+            
+                if( !status.ok ) {
+                  return insert_entry(user, false, next)
+                }
+
+                this
+                  .make('timeline',{id$:user, entrylist:[]})
+                  .save$( function(err,timeline) {
+                    if( err ) return next(err)
+
+                    do_insert(timeline, function (err) {
+                      if( err ) return next(err)
+
+                      this.act('reserve:remove', {key: 'timeline/'+user})
+                    })
+                  })
               })
           }
-          else do_insert( timeline )
 
-          function do_insert (timeline) {
-
-            // insert is probabilistically idempotent
-            for( var i = 0; i < Math.min(11,timeline.entrylist.length); ++i ) {
-              if( entry.when === timeline.entrylist[i].when ) return next()
-            }
-
+          function do_insert (timeline, next) {
             timeline.entrylist.push(entry)
             timeline.entrylist.sort(function(a,b){
               return b.when - a.when
             })
 
-            timeline.save$(function(err,timeline) {
-              // underlying data store may be able to indicate conflicts
-              if( err && 'conflict' === err.code ) {
-                return insert_entry( user, false, next )
-              }
-              if( err ) return next(err)
-              next()
-            })
+            timeline.save$(next)
           }
         })
     }

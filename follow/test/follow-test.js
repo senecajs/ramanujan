@@ -22,41 +22,35 @@ describe('follow', function () {
     // Create a Seneca instance for testing.
     var seneca = test_seneca(fin)
 
-    // Gate the execution of actions for this instance. Gated actions are executed
-    // in sequence and each action waits for the previous one to complete. Gating
-    // is not required, but avoids excessive callbacks in the unit test code.
-    seneca
-      .gate()
-
-    // Send an action; there's no response expected for this message
-      .act({
+    seneca.act(
+      {
         follow: 'user',
         user: 'f0',
         target: 'u0'
+      }, 
+      function () {
+
+        seneca
+          .act(
+            {
+              follow: 'user',
+              user: 'f1',
+              target: 'u0'
+            },
+            function () {
+
+              seneca
+                .act({
+                  follow: 'list',
+                  user: 'u0',
+                  kind: 'followers'
+                }, function (ignore, list) {
+                  expect(list.length).to.equal(2)
+                  expect(list).to.equal(['f0', 'f1'])
+                  fin()
+                })
+            })
       })
-
-    // Send an action; there's no response expected for this message
-      .act({
-        follow: 'user',
-        user: 'f1',
-        target: 'u0'
-      })
-
-    // follower lists are eventually consistent
-    setTimeout(function () {
-      seneca
-        .act({
-          follow: 'list',
-          user: 'u0',
-          kind: 'followers'
-        }, function (ignore, list) {
-          expect(list.length).to.equal(2)
-          expect(list).to.equal(['f0', 'f1'])
-        })
-
-        // Once all the tests are complete, invoke the test callback
-        .ready(fin)
-    }, 222)
   })
 })
 

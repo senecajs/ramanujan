@@ -58,10 +58,10 @@ module.exports = function index (options) {
   // Insert a document into the search index.
   function search_insert (msg, done) {
     index.add([{
-      id:msg.id,
-      text:msg.text,
-      user:msg.user,
-      when:msg.when
+      id: msg.id,
+      text: msg.text,
+      user: msg.user,
+      when: msg.when
     }], {}, done)
   }
 

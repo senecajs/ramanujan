@@ -10,6 +10,7 @@ module.exports = function follow (options) {
   seneca.add('reserve:create', reserve_create)
   seneca.add('reserve:read', reserve_read)
   seneca.add('reserve:remove', reserve_remove)
+  seneca.add('reserve:state', reserve_state)
 
 
   var reservations = {}
@@ -48,6 +49,11 @@ module.exports = function follow (options) {
     var found = !!reservations[msg.key]
     delete reservations[msg.key]
     return reply(null, {ok:found})
+  }
+
+
+  function reserve_state(msg, reply) {
+    return reply(null, reservations)
   }
 }
  
