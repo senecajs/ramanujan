@@ -7,23 +7,24 @@ module.exports = function entry_cache (options) {
 
   var cache = {}
 
-  seneca.add('store:list,kind:entry,cache:true', function(msg, done) {
+  seneca.add('store:save,kind:entry', function(msg, done) {
+    delete cache[msg.user]
+    msg.cache = true
+    this.act(msg, done)
+  })
+
+
+  seneca.add('store:list,kind:entry', function(msg, done) {
     if( cache[msg.user] ) {
       return done( null, cache[msg.user] )
     }
 
-    delete msg.cache
+    msg.cache = true
+
     this.act(msg, function(err,list){
       if(err) return done(err)
       cache[msg.user] = list
       done(null,list)
     })
   })
-
-  
-  seneca.add('store:list,kind:entry,cache:false', function(msg, done) {
-    delete cache[msg.user]
-    done()
-  })
-
 }

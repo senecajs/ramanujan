@@ -9,7 +9,7 @@ require('seneca')({
   .use('entity')
   .use('entry-store-logic')
   .use('mesh',{
-    pin: 'store:*,kind:entry',
+    pin: 'store:*,kind:entry,cache:true',
     bases: BASES
   })
   .ready(function(){

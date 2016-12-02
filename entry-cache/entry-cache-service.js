@@ -5,9 +5,11 @@ require('seneca')({
   internal: {logger: require('seneca-demo-logger')},
   debug: {short_logs:true}
 })
+  .use('basic')
+  .use('entity')
   .use('entry-cache-logic')
   .use('mesh',{
-    pin: 'store:list,kind:entry,cache:*',
+    pin: 'store:*,kind:entry',
     bases: BASES
   })
   .ready(function(){
