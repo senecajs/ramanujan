@@ -6,6 +6,7 @@ var BASES = (process.env.BASES || process.argv[3] || '').split(',')
 var Hapi   = require('hapi')
 var Chairo = require('chairo')
 var Seneca = require('seneca')
+var wozu   = require('wozu')
 
 var server = new Hapi.Server()
 
@@ -26,14 +27,14 @@ server.register({
 })
 
 server.register({
+  register: wozu
+})
+
+server.register({
   register: require('wo'),
   options:{
     bases: BASES,
-    route: [
-        {path: '/api/ping'},
-        {path: '/api/post/{user}', method: 'post'},
-        {path: '/api/follow/{user}', method: 'post'},
-    ],
+    route: server.wozu(),
     sneeze: {
       silent: true
     }

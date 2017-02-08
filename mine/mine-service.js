@@ -11,6 +11,7 @@ var handlebars = require('handlebars')
 var _          = require('lodash')
 var moment     = require('moment')
 var Seneca     = require('seneca')
+var wozu       = require('wozu')
 
 var server = new hapi.Server()
 
@@ -35,12 +36,14 @@ server.register({
 })
 
 server.register({
+  register: wozu
+})
+
+server.register({
   register: require('wo'),
   options:{
     bases: BASES,
-    route: [
-        {path: '/mine/{user}'},
-    ],
+    route: server.wozu(),
     sneeze: {
       silent: true
     }
