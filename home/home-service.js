@@ -12,6 +12,9 @@ var _          = require('lodash')
 var moment     = require('moment')
 var Seneca     = require('seneca')
 
+
+var tag = 'home'
+
 var server = new hapi.Server()
 
 server.connection({
@@ -25,10 +28,11 @@ server.register({
   register:chairo,
   options:{
     seneca: Seneca({
-      tag: 'home',
+      tag: tag,
       internal: {logger: require('seneca-demo-logger')},
       debug: {short_logs:true}
     })
+      .use('zipkin-tracer', {sampling:1})
   }
 })
 
@@ -80,7 +84,6 @@ server.route({
 server.seneca.use('mesh',{bases:BASES})
 
 server.start(function(){
-  console.log('home',server.info.host,server.info.port)
+  console.log(tag,server.info.host,server.info.port)
 })
-
 
