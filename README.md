@@ -12,14 +12,14 @@ This purpose of this code base to help you learn how to design and
 build microservice systems. You can follow the construction through
 the following steps:
 
-  * [Informal Requirements](informal-requirements)
-  * [Message specification](message-specification)
-  * [Service specification](service-specification)
+  * [Informal Requirements](#informal-requirements)
+  * [Message specification](#message-specification)
+  * [Service specification](#service-specification)
 
 The system uses the
 [Seneca microservice framework](http://senecajs.org) to provide
 inter-service communication, and the
-[fuge microservice development tool](github.com/apparatus/fuge) to manage
+[fuge microservice development tool](https://github.com/apparatus/fuge) to manage
 services on a local development machine.
 
 The system is also a demonstration of the
@@ -134,7 +134,7 @@ This will start fuge, output some logging messages about the ramanujan services,
 ```sh
 ...
 starting shell..
-? fuge> 
+? fuge>
 ```
 
 Enter the command `help` to see a list of commands. Useful commands
@@ -335,18 +335,18 @@ Use the following message to see the user _foo's_ timeline:
 
 ```sh
 seneca 2.0.1 7k/repl> timeline:list,user:foo
-IN  000000: { timeline: 'list', user: 'foo' } # t7/39 timeline:* (6ln6zlc2qaer) transport_client 
-OUT 000000: { '0': 
+IN  000000: { timeline: 'list', user: 'foo' } # t7/39 timeline:* (6ln6zlc2qaer) transport_client
+OUT 000000: { '0':
    { user: 'foo',
      text: 'three colors: red',
      when: 1461759716373,
      can_follow: false },
-  '1': 
+  '1':
    { user: 'foo',
      text: 'three colors: white',
      when: 1461759467135,
      can_follow: false },
-  '2': 
+  '2':
    { user: 'foo',
      text: 'three colors: blue',
      when: 1461759353996,
@@ -372,10 +372,10 @@ listen for, try:
 
 ```sh
 seneca 2.0.1 7k/repl> role:mesh,get:members
-IN  000001: { role: 'mesh', get: 'members' } # aa/ie get:members,role:mesh (9mxp6qx6zyox) get_members 
+IN  000001: { role: 'mesh', get: 'members' } # aa/ie get:members,role:mesh (9mxp6qx6zyox) get_members
 OUT 000001: {
   ...
-  '4': 
+  '4':
    { pin: 'timeline:*',
      port: 54932,
      host: '0.0.0.0',
@@ -411,4 +411,4 @@ make debugging easier.
 
 
 ## License
-Copyright (c) Richard Rodger and other contributors 2015-2016, Licensed under [MIT][].
+Copyright (c) Richard Rodger and other contributors 2015-2016, Licensed under [MIT](/LICENSE).
