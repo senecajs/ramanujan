@@ -39,18 +39,6 @@ server.register({
   register: wozu
 })
 
-server.register({
-  register: require('wo'),
-  options:{
-    bases: BASES,
-    route: server.wozu(),
-    sneeze: {
-      silent: true
-    }
-  }
-})
-
-
 server.views({
   engines: { html: handlebars },
   path: __dirname + '/www',
@@ -81,6 +69,16 @@ server.route({
   }
 })
 
+server.register({
+  register: require('wo'),
+  options:{
+    bases: BASES,
+    route: server.wozu(),
+    sneeze: {
+      silent: true
+    }
+  }
+})
 
 server.seneca.use('mesh',{bases:BASES})
 

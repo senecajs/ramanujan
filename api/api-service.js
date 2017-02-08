@@ -30,18 +30,6 @@ server.register({
   register: wozu
 })
 
-server.register({
-  register: require('wo'),
-  options:{
-    bases: BASES,
-    route: server.wozu(),
-    sneeze: {
-      silent: true
-    }
-  }
-})
-
-
 server.route({
   method: 'GET', path: '/api/ping',
   handler: function( req, reply ){
@@ -79,6 +67,17 @@ server.route({
         reply.redirect(req.payload.from)
       }
     )}
+})
+
+server.register({
+  register: require('wo'),
+  options:{
+    bases: BASES,
+    route: server.wozu(),
+    sneeze: {
+      silent: true
+    }
+  }
 })
 
 server.seneca
