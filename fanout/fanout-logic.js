@@ -12,7 +12,7 @@ module.exports = function fanout (options) {
     delete entry.fanout
 
     this.act('follow:list,kind:followers',{user:entry.user},function(err,userlist){
-      if(err) return done(err)
+      if(err) return
 
       if( userlist && 0 < userlist.length ) {
         this.act({
