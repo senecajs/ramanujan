@@ -54,6 +54,9 @@ everything in memory makes for faster development, easier
 experimentation, and lets you reboot the system if you end up with
 corrupted data during development.
 
+This system also provides an example of message tracing, using <a
+href="http://zipkin.io/">Zipkin</a>.
+
 This example codebase does not provide a production deployment
 configuration. To see such a configuration for a similar system, using
 Docker, take a look at the NodeZoo code base.
@@ -120,6 +123,21 @@ Wait until the downloads complete. Some modules will require local
 compilation. If you run into problems due to your operating system,
 using a [Linux virtual machine](https://www.virtualbox.org/) is
 probably your fastest solution.
+
+The Zipkin message tracing is optional, and the system will work fine
+if there is no Zipkin installation. However, it is pretty easy to set
+one up using <a href="http://docker.com">Docker</a>:
+
+```sh
+$ docker run -d -p 9411:9411 openzipkin/zipkin
+```
+
+Once you've run through some of the use cases, open <a
+href="http://localhost:9411/">http://localhost:9411/</a> to see the
+message traces. Note that this is a demonstration system, so all
+traces are captured. In production you'll want to use a much lower
+sampling rate - see the Zipkin documentation for details.
+
 
 #### Step 3: Run fuge
 
