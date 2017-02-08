@@ -1,5 +1,5 @@
 var BASES = (process.env.BASES || '127.0.0.1:39000,127.0.0.1:39001')
-var OPTS = (process.env.OPTS || '--seneca.options.debug.undead=true --seneca.options.plugin.mesh.sneeze.silent=1')
+var OPTS = (process.env.OPTS || '')
 
 module.exports = {
   runDocker: false,

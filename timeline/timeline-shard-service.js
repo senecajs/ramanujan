@@ -11,6 +11,7 @@ require('seneca')({
   internal: {logger: require('seneca-demo-logger')},
   debug: {short_logs:true}
 })
+  .use('zipkin-tracer', {sampling:1})
 
   .add('timeline:list',function(msg,done){
     var shard = resolve_shard(msg.user)

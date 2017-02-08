@@ -29,7 +29,8 @@ server.register({
       internal: {logger: require('seneca-demo-logger')},
       debug: {short_logs:true}
     })
-    .use('entity')
+      .use('zipkin-tracer', {sampling:1})
+      .use('entity')
   }
 })
 

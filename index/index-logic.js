@@ -36,7 +36,10 @@ module.exports = function index (options) {
   // Query the search index.
   // The implementation logic consists of calls to the search index API.
   function search_query (msg, done) {
+    console.log(terms)
+
     var terms = msg.query.split(/ +/)
+
     var query = {
       query: {
         AND: {text:terms}
