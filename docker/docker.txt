@@ -1,0 +1,69 @@
+
+# on host 
+
+
+docker-machine ls
+
+docker-machine create --driver virtualbox manager1
+docker-machine create --driver virtualbox worker1
+docker-machine create --driver virtualbox worker2
+
+docker-machine ls
+
+# MANAGER-IP
+docker-machine ip manager1
+
+docker-machine ssh manager1
+
+# inside manager1
+
+docker swarm init --advertise-addr <MANAGER-IP>
+
+docker swarm join-token worker
+
+exit
+
+
+
+docker-machine ssh worker1
+
+# inside worker1
+
+docker swarm join --token <TOKEN> <MANAGER-IP>:2377
+
+exit
+
+
+
+docker-machine ssh worker2
+
+# inside worker2
+
+docker swarm join --token <TOKEN> <MANAGER-IP>:2377
+
+exit
+
+
+
+docker-machine ssh manager1 -A
+
+# inside manager1
+
+docker node ls
+
+docker network create --driver overlay ramanujan
+
+docker network ls
+
+
+# install emacs
+tce
+# emacs.tcz
+# libXrandr.tcz
+# make.tcz
+
+TERM=vt100 emacs -nw  
+
+
+# IMPORTANT: use the same host name everywhere otherwise swim-js mappings will fail
+
