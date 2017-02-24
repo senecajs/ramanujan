@@ -41,7 +41,8 @@
     "seneca-zipkin-tracer": "0.1.0",
     "sneeze": "0.7.1",
     "vision": "4.1.0",
-    "wo": "0.8.0"
+    "wo": "0.8.0",
+    "rif": "0.3.0"
   },
   "devDependencies": {
     "code": "3.0.2",

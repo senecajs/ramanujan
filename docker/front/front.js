@@ -10,6 +10,9 @@ var Rif = require('rif')
 var server = new Hapi.Server()
 var rif = Rif()
 
+console.log(HOST,rif(HOST),require('os').networkInterfaces())
+setTimeout(console.log,5000)
+
 
 server.connection({ 
   port: 8000 // test with http://localhost:8000/api/ping
