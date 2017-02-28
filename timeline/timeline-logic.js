@@ -86,7 +86,7 @@ module.exports = function timeline (options) {
 
 
   function list (msg, done) {
-    this.act('follow:list,kind:following',{user:msg.user},function(err,following){
+      this.act('follow:list,kind:following',{user:msg.user,default$:{}},function(err,following){
       if( err ) return done(err)
 
       this

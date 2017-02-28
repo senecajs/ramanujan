@@ -68,11 +68,16 @@ server.route({
 server.route({
   method: 'POST', path: '/api/post/{user}',
   handler: function( req, reply ){
+
+      console.log('/api/post A', req.params, req.payload)
+      
     server.seneca.act(
       'post:entry',
       {user:req.params.user, text:req.payload.text},
       function(err,out) {
-        if( err ) return reply.redirect('/error')
+	  console.log('/api/post B', err, out)
+
+	  if( err ) return reply.redirect('/error')
 
         reply.redirect(req.payload.from)
       }
