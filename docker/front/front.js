@@ -1,5 +1,4 @@
 "use strict"
-
 var HOST = process.env.HOST || process.argv[2] || '127.0.0.1'
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
 
@@ -10,8 +9,8 @@ var Rif = require('rif')
 var server = new Hapi.Server()
 var rif = Rif()
 
-console.log(HOST,rif(HOST),require('os').networkInterfaces())
-setTimeout(console.log,5000)
+
+var host = rif(HOST) || HOST
 
 
 server.connection({ 
@@ -25,7 +24,7 @@ server.register({
   options: {
     bases: BASES,
       sneeze: {
-	  host: rif(HOST),
+	  host: host,
 	  silent: false
       }
   }
