@@ -4,10 +4,6 @@ var HOST = process.env.HOST || process.argv[4] || '127.0.0.1'
 var BASES = (process.env.BASES || process.argv[5] || '').split(',')
 
 
-console.log( require('os').networkInterfaces() )
-//console.log( HOST, require('rif')()(HOST) )
-
-
 var repl = require('seneca-repl');
 
 var seneca = require('seneca')({

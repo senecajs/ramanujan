@@ -12,7 +12,7 @@ var handlebars = require('handlebars')
 var _          = require('lodash')
 var moment     = require('moment')
 var Seneca     = require('seneca')
-var Rif = require('rif')
+var Rif        = require('rif')
 
 
 var tag = 'home'
@@ -28,6 +28,7 @@ server.connection({
     port: PORT,
     host: host
 })
+
 
 server.register( vision )
 server.register( inert )
@@ -94,6 +95,7 @@ server.seneca.use('mesh',{
     bases:BASES,
     sneeze:{silent:false}
 })
+
 
 server.start(function(){
   console.log(tag,server.info.host,server.info.port)
