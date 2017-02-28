@@ -4,10 +4,6 @@ var HOST = process.env.HOST || process.argv[4] || '127.0.0.1'
 var BASES = (process.env.BASES || process.argv[5] || '').split(',')
 
 
-console.log( require('os').networkInterfaces() )
-//console.log( HOST, require('rif')()(HOST) )
-
-
 var repl = require('seneca-repl');
 
 var seneca = require('seneca')({
@@ -15,7 +11,7 @@ var seneca = require('seneca')({
   internal: {logger: require('seneca-demo-logger')},
   debug: {short_logs:true}
 })
-.use('zipkin-tracer', {sampling:1})
+//.use('zipkin-tracer', {sampling:1})
 .use('mesh',{
   tag: null, // ensures membership of all tagged meshes
   bases: BASES,
@@ -30,7 +26,7 @@ var seneca = require('seneca')({
       }
     }
   },
-    sneeze:{silent:false}
+    sneeze:{silent:true}
 })
 .use(repl)
 .ready(function () {

@@ -1,0 +1,20 @@
+<form action="/api/post/{{user}}" method="post">
+<input type="text" name="text">
+<input type="hidden" name="from" value="/mine/{{user}}">
+<input type="submit" value="post">
+</form>
+
+<br>
+
+{{#each entrylist}}
+<div class="entry">
+<small>{{this.when}}</small>
+<br>
+<div class="text">
+{{this.text}}
+</div>
+</form>
+</div>
+{{/each}}
+
+

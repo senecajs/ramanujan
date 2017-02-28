@@ -41,7 +41,7 @@ server.register({
       internal: {logger: require('seneca-demo-logger')},
       debug: {short_logs:true}
     })
-      .use('zipkin-tracer', {sampling:1})
+      //.use('zipkin-tracer', {sampling:1})
   }
 })
 
@@ -53,7 +53,7 @@ server.register({
         {path: '/{user}'},
     ],
     sneeze: {
-      silent: false
+      silent: true
     }
   }
 })
@@ -93,7 +93,7 @@ server.route({
 server.seneca.use('mesh',{
     host:host,
     bases:BASES,
-    sneeze:{silent:false}
+    sneeze:{silent:true}
 })
 
 

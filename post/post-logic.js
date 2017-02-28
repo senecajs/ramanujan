@@ -7,11 +7,7 @@ module.exports = function post (options) {
 
     entry.when = Date.now()
 
-      console.log('post A', entry)
-      
     this.act('store:save,kind:entry', entry, function(err,entry) {
-	console.log('post B', err, entry)
-
 	done(err)
 
       if( !err ) {

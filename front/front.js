@@ -25,7 +25,7 @@ server.register({
     bases: BASES,
       sneeze: {
 	  host: host,
-	  silent: false
+	  silent: true
       }
   }
 })

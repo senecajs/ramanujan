@@ -12,14 +12,14 @@ require('seneca')({
   debug: {short_logs:true}
 })
   //.test(console.log,'print')
-  .use('zipkin-tracer', {sampling:1})
+  //.use('zipkin-tracer', {sampling:1})
   .use('mesh',{
     isbase: true,
     port: PORT,
     host: HOST,
     bases: BASES,
     pin:'role:mesh',
-    sneeze:{silent:false}
+    sneeze:{silent:true}
   })
   .ready(function(){
     console.log(this.id)
