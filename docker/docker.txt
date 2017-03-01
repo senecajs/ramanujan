@@ -67,3 +67,25 @@ TERM=vt100 emacs -nw
 
 # IMPORTANT: use the same host name everywhere otherwise swim-js mappings will fail
 
+
+# TODO: order properly
+
+docker service create --replicas 1 --network ramanujan --name base1 -e TAG=base1 -e PORT=39000 -e HOST=base
+1 -e BASES=base0:39000,base1:39000 base
+
+
+docker service create --replicas 1 --network ramanujan -p 10001:10001 --name repl -e TAG=repl -e REPL_HOST=0.0.0.0  -e HOST=@eth2 -e BASES=base0:3900
+0,base1:39000 repl
+
+
+# eth2 as publish
+docker service create --replicas 1 --network ramanujan --publish 8000:8000 --name front -e HOST=eth2
+ -e BASES=base0:39000,base1:39000 front
+
+
+# eth0 as no publish
+docker service create --replicas 1 --network ramanujan  --name home -e HOST=eth0 -e BASES=base0:39000,ba
+se1:39000 home
+
+
+
