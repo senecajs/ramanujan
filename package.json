@@ -39,7 +39,7 @@
     "seneca-mesh": "0.9.0",
     "seneca-repl": "0.3.0",
     "seneca-zipkin-tracer": "0.1.0",
-    "sneeze": "0.7.1",
+    "sneeze": "https://github.com/rjrodger/sneeze#diagnostic",
     "vision": "4.1.0",
     "wo": "0.8.0",
     "rif": "0.3.0"

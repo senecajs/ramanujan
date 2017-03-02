@@ -3,6 +3,8 @@
 var PORT = process.env.PORT || process.argv[2] || 0
 var HOST = process.env.HOST || process.argv[3] || 0
 var BASES = (process.env.BASES || process.argv[4] || '').split(',')
+var SILENT = process.env.SILENT || process.argv[5] || 'true'
+
 
 var hapi       = require('hapi')
 var chairo     = require('chairo')
@@ -51,7 +53,8 @@ server.register({
         {method: ['GET','POST'], path: '/search/{user}'},
     ],
     sneeze: {
-      silent: true
+      host: host,
+      silent: JSON.parse(SILENT)
     }
   }
 })
@@ -111,8 +114,12 @@ server.route({
 
 
 server.seneca.use('mesh',{
-    bases:BASES,
-    host:host
+  bases:BASES,
+  host:host,
+  sneeze:{
+    silent: JSON.parse(SILENT),
+    swim: {interval: 1111}
+  }
 })
 
 server.start(function(){

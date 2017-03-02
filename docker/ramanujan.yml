@@ -1,0 +1,236 @@
+
+version: '3'
+
+networks:
+  ramanujan:
+    driver: overlay
+
+services:
+  base0:
+    image: base
+    environment:
+      TAG: base0
+      PORT: 39000
+      HOST: base0
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      ramanujan:
+        aliases: 
+          - base0
+    deploy:
+      replicas: 1
+
+  base1:
+    image: base
+    environment:
+      TAG: base1
+      PORT: 39001
+      HOST: base1
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      ramanujan:
+        aliases: 
+          - base1
+    deploy:
+      replicas: 1
+
+  repl:
+    image: repl
+    environment:
+      REPL_HOST: 0.0.0.0
+      HOST: '@eth2'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    ports:
+      - '10001:10001'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  front:
+    image: front
+    environment:
+      HOST: 'eth2'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    ports:
+      - '8000:8000'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  home:
+    image: home
+    environment:
+      HOST: 'eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  mine:
+    image: mine
+    environment:
+      HOST: 'eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  search:
+    image: search
+    environment:
+      HOST: 'eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  api:
+    image: api
+    environment:
+      HOST: 'eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  entry-store:
+    image: entry-store
+    environment:
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  entry-cache:
+    image: entry-cache
+    environment:
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  index:
+    image: index
+    environment:
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  reserve:
+    image: reserve
+    environment:
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  fanout:
+    image: fanout
+    environment:
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  follow:
+    image: follow
+    environment:
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  post:
+    image: post
+    environment:
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  timeline:
+    image: timeline
+    environment:
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  timeline-shard-0:
+    image: timeline-shard
+    environment:
+      SHARD: 0,
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+
+
+  timeline-shard-1:
+    image: timeline-shard
+    environment:
+      SHARD: 1,
+      HOST: '@eth0'
+      BASES: base0:39000,base1:39001
+      SILENT: 'false'
+    networks:
+      - ramanujan
+    deploy:
+      replicas: 1
+

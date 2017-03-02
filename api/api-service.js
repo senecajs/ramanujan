@@ -1,8 +1,10 @@
 "use strict"
 
 var PORT = process.env.PORT || process.argv[2] || 0
-var HOST = process.env.HOST || process.argv[3] || 0
+var HOST = process.env.HOST || process.argv[3] || '127.0.0.1'
 var BASES = (process.env.BASES || process.argv[4] || '').split(',')
+var SILENT = process.env.SILENT || process.argv[5] || 'true'
+
 
 var Hapi   = require('hapi')
 var Chairo = require('chairo')
@@ -48,7 +50,9 @@ server.register({
         {path: '/api/follow/{user}', method: 'post'},
     ],
     sneeze: {
-      silent: true
+      host: host,
+      silent: JSON.parse(SILENT),
+      swim: {interval: 1111}
     }
   }
 })
@@ -104,9 +108,12 @@ server.seneca
     done( null, {pong:true,api:true,time:Date.now()})
   })
     .use('mesh',{
-	host:host,
-	bases:BASES,
-	sneeze:{silent:true}
+	host: host,
+	bases: BASES,
+	sneeze: {
+          silent: JSON.parse(SILENT),
+          swim: {interval: 1111}
+        }
     })
 
 

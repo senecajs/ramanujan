@@ -1,5 +1,7 @@
 var HOST = process.env.HOST || process.argv[2] || '127.0.0.1'
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
+var SILENT = process.env.SILENT || process.argv[5] || 'true'
+
 
 var _ = require('lodash')
 
@@ -43,27 +45,12 @@ require('seneca')({
     pin: 'timeline:*',
       bases: BASES,
       host: HOST,
-      sneeze:{silent:true}
+      sneeze:{
+        silent: JSON.parse(SILENT),
+        swim: {interval: 1111}
+      }
   })
 
   .ready(function(){
     console.log(this.id)
   })
-
-
-/* In Situ Test
-  .repl(10002)
-
-  .ready( function(){
-    var si = this
-
-    si.act("timeline:insert,user:foo,text:f0,when:1234,users:['aaa','bbb']")
-    si.act("timeline:insert,user:bar,text:f1,when:5678,users:['bbb','ccc']")
-
-    setTimeout( function() {
-      si.act('timeline:list,user:aaa',function(e,o){console.log('aaa',o)})
-      si.act('timeline:list,user:bbb',function(e,o){console.log('bbb',o)})
-      si.act('timeline:list,user:ccc',function(e,o){console.log('ccc',o)})
-    },333)
-  })
-*/

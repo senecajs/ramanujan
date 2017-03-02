@@ -1,6 +1,7 @@
 "use strict"
 var HOST = process.env.HOST || process.argv[2] || '127.0.0.1'
 var BASES = (process.env.BASES || process.argv[3] || '').split(',')
+var SILENT = process.env.SILENT || process.argv[4] || 'true'
 
 
 var Hapi = require('hapi')
@@ -24,8 +25,9 @@ server.register({
   options: {
     bases: BASES,
       sneeze: {
-	  host: host,
-	  silent: true
+	host: host,
+	silent: JSON.parse(SILENT),
+        swim: {interval: 1111}
       }
   }
 })
