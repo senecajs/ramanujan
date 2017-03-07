@@ -1,4 +1,7 @@
 
+# These are development notes NOT instructions!
+
+
 # on host 
 
 

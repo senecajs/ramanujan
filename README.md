@@ -58,8 +58,8 @@ This system also provides an example of message tracing, using <a
 href="http://zipkin.io/">Zipkin</a>.
 
 This example codebase does not provide a production deployment
-configuration. To see such a configuration for a similar system, using
-Docker, take a look at the NodeZoo code base.
+configuration. It does however provide a Docker Swarm example that you
+can start building from.
 
 
 ## Unit test examples
@@ -84,7 +84,30 @@ dependencies.
 The system is implemented in Node.js. You will need to have Node.js
 version 4.0 or greater installed.
 
-To run the system, follow these steps:
+You can run the system directly from the command line by running the
+`start.sh` script:
+
+
+```sh
+$ ./start.sh
+```
+
+This starts all the microservices in the background. While this is a
+quick way to get started, and verify that everything works, it is not
+the most convenient option.
+
+To have more control, you can use
+[fuge](https://github.com/apparatus/fuge) to run the microservice
+processes. Detailed instructions are provided next.
+
+You can also use Docker to run the services. Example Dockerfiles are
+provided in the
+[docker folder](https://github.com/senecajs/ramanujan/tree/master/docker). See
+below for more details.
+
+
+
+## Running with fuge
 
 
 #### Step 0: Install fuge
@@ -122,7 +145,10 @@ $ npm install
 Wait until the downloads complete. Some modules will require local
 compilation. If you run into problems due to your operating system,
 using a [Linux virtual machine](https://www.virtualbox.org/) is
-probably your fastest solution.
+probably your fastest solution. If you are using Windows,
+[configuring msbuild](https://github.com/Microsoft/nodejs-guidelines/blob/master/windows-environment.md#compiling-native-addon-modules)
+first is a good place to start.
+
 
 The Zipkin message tracing is optional, and the system will work fine
 if there is no Zipkin installation. However, it is pretty easy to set
@@ -137,6 +163,8 @@ href="http://localhost:9411/">http://localhost:9411/</a> to see the
 message traces. Note that this is a demonstration system, so all
 traces are captured. In production you'll want to use a much lower
 sampling rate - see the Zipkin documentation for details.
+
+
 
 
 #### Step 3: Run fuge
@@ -408,6 +436,67 @@ This message is so useful, that the repl service defines an alias for it: `m`.
 
 The default configuration of the system uses shortened identifers to
 make debugging easier.
+
+
+### Using the monitor
+
+You can monitor the state of each service, and the message patterns
+that it responds to, by running the `monitor` service separately in
+it's own terminal window. The `monitor` service prints a table of
+showing each service, and dynamically updates the table as services
+come and go. See
+[seneca-mesh](https://github.com/senecajs/seneca-mesh) for details.
+
+```sh
+$ node monitor/monitor.js 
+```
+
+
+## Using Docker
+
+You'll need to have the latest version of
+[Docker](https://www.docker.com/) installed.
+
+The [docker](https://github.com/senecajs/ramanujan/tree/master/docker)
+folder contains Docker image setup Makefiles and Dockerfiles. Run the
+top level `Makefile` to build all the images:
+
+```
+$ cd docker
+$ make
+```
+
+Then deploy all the images using Docker Stack:
+
+```
+$ docker stack deploy -c ramanujan.yml ramanujan
+```
+
+This will start up everything. The containers run in their own overlay
+network, but you will be able to access the website and repl on
+localhost as with fuge.
+
+If things go funny (hey, it's Docker), delete the stack, restart
+Docker, and try again:
+
+```
+$ docker stack rm ramanujan
+```
+
+You can see some information about the containers with these commands:
+
+```
+$ docker stats
+$ docker services ls
+$ docker ps
+```
+
+To view the monitor, run the it on the `repl` container:
+
+```
+$ docker exec -it `docker ps | grep repl | cut -f 1 -d ' '` /bin/sh
+# node monitor.js
+```
 
 
 ## Informal Requirements
