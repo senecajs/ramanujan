@@ -1,44 +1,45 @@
+HOST="127.0.0.1"
 BASES="127.0.0.1:39000,127.0.0.1:39001"
 OPTS=""
 
-// for demos use OPTS = '--seneca.options.debug.undead=true --seneca.options.plugin.mesh.sneeze.silent=1'
+# for demos use OPTS = '--seneca.options.debug.undead=true --seneca.options.plugin.mesh.sneeze.silent=1'
 
 
-node base/base.js base0 39000 $BASES $OPTS &
+node base/base.js base0 39000 $HOST $BASES $OPTS &
 sleep 1
-node base/base.js base1 39001 $BASES $OPTS &
+node base/base.js base1 39001 $HOST $BASES $OPTS &
 sleep 1
-node front/front.js $BASES $OPTS &
+node front/front.js $HOST $BASES $OPTS &
 sleep 1
-node api/api-service.js 0 $BASES $OPTS &
+node api/api-service.js 0 $HOST $BASES $OPTS &
 sleep 1
-node post/post-service.js $BASES $OPTS &
+node post/post-service.js $HOST $BASES $OPTS &
 sleep 1
-node entry-store/entry-store-service.js $BASES $OPTS &
+node entry-store/entry-store-service.js $HOST $BASES $OPTS &
 sleep 1
-node entry-cache/entry-cache-service.js $BASES $OPTS &
+node entry-cache/entry-cache-service.js $HOST $BASES $OPTS &
 sleep 1
-node repl/repl-service.js 10001 $BASES $OPTS &
+node repl/repl-service.js 10001 $HOST $HOST $BASES $OPTS &
 sleep 1
-node mine/mine-service.js 0 $BASES $OPTS &
+node mine/mine-service.js 0 $HOST $BASES $OPTS &
 sleep 1
-node home/home-service.js 0 $BASES $OPTS &
+node home/home-service.js 0 $HOST $BASES $OPTS &
 sleep 1
-node search/search-service.js 0 $BASES $OPTS &
+node search/search-service.js 0 $HOST $BASES $OPTS &
 sleep 1
-node index/index-service.js $BASES $OPTS &
+node index/index-service.js $HOST $BASES $OPTS &
 sleep 1
-node follow/follow-service.js $BASES $OPTS &
+node follow/follow-service.js $HOST $BASES $OPTS &
 sleep 1
-node fanout/fanout-service.js $BASES $OPTS &
+node fanout/fanout-service.js $HOST $BASES $OPTS &
 sleep 1
-node timeline/timeline-service.js 0 $BASES $OPTS &
+node timeline/timeline-service.js 0 $HOST $BASES $OPTS &
 sleep 1
-node timeline/timeline-service.js 1 $BASES $OPTS &
+node timeline/timeline-service.js 1 $HOST $BASES $OPTS &
 sleep 1
-node timeline/timeline-shard-service.js $BASES $OPTS &
+node timeline/timeline-shard-service.js $HOST $BASES $OPTS &
 sleep 1
-node reserve/reserve-service.js $BASES $OPTS &
+node reserve/reserve-service.js $HOST $BASES $OPTS &
 
 
 

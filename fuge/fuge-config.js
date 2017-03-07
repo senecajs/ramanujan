@@ -26,7 +26,7 @@ module.exports = {
       run: 'node entry-cache-service.js '+HOST+' '+BASES+' '+OPTS,
     },
     repl: {
-      run: 'node repl-service.js 10001 '+HOST+' '+BASES+' '+OPTS,
+      run: 'node repl-service.js 10001 '+HOST+' '+HOST+' '+BASES+' '+OPTS,
     },
     mine: {
       run: 'node mine-service.js 0 '+HOST+' '+BASES+' '+OPTS,

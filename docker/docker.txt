@@ -89,3 +89,14 @@ se1:39000 home
 
 
 
+# stack
+
+docker stack deploy -c ramanujan.yml ramanujan
+docker stack rm ramanujan
+
+
+# monitor
+
+docker exec -it `docker ps | grep repl | cut -f 1 -d ' '` /bin/sh
+$ node monitor.js
+

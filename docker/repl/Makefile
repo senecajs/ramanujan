@@ -1,5 +1,6 @@
 container :
 	cp ../../repl/repl-service.js .
+	cp ../../monitor/monitor.js .
 	docker build -t repl .
 	docker images | grep repl
 

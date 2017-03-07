@@ -233,4 +233,3 @@ services:
       - ramanujan
     deploy:
       replicas: 1
-

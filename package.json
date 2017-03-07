@@ -36,7 +36,7 @@
     "seneca-basic": "0.5.0",
     "seneca-demo-logger": "0.2.0",
     "seneca-entity": "1.3.0",
-    "seneca-mesh": "0.9.0",
+    "seneca-mesh": "0.10.0",
     "seneca-repl": "0.3.0",
     "seneca-zipkin-tracer": "0.1.0",
     "sneeze": "https://github.com/rjrodger/sneeze#diagnostic",
