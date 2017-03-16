@@ -1,0 +1,118 @@
+fuge_global:
+  tail: true
+  monitor: false
+  auto_generate_environment: false
+  monitor_excludes:
+    - '**/node_modules/**'
+    - '**/.git/**'
+    - '**/*.log'
+  environment:
+    - BASES=127.0.0.1:39000,127.0.0.1:39001
+    - HOST=127.0.0.1
+    - SILENT=true
+base0:
+  type: node
+  path: ../base
+  run: node base.js
+  ports:
+    - main=39000
+  environment:
+    - TAG=base0
+    - PORT=39000
+base1:
+  type: node
+  path: ../base
+  run: node base.js
+  ports:
+    - main=39001
+  environment:
+    - TAG=base1
+    - PORT=39001
+front:
+  type: node
+  path: ../front
+  run: node front.js
+  ports:
+    - main=8000
+  environment:
+    - PORT=8000
+api:
+  type: node
+  path: ../api
+  run: node api-service.js
+  ports:
+    - main=8001
+  environment:
+    - PORT=0
+post:
+  type: node
+  path: ../post
+  run: node post-service.js
+entry_store:
+  type: node
+  path: ../entry-store
+  run: node entry-store-service.js
+entry_cache:
+  type: node
+  path: ../entry-cache
+  run: node entry-cache-service.js
+repl:
+  type: node
+  path: ../repl
+  run: node repl-service.js 
+  ports:
+    - main=10001
+  environment:
+    - REPL_HOST=127.0.0.1
+    - REPL_PORT=10001
+mine:
+  type: node
+  path: ../mine
+  run: node mine-service.js
+  environment:
+    - PORT=0
+home:
+  type: node
+  path: ../home
+  run: node home-service.js
+  environment:
+    - PORT=0
+index:
+  type: node
+  path: ../index
+  run: node index-service.js
+search:
+  type: node
+  path: ../search
+  run: node search-service.js
+  environment:
+    - PORT=0
+follow:
+  type: node
+  path: ../follow
+  run: node follow-service.js
+fanout:
+  type: node
+  path: ../fanout
+  run: node fanout-service.js
+timeline0:
+  type: node
+  path: ../timeline
+  run: node timeline-service.js
+  environment:
+    - SHARD=0
+timeline1:
+  type: node
+  path: ../timeline
+  run: node timeline-service.js
+  environment:
+    - SHARD=1
+timeline_shard:
+  type: node
+  path: ../timeline
+  run: node timeline-shard-service.js
+reserve:
+  type: node
+  path: ../reserve
+  run: node reserve-service.js
+
