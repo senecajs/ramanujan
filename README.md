@@ -172,7 +172,7 @@ sampling rate - see the Zipkin documentation for details.
 From within the repository folder, run the fuge shell.
 
 ```sh
-$ fuge shell fuge/system.yml
+$ fuge shell fuge/fuge.yml
 ```
 
 This will start fuge, output some logging messages about the ramanujan services, and then place you in an interactive repl:
